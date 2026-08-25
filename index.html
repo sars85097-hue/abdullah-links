@@ -3,886 +3,390 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050403">
-<meta name="description" content="عبدالله — صانع محتوى ومصمم">
-<title>عبدالله | الهوية الرقمية</title>
+<meta name="theme-color" content="#050505">
+
+<title>عبدالله | الموقع الشخصي</title>
+
+<meta name="description" content="الموقع الشخصي لعبدالله — جميع حساباتي وروابطي في مكان واحد.">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Marhey:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
 
-:root{
-    --black:#050403;
-    --black2:#0a0907;
-    --card:#0d0c0a;
-    --gold:#c89b3c;
-    --gold2:#f2d27a;
-    --gold3:#8d651d;
-    --white:#f5f1e8;
-    --muted:#817b70;
-    --border:rgba(200,155,60,.22);
-    --goldGlow:rgba(200,155,60,.16);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root {
+    --gold: #d4af37;
+    --gold-light: #f7df8a;
+    --gold-dark: #8f6f16;
+    --black: #050505;
+    --card: rgba(255,255,255,0.045);
+    --border: rgba(212,175,55,0.25);
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
+body {
+    min-height: 100vh;
     background:
-        radial-gradient(circle at 50% -10%,rgba(200,155,60,.10),transparent 35%),
-        var(--black);
-    color:var(--white);
-    font-family:'Cairo',sans-serif;
-    overflow-x:hidden;
+        radial-gradient(circle at 50% 0%, rgba(212,175,55,0.12), transparent 35%),
+        radial-gradient(circle at 100% 100%, rgba(212,175,55,0.06), transparent 30%),
+        #050505;
+    color: #fff;
+    font-family: 'Cairo', sans-serif;
+    overflow-x: hidden;
 }
 
-/* ===== BACKGROUND ===== */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:9999;
-    opacity:.025;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* الخلفية الذهبية */
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(212,175,55,0.055);
+    filter: blur(100px);
+    top: -250px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
 }
 
-.background{
-    position:fixed;
-    inset:0;
-    z-index:-5;
-    background:
-        radial-gradient(circle at 50% 0%,rgba(242,210,122,.08),transparent 32%),
-        radial-gradient(circle at 10% 80%,rgba(200,155,60,.045),transparent 28%),
-        radial-gradient(circle at 90% 55%,rgba(200,155,60,.035),transparent 25%);
+/* الحاوية */
+.container {
+    width: min(100% - 32px, 700px);
+    margin: auto;
 }
 
-.grid{
-    position:fixed;
-    inset:0;
-    z-index:-4;
-    opacity:.13;
-    background-image:
-        linear-gradient(rgba(200,155,60,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(200,155,60,.035) 1px,transparent 1px);
-    background-size:60px 60px;
-    mask-image:linear-gradient(to bottom,#000,transparent 85%);
+/* الواجهة */
+.hero {
+    text-align: center;
+    padding: 70px 0 35px;
 }
 
-.gold-line{
-    position:fixed;
-    width:1px;
-    height:100vh;
-    background:linear-gradient(
-        transparent,
-        rgba(200,155,60,.15),
-        transparent
-    );
-    z-index:-3;
-}
-
-.gold-line.left{left:8%}
-.gold-line.right{right:8%}
-
-/* ===== CURSOR ===== */
-
-.cursor-glow{
-    position:fixed;
-    width:300px;
-    height:300px;
-    border-radius:50%;
-    pointer-events:none;
-    z-index:-1;
-    transform:translate(-50%,-50%);
-    background:radial-gradient(
-        circle,
-        rgba(200,155,60,.09),
-        transparent 68%
-    );
-}
-
-/* ===== CONTAINER ===== */
-
-.container{
-    width:min(1000px,92%);
-    margin:auto;
-}
-
-/* ===== NAVIGATION ===== */
-
-nav{
-    position:fixed;
-    top:16px;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(820px,94%);
-    z-index:1000;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:10px 12px;
-    border:1px solid var(--border);
-    background:rgba(7,6,5,.78);
-    backdrop-filter:blur(20px);
-    border-radius:18px;
+/* الدائرة الشخصية */
+.profile {
+    width: 125px;
+    height: 125px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, #fff0a6, #d4af37, #8f6f16, #f7df8a);
     box-shadow:
-        0 20px 60px rgba(0,0,0,.55),
-        inset 0 0 20px rgba(200,155,60,.025);
+        0 0 25px rgba(212,175,55,0.28),
+        0 0 70px rgba(212,175,55,0.08);
 }
 
-.logo{
-    font-size:14px;
-    font-weight:900;
-    letter-spacing:3px;
-    background:linear-gradient(
-        120deg,
-        #8d651d,
-        #f2d27a,
-        #b78328,
-        #f2d27a
-    );
-    background-size:300% 300%;
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:goldMove 5s ease infinite;
+.profile-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #101010;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.nav-links{
-    display:flex;
-    gap:4px;
+.profile-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.nav-links a{
-    color:#77736b;
-    text-decoration:none;
-    font-size:10px;
-    padding:8px 11px;
-    border-radius:10px;
-    transition:.3s;
+/* إذا لم توجد صورة */
+.profile-placeholder {
+    color: var(--gold-light);
+    font-size: 42px;
+    font-weight: 800;
 }
 
-.nav-links a:hover{
-    color:var(--gold2);
-    background:rgba(200,155,60,.08);
-}
-
-/* ===== HERO ===== */
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:120px 0 80px;
-    position:relative;
-}
-
-.hero::before{
-    content:"";
-    position:absolute;
-    width:600px;
-    height:600px;
-    border-radius:50%;
-    background:radial-gradient(
-        circle,
-        rgba(200,155,60,.08),
-        transparent 68%
-    );
-    pointer-events:none;
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-    animation:heroIn 1.2s ease both;
-}
-
-.status{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    color:#8d887f;
-    border:1px solid var(--border);
-    background:rgba(200,155,60,.035);
-    padding:7px 14px;
-    border-radius:999px;
-    font-size:10px;
-    margin-bottom:28px;
-}
-
-.status-dot{
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:var(--gold2);
-    box-shadow:0 0 14px var(--gold);
-    animation:pulse 2s infinite;
-}
-
-.avatar-wrap{
-    width:165px;
-    height:165px;
-    margin:auto;
-    position:relative;
-}
-
-.avatar{
-    position:absolute;
-    inset:15px;
-    border-radius:50%;
-    display:grid;
-    place-items:center;
-    font-family:'Marhey',sans-serif;
-    font-size:52px;
-    color:#f1dfad;
-    background:
-        radial-gradient(circle at 35% 25%,#3c3220,#0b0906 65%);
-    border:1px solid rgba(242,210,122,.38);
-    box-shadow:
-        0 0 0 10px rgba(200,155,60,.025),
-        0 0 80px rgba(200,155,60,.13),
-        inset 0 0 40px rgba(242,210,122,.05);
-}
-
-.avatar-ring{
-    position:absolute;
-    inset:0;
-    border:1px solid rgba(200,155,60,.25);
-    border-radius:50%;
-    animation:spin 18s linear infinite;
-}
-
-.avatar-ring::before{
-    content:"";
-    position:absolute;
-    width:5px;
-    height:5px;
-    border-radius:50%;
-    background:var(--gold2);
-    top:8px;
-    left:50%;
-    box-shadow:0 0 15px var(--gold);
-}
-
-.hero h1{
-    margin-top:32px;
-    font-size:clamp(48px,10vw,88px);
-    font-weight:900;
-    letter-spacing:4px;
-    line-height:1;
-}
-
-.hero h1 span{
-    color:var(--gold);
-}
-
-.subtitle{
-    margin-top:18px;
-    color:#8d887f;
-    font-size:13px;
-}
-
-.mystery{
-    font-family:'Marhey',sans-serif;
-    color:#b7ab91;
-    font-size:14px;
-    margin-top:13px;
-}
-
-.hero-buttons{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    margin-top:32px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    position:relative;
-    overflow:hidden;
-    text-decoration:none;
-    color:#ddd5c4;
-    border:1px solid var(--border);
-    background:#0b0907;
-    padding:12px 22px;
-    border-radius:13px;
-    font-size:11px;
-    transition:.35s;
-}
-
-.btn::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:100%;
-    background:linear-gradient(
+/* الاسم */
+.name {
+    font-size: clamp(32px, 8vw, 48px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(
         90deg,
+        #fff1a8,
+        #d4af37,
+        #fff3b0,
+        #a57d20
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.username {
+    color: #999;
+    font-size: 15px;
+    margin-top: 2px;
+}
+
+.bio {
+    max-width: 520px;
+    margin: 17px auto 0;
+    color: #c9c9c9;
+    line-height: 1.9;
+    font-size: 15px;
+}
+
+/* خط ذهبي */
+.gold-line {
+    width: 70px;
+    height: 2px;
+    margin: 28px auto 0;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* الحسابات */
+.socials {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.social {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 70px;
+    padding: 14px 17px;
+    text-decoration: none;
+    color: #fff;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    backdrop-filter: blur(15px);
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+.social::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        110deg,
         transparent,
-        rgba(255,255,255,.16),
+        rgba(212,175,55,0.10),
         transparent
     );
-    transition:.6s;
+    transform: translateX(-100%);
+    transition: 0.5s;
 }
 
-.btn:hover::before{
-    left:100%;
+.social:hover::before {
+    transform: translateX(100%);
 }
 
-.btn:hover{
-    transform:translateY(-4px);
-    border-color:var(--gold);
-    box-shadow:0 15px 40px rgba(200,155,60,.10);
+.social:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212,175,55,0.65);
+    box-shadow: 0 10px 35px rgba(212,175,55,0.12);
 }
 
-.btn.primary{
-    color:#171209;
-    font-weight:800;
-    border-color:var(--gold2);
-    background:linear-gradient(
+.social-icon {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold-light);
+    background: rgba(212,175,55,0.09);
+    border: 1px solid rgba(212,175,55,0.18);
+}
+
+.social-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+.social-info {
+    text-align: right;
+    position: relative;
+    z-index: 1;
+}
+
+.social-title {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.social-sub {
+    display: block;
+    color: #888;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+/* العناوين */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 38px 0 14px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.section-title::before {
+    content: "";
+    width: 4px;
+    height: 24px;
+    border-radius: 10px;
+    background: linear-gradient(#f7df8a, #8f6f16);
+}
+
+/* الروابط الرئيسية */
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 68px;
+    padding: 12px 18px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(
         135deg,
-        #8d651d,
-        #f2d27a,
-        #b78328
+        rgba(255,255,255,0.055),
+        rgba(255,255,255,0.025)
     );
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    transition: 0.3s ease;
+    overflow: hidden;
 }
 
-/* ===== SECTIONS ===== */
-
-section{
-    padding:110px 0;
+.link:hover {
+    transform: translateY(-3px);
+    border-color: rgba(212,175,55,0.5);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
 }
 
-.section-head{
-    margin-bottom:30px;
+.link-left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
 }
 
-.section-number{
-    color:var(--gold);
-    font-size:9px;
-    letter-spacing:4px;
+.link-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(212,175,55,0.08);
+    color: var(--gold-light);
 }
 
-.section-title{
-    font-size:30px;
-    font-weight:900;
-    margin-top:7px;
+.link-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
 }
 
-.section-desc{
-    color:#77736b;
-    font-size:12px;
-    margin-top:7px;
+.link-name {
+    font-weight: 700;
+    font-size: 14px;
 }
 
-/* ===== ABOUT ===== */
-
-.about-box{
-    position:relative;
-    overflow:hidden;
-    padding:35px;
-    border:1px solid var(--border);
-    border-radius:25px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(200,155,60,.055),
-            rgba(255,255,255,.012)
-        );
-    box-shadow:0 30px 90px rgba(0,0,0,.4);
+.link-desc {
+    color: #858585;
+    font-size: 11px;
+    margin-top: 2px;
 }
 
-.about-box::before{
-    content:"";
-    position:absolute;
-    width:250px;
-    height:250px;
-    top:-140px;
-    left:-80px;
-    border-radius:50%;
-    background:radial-gradient(
-        circle,
-        rgba(242,210,122,.09),
-        transparent 70%
-    );
+.arrow {
+    color: var(--gold);
+    font-size: 20px;
 }
 
-.quote{
-    position:relative;
-    z-index:2;
-    font-family:'Marhey',sans-serif;
-    color:#e5d8bd;
-    font-size:22px;
-    line-height:2;
+/* بطاقة التعريف */
+.about {
+    padding: 22px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(212,175,55,0.16);
+    line-height: 2;
+    color: #bdbdbd;
+    font-size: 14px;
 }
 
-.about-text{
-    position:relative;
-    z-index:2;
-    color:#817b70;
-    font-size:13px;
-    line-height:2.2;
-    margin-top:20px;
+/* الفوتر */
+footer {
+    text-align: center;
+    padding: 45px 0 28px;
+    color: #666;
+    font-size: 12px;
 }
 
-/* ===== SOCIAL ===== */
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
+.footer-gold {
+    color: var(--gold);
 }
 
-.card{
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    gap:15px;
-    padding:21px;
-    color:#fff;
-    text-decoration:none;
-    border:1px solid var(--border);
-    border-radius:20px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(200,155,60,.045),
-            rgba(255,255,255,.012)
-        );
-    transition:.35s;
+/* ظهور العناصر */
+.fade {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeIn 0.7s ease forwards;
 }
 
-.card::after{
-    content:"";
-    position:absolute;
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    right:-60px;
-    top:-60px;
-    background:radial-gradient(
-        circle,
-        rgba(242,210,122,.10),
-        transparent 70%
-    );
-}
+.delay-1 { animation-delay: .1s; }
+.delay-2 { animation-delay: .2s; }
+.delay-3 { animation-delay: .3s; }
+.delay-4 { animation-delay: .4s; }
 
-.card:hover{
-    transform:translateY(-6px);
-    border-color:rgba(242,210,122,.45);
-    box-shadow:0 25px 55px rgba(0,0,0,.4);
-}
-
-.card-icon{
-    width:52px;
-    height:52px;
-    flex:none;
-    display:grid;
-    place-items:center;
-    border-radius:15px;
-    color:var(--gold2);
-    font-size:22px;
-    background:#0a0806;
-    border:1px solid var(--border);
-}
-
-.card-info{
-    flex:1;
-}
-
-.card-name{
-    font-size:14px;
-    font-weight:800;
-}
-
-.card-handle{
-    direction:ltr;
-    text-align:right;
-    color:#676159;
-    font-size:10px;
-    margin-top:5px;
-}
-
-.card-arrow{
-    color:#5e584e;
-    transition:.3s;
-}
-
-.card:hover .card-arrow{
-    color:var(--gold2);
-    transform:translateX(-5px);
-}
-
-.community{
-    margin-top:14px;
-}
-
-.badge{
-    display:inline-block;
-    color:var(--gold2);
-    border:1px solid var(--border);
-    background:rgba(200,155,60,.05);
-    border-radius:999px;
-    padding:3px 9px;
-    font-size:9px;
-    margin-bottom:7px;
-}
-
-/* ===== STATS ===== */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-}
-
-.stat{
-    position:relative;
-    overflow:hidden;
-    text-align:center;
-    padding:27px 10px;
-    border:1px solid rgba(200,155,60,.16);
-    background:#090806;
-    border-radius:19px;
-    transition:.35s;
-}
-
-.stat:hover{
-    transform:translateY(-5px);
-    border-color:rgba(242,210,122,.4);
-    box-shadow:0 20px 45px rgba(0,0,0,.4);
-}
-
-.stat-number{
-    font-size:27px;
-    font-weight:900;
-    color:var(--gold2);
-}
-
-.stat-label{
-    margin-top:6px;
-    color:#676159;
-    font-size:10px;
-}
-
-/* ===== TIMELINE ===== */
-
-.timeline{
-    position:relative;
-    padding-right:28px;
-}
-
-.timeline::before{
-    content:"";
-    position:absolute;
-    right:7px;
-    top:0;
-    bottom:0;
-    width:1px;
-    background:linear-gradient(
-        var(--gold),
-        rgba(200,155,60,.08)
-    );
-}
-
-.timeline-item{
-    position:relative;
-    margin-bottom:28px;
-    padding:22px;
-    border:1px solid rgba(200,155,60,.14);
-    border-radius:19px;
-    background:rgba(255,255,255,.018);
-}
-
-.timeline-item::before{
-    content:"";
-    position:absolute;
-    right:-28px;
-    top:27px;
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background:var(--gold2);
-    box-shadow:0 0 15px var(--gold);
-}
-
-.timeline-year{
-    color:var(--gold);
-    font-size:9px;
-    letter-spacing:2px;
-}
-
-.timeline-title{
-    font-size:15px;
-    font-weight:800;
-    margin-top:6px;
-}
-
-.timeline-text{
-    color:#77736b;
-    font-size:11px;
-    line-height:2;
-    margin-top:6px;
-}
-
-/* ===== WORKS ===== */
-
-.works{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:13px;
-}
-
-.work{
-    height:200px;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    align-items:flex-end;
-    padding:18px;
-    border:1px solid rgba(200,155,60,.17);
-    border-radius:20px;
-    background:
-        radial-gradient(circle at 50% 35%,rgba(200,155,60,.10),transparent 40%),
-        linear-gradient(145deg,#13100b,#070604);
-    transition:.35s;
-}
-
-.work::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-        linear-gradient(
-            135deg,
-            transparent 40%,
-            rgba(242,210,122,.07),
-            transparent 60%
-        );
-    transform:translateX(-100%);
-    transition:.8s;
-}
-
-.work:hover::before{
-    transform:translateX(100%);
-}
-
-.work:hover{
-    transform:translateY(-6px);
-    border-color:rgba(242,210,122,.4);
-    box-shadow:0 25px 60px rgba(0,0,0,.45);
-}
-
-.work-content{
-    position:relative;
-    z-index:2;
-}
-
-.work-number{
-    color:var(--gold);
-    font-size:9px;
-    letter-spacing:2px;
-}
-
-.work-title{
-    margin-top:5px;
-    font-size:13px;
-    font-weight:800;
-}
-
-.work-desc{
-    margin-top:4px;
-    color:#69635a;
-    font-size:9px;
-}
-
-/* ===== CONTACT ===== */
-
-.contact{
-    padding-bottom:70px;
-}
-
-.contact-box{
-    text-align:center;
-    padding:50px 25px;
-    border:1px solid var(--border);
-    border-radius:26px;
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(200,155,60,.09),
-            transparent 55%
-        ),
-        #090806;
-}
-
-.contact-title{
-    font-size:27px;
-    font-weight:900;
-}
-
-.contact-desc{
-    color:#77736b;
-    font-size:12px;
-    margin-top:10px;
-}
-
-/* ===== FOOTER ===== */
-
-footer{
-    border-top:1px solid rgba(200,155,60,.10);
-    padding:28px 0 38px;
-    text-align:center;
-    color:#4f4a43;
-    font-size:10px;
-    line-height:2;
-}
-
-.footer-gold{
-    color:var(--gold3);
-}
-
-/* ===== REVEAL ===== */
-
-.reveal{
-    opacity:0;
-    transform:translateY(40px);
-    transition:
-        opacity .9s ease,
-        transform .9s ease;
-}
-
-.reveal.show{
-    opacity:1;
-    transform:none;
-}
-
-/* ===== ANIMATIONS ===== */
-
-@keyframes heroIn{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:none;
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
+/* الموبايل */
+@media (max-width: 520px) {
+    .hero {
+        padding-top: 50px;
+    }
+
+    .socials {
+        grid-template-columns: 1fr;
+    }
+
+    .profile {
+        width: 110px;
+        height: 110px;
     }
 }
 
-@keyframes pulse{
-    0%,100%{
-        opacity:1;
-        transform:scale(1);
-    }
-    50%{
-        opacity:.5;
-        transform:scale(.75);
-    }
-}
-
-@keyframes goldMove{
-    0%,100%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-}
-
-/* ===== MOBILE ===== */
-
-@media(max-width:700px){
-
-    nav{
-        top:9px;
-        width:94%;
-    }
-
-    .logo{
-        font-size:11px;
-        letter-spacing:2px;
-    }
-
-    .nav-links a{
-        font-size:8px;
-        padding:7px 7px;
-    }
-
-    .hero{
-        padding-top:110px;
-    }
-
-    .hero h1{
-        font-size:54px;
-    }
-
-    .cards{
-        grid-template-columns:1fr;
-    }
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .works{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .work{
-        height:165px;
-    }
-
-    .about-box{
-        padding:25px;
-    }
-
-    .quote{
-        font-size:18px;
-    }
-
-    section{
-        padding:85px 0;
-    }
-
-    .gold-line{
-        display:none;
-    }
-}
-
-@media(max-width:420px){
-
-    .nav-links a:nth-child(2){
-        display:none;
-    }
-
-    .hero h1{
-        font-size:47px;
-    }
-
-    .works{
-        grid-template-columns:1fr;
-    }
-
-    .work{
-        height:175px;
-    }
-
-    .avatar-wrap{
-        width:145px;
-        height:145px;
+/* تقليل الحركة لمن يفضل ذلك */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
     }
 }
 </style>
@@ -890,423 +394,180 @@ footer{
 
 <body>
 
-<div class="background"></div>
-<div class="grid"></div>
-<div class="gold-line left"></div>
-<div class="gold-line right"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
+<main class="container">
 
-<!-- NAV -->
+    <!-- الواجهة الرئيسية -->
+    <header class="hero fade">
 
-<nav>
+        <div class="profile">
+            <div class="profile-inner">
+                <!-- ضع رابط صورتك هنا -->
+                <img src="https://i.imgur.com/REPLACE.jpg"
+                     alt="عبدالله"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
 
-<div class="logo">♚ ABDULLAH ♚</div>
+                <div class="profile-placeholder" style="display:none;">
+                    ع
+                </div>
+            </div>
+        </div>
 
-<div class="nav-links">
-<a href="#home">الرئيسية</a>
-<a href="#about">عني</a>
-<a href="#links">حساباتي</a>
-<a href="#works">أعمالي</a>
-<a href="#contact">تواصل</a>
-</div>
+        <h1 class="name">عبدالله</h1>
 
-</nav>
+        <div class="username">@YOUR_USERNAME</div>
 
-<main>
+        <p class="bio">
+            صانع محتوى ومصمم رقمي.
+            أشارك أفكاري وأعمالي ومحتواي من هنا.
+        </p>
 
-<!-- HERO -->
+        <div class="gold-line"></div>
 
-<section class="hero" id="home">
+    </header>
 
-<div class="container hero-content">
 
-<div class="status">
-<span class="status-dot"></span>
-الهوية الرقمية نشطة
-</div>
+    <!-- TikTok + Instagram -->
+    <section class="socials fade delay-1">
 
-<div class="avatar-wrap">
-<div class="avatar-ring"></div>
-<div class="avatar">A</div>
-</div>
+        <a class="social"
+           href="https://www.tiktok.com/@YOUR_TIKTOK"
+           target="_blank"
+           rel="noopener noreferrer">
 
-<h1>عبدالله<span>.</span></h1>
+            <div class="social-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.7v13.2a2.9 2.9 0 1 1-2-2.75V8.7a6.6 6.6 0 1 0 5.7 6.5V8.52a8.5 8.5 0 0 0 5.77 2.26V7.1a4.84 4.84 0 0 1-2-.41z"/>
+                </svg>
+            </div>
 
-<p class="subtitle">
-صانع محتوى • مصمم • صاحب رؤية
-</p>
+            <div class="social-info">
+                <span class="social-title">TikTok</span>
+                <span class="social-sub">تابعني على تيك توك</span>
+            </div>
 
-<p class="mystery">
-«وراء كل تصميم... فكرة لا يراها الجميع.»
-</p>
+        </a>
 
-<div class="hero-buttons">
 
-<a class="btn primary" href="#links">
-اكتشف عالمي
-</a>
+        <a class="social"
+           href="https://www.instagram.com/YOUR_INSTAGRAM"
+           target="_blank"
+           rel="noopener noreferrer">
 
-<a class="btn" href="#about">
-من أنا؟
-</a>
+            <div class="social-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.5 6.5A1 1 0 1 1 16.5 7a1 1 0 0 1 1-1z"/>
+                </svg>
+            </div>
 
-</div>
+            <div class="social-info">
+                <span class="social-title">Instagram</span>
+                <span class="social-sub">تابعني على إنستغرام</span>
+            </div>
 
-</div>
+        </a>
 
-</section>
+    </section>
 
-<!-- ABOUT -->
 
-<section id="about" class="reveal">
+    <!-- الروابط -->
+    <h2 class="section-title fade delay-2">روابطي</h2>
 
-<div class="container">
+    <section class="links fade delay-2">
 
-<div class="section-head">
-<div class="section-number">01 — ABOUT</div>
-<div class="section-title">من أنا؟</div>
-<div class="section-desc">خلف الاسم توجد قصة وهوية</div>
-</div>
+        <a class="link"
+           href="https://www.tiktok.com/@YOUR_TIKTOK"
+           target="_blank"
+           rel="noopener noreferrer">
 
-<div class="about-box">
+            <div class="link-left">
 
-<div class="quote">
-«لا أصنع الأشياء لتُرى فقط... أصنعها لتترك أثرًا.»
-</div>
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.7v13.2a2.9 2.9 0 1 1-2-2.75V8.7a6.6 6.6 0 1 0 5.7 6.5V8.52a8.5 8.5 0 0 0 5.77 2.26V7.1a4.84 4.84 0 0 1-2-.41z"/>
+                    </svg>
+                </div>
 
-<p class="about-text">
-أنا عبدالله، صانع محتوى ومصمم أهتم بصناعة الأفكار
-والتصاميم التي تمتلك شخصية وهوية مختلفة.
-أجمع بين الغموض، الجمال، والبساطة لصناعة محتوى
-يبقى في الذاكرة ولا يمر مرورًا عابرًا.
-</p>
+                <div>
+                    <div class="link-name">حسابي على TikTok</div>
+                    <div class="link-desc">المحتوى والفيديوهات</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+            <div class="arrow">‹</div>
 
-</section>
+        </a>
 
-<!-- SOCIAL -->
 
-<section id="links" class="reveal">
+        <a class="link"
+           href="https://www.instagram.com/YOUR_INSTAGRAM"
+           target="_blank"
+           rel="noopener noreferrer">
 
-<div class="container">
+            <div class="link-left">
 
-<div class="section-head">
-<div class="section-number">02 — SOCIAL</div>
-<div class="section-title">حساباتي</div>
-<div class="section-desc">عالمي الرقمي في مكان واحد</div>
-</div>
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.5 6.5A1 1 0 1 1 16.5 7a1 1 0 0 1 1-1z"/>
+                    </svg>
+                </div>
 
-<div class="cards">
+                <div>
+                    <div class="link-name">حسابي على Instagram</div>
+                    <div class="link-desc">الصور والتحديثات</div>
+                </div>
 
-<a class="card"
-href="https://www.tiktok.com/@4_ad10"
-target="_blank"
-rel="noopener">
+            </div>
 
-<div class="card-icon">♪</div>
+            <div class="arrow">‹</div>
 
-<div class="card-info">
-<div class="card-name">TikTok</div>
-<div class="card-handle">@4_ad10</div>
-</div>
+        </a>
 
-<div class="card-arrow">←</div>
 
-</a>
+        <a class="link"
+           href="YOUR_OTHER_LINK"
+           target="_blank"
+           rel="noopener noreferrer">
 
-<a class="card"
-href="https://www.instagram.com/4_ad22"
-target="_blank"
-rel="noopener">
+            <div class="link-left">
 
-<div class="card-icon">◎</div>
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm1 17.93V17h-2v2.93A8.006 8.006 0 0 1 4.07 13H7v-2H4.07A8.006 8.006 0 0 1 11 4.07V7h2V4.07A8.006 8.006 0 0 1 19.93 11H17v2h2.93A8.006 8.006 0 0 1 13 19.93z"/>
+                    </svg>
+                </div>
 
-<div class="card-info">
-<div class="card-name">Instagram</div>
-<div class="card-handle">@4_ad22</div>
-</div>
+                <div>
+                    <div class="link-name">رابط آخر</div>
+                    <div class="link-desc">أضف أي حساب أو رابط مهم</div>
+                </div>
 
-<div class="card-arrow">←</div>
+            </div>
 
-</a>
+            <div class="arrow">‹</div>
 
-</div>
+        </a>
 
-<a class="card community"
-href="https://tiktok.me/group/ZSVQP24vx/"
-target="_blank"
-rel="noopener">
+    </section>
 
-<div class="card-icon">✦</div>
 
-<div class="card-info">
+    <!-- نبذة -->
+    <h2 class="section-title fade delay-3">نبذة عني</h2>
 
-<span class="badge">
-مجتمع المصممين
-</span>
+    <section class="about fade delay-3">
+        أنا عبدالله، أعمل على صناعة المحتوى والتصميم الرقمي،
+        وأسعى دائمًا إلى تطوير أفكاري وتحويلها إلى أعمال مميزة.
+        يمكنك الوصول إلى جميع حساباتي وروابطي من خلال هذا الموقع.
+    </section>
 
-<div class="card-name">
-مجموعة المصممين
-</div>
 
-<div class="card-handle">
-مجتمع للتصميم وتبادل الدعم
-</div>
-
-</div>
-
-<div class="card-arrow">←</div>
-
-</a>
-
-</div>
-
-</section>
-
-<!-- JOURNEY -->
-
-<section class="reveal">
-
-<div class="container">
-
-<div class="section-head">
-<div class="section-number">03 — JOURNEY</div>
-<div class="section-title">رحلتي</div>
-<div class="section-desc">من فكرة صغيرة إلى هوية كاملة</div>
-</div>
-
-<div class="timeline">
-
-<div class="timeline-item">
-
-<div class="timeline-year">01 — البداية</div>
-
-<div class="timeline-title">
-البداية وصناعة المحتوى
-</div>
-
-<div class="timeline-text">
-كانت البداية مجرد فكرة، ثم تحولت الفكرة إلى محتوى
-وأسلوب وهوية خاصة.
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-year">02 — التطور</div>
-
-<div class="timeline-title">
-التصميم وبناء الهوية
-</div>
-
-<div class="timeline-text">
-مع الوقت أصبح التصميم جزءًا أساسيًا من الرحلة،
-وأصبحت لكل فكرة طريقة مختلفة في الظهور.
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-year">03 — القادم</div>
-
-<div class="timeline-title">
-المشاريع القادمة
-</div>
-
-<div class="timeline-text">
-الرحلة لم تنتهِ بعد. القادم أكبر، والموقع نفسه
-سيستمر بالتطور مع كل مرحلة جديدة.
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- STATS -->
-
-<section class="reveal">
-
-<div class="container">
-
-<div class="section-head">
-<div class="section-number">04 — NUMBERS</div>
-<div class="section-title">فلسفتي</div>
-<div class="section-desc">الأرقام هنا ليست مجرد أرقام</div>
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<div class="stat-number">∞</div>
-<div class="stat-label">الأفكار</div>
-</div>
-
-<div class="stat">
-<div class="stat-number">01</div>
-<div class="stat-label">الهوية</div>
-</div>
-
-<div class="stat">
-<div class="stat-number">24/7</div>
-<div class="stat-label">الإبداع</div>
-</div>
-
-<div class="stat">
-<div class="stat-number">∞</div>
-<div class="stat-label">المستقبل</div>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- WORKS -->
-
-<section id="works" class="reveal">
-
-<div class="container">
-
-<div class="section-head">
-<div class="section-number">05 — WORKS</div>
-<div class="section-title">أعمالي</div>
-<div class="section-desc">مساحة ستتحول لاحقًا إلى معرض حقيقي</div>
-</div>
-
-<div class="works">
-
-<div class="work">
-<div class="work-content">
-<div class="work-number">PROJECT 01</div>
-<div class="work-title">تصاميم الأنمي</div>
-<div class="work-desc">أعمال بصرية وهوية خاصة</div>
-</div>
-</div>
-
-<div class="work">
-<div class="work-content">
-<div class="work-number">PROJECT 02</div>
-<div class="work-title">صناعة المحتوى</div>
-<div class="work-desc">أفكار ونصوص ومونتاج</div>
-</div>
-</div>
-
-<div class="work">
-<div class="work-content">
-<div class="work-number">PROJECT 03</div>
-<div class="work-title">مشروع قادم</div>
-<div class="work-desc">سيظهر هنا قريبًا</div>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact" class="contact reveal">
-
-<div class="container">
-
-<div class="contact-box">
-
-<div class="contact-title">
-وصلت إلى النهاية...
-</div>
-
-<div class="contact-desc">
-لكن هذه ليست نهاية الرحلة.
-</div>
-
-<div class="hero-buttons">
-
-<a class="btn primary"
-href="https://www.tiktok.com/@4_ad10"
-target="_blank"
-rel="noopener">
-TikTok
-</a>
-
-<a class="btn"
-href="https://www.instagram.com/4_ad22"
-target="_blank"
-rel="noopener">
-Instagram
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
+    <footer class="fade delay-4">
+        © 2026 عبدالله — جميع الحقوق محفوظة
+        <br>
+        <span class="footer-gold">صُمم بشغف</span>
+    </footer>
 
 </main>
-
-<footer>
-
-<div class="container">
-
-عبدالله <span class="footer-gold">© 2026</span>
-
-<br>
-
-صُمم ليكون مختلفًا.
-
-</div>
-
-</footer>
-
-<script>
-
-/* ===== CURSOR GOLD GLOW ===== */
-
-const glow = document.getElementById("cursorGlow");
-
-document.addEventListener("mousemove",(e)=>{
-
-glow.style.left = e.clientX + "px";
-glow.style.top = e.clientY + "px";
-
-});
-
-/* ===== SCROLL REVEAL ===== */
-
-const observer = new IntersectionObserver((entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show");
-
-}
-
-});
-
-},{
-threshold:.12
-});
-
-document.querySelectorAll(".reveal").forEach(el=>{
-observer.observe(el);
-});
-
-</script>
 
 </body>
     </html>
