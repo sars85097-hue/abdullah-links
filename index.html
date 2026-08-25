@@ -1,25 +1,32 @@
-ملف index.html لموقع عبدالله
+موقع عبدالله — النسخة الغامضة
 
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#070707">
-<meta name="description" content="الموقع الشخصي لعبدالله — حساباته ومجموعة المصممين.">
-<title>عبدالله | روابط</title>
+<meta name="theme-color" content="#030303">
+<meta name="description" content="عبدالله — صانع محتوى ومصمم">
+<title>عبدالله | الهوية الرقمية</title>
 
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Marhey:wght@400;500;600;700&display=swap');
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+html{
+scroll-behavior:smooth;
+}
 
 body{
-margin:0;
-min-height:100vh;
-background:#060606;
+background:#030303;
 color:#f5f5f5;
-font-family:Tahoma,Arial,sans-serif;
-overflow-x:hidden
+font-family:'Cairo',Tahoma,Arial,sans-serif;
+overflow-x:hidden;
 }
 
 body:before{
@@ -27,281 +34,860 @@ content:"";
 position:fixed;
 inset:0;
 pointer-events:none;
-opacity:.16;
-background-image:radial-gradient(#fff 1px,transparent 1px);
-background-size:34px 34px;
-mask-image:linear-gradient(#000,transparent 80%)
+z-index:999;
+opacity:.035;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
 }
 
-.glow{
+.cursor-glow{
 position:fixed;
-width:430px;
-height:430px;
+width:280px;
+height:280px;
 border-radius:50%;
-top:-210px;
+background:radial-gradient(circle,rgba(255,255,255,.065),transparent 68%);
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:0;
+}
+
+.background{
+position:fixed;
+inset:0;
+z-index:-2;
+background:
+radial-gradient(circle at 50% 0%,rgba(255,255,255,.055),transparent 35%),
+radial-gradient(circle at 20% 70%,rgba(255,255,255,.025),transparent 30%),
+#030303;
+}
+
+.grid{
+position:fixed;
+inset:0;
+z-index:-1;
+opacity:.12;
+background-image:
+linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+background-size:55px 55px;
+mask-image:linear-gradient(to bottom,#000,transparent 85%);
+}
+
+.container{
+width:min(920px,92%);
+margin:auto;
+}
+
+nav{
+position:fixed;
+top:18px;
 left:50%;
 transform:translateX(-50%);
-background:radial-gradient(circle,rgba(255,255,255,.12),transparent 68%);
-pointer-events:none
+width:min(700px,90%);
+z-index:100;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:10px 12px;
+border:1px solid rgba(255,255,255,.09);
+background:rgba(5,5,5,.72);
+backdrop-filter:blur(18px);
+border-radius:18px;
+box-shadow:0 15px 50px rgba(0,0,0,.4);
 }
 
-.wrap{
-width:min(680px,92%);
-margin:auto;
-padding:58px 0 35px;
-position:relative
+.logo{
+font-weight:800;
+font-size:15px;
+letter-spacing:2px;
+}
+
+.nav-links{
+display:flex;
+gap:5px;
+}
+
+.nav-links a{
+color:#888;
+text-decoration:none;
+font-size:11px;
+padding:8px 11px;
+border-radius:10px;
+transition:.25s;
+}
+
+.nav-links a:hover{
+color:#fff;
+background:rgba(255,255,255,.06);
 }
 
 .hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
 text-align:center;
-animation:rise .7s ease both
+padding:110px 0 70px;
+position:relative;
+}
+
+.hero-content{
+animation:heroIn 1.2s ease both;
+}
+
+.status{
+display:inline-flex;
+align-items:center;
+gap:8px;
+font-size:10px;
+color:#777;
+border:1px solid #1d1d1d;
+padding:7px 13px;
+border-radius:999px;
+background:rgba(255,255,255,.025);
+margin-bottom:28px;
+}
+
+.status-dot{
+width:6px;
+height:6px;
+border-radius:50%;
+background:#aaa;
+box-shadow:0 0 12px #aaa;
+}
+
+.avatar-wrap{
+position:relative;
+width:145px;
+height:145px;
+margin:auto;
 }
 
 .avatar{
-width:94px;
-height:94px;
-margin:auto;
-border:1px solid #292929;
+width:125px;
+height:125px;
 border-radius:50%;
+margin:10px auto;
 display:grid;
 place-items:center;
-background:linear-gradient(145deg,#191919,#080808);
-font-size:34px;
+font-family:'Marhey',sans-serif;
+font-size:48px;
+font-weight:600;
+color:#eee;
+background:
+radial-gradient(circle at 35% 25%,#303030,#0a0a0a 62%);
+border:1px solid #303030;
+box-shadow:
+0 0 0 10px rgba(255,255,255,.012),
+0 0 70px rgba(255,255,255,.08),
+inset 0 0 35px rgba(255,255,255,.04);
+position:relative;
+z-index:2;
+}
+
+.avatar-ring{
+position:absolute;
+inset:0;
+border:1px solid #252525;
+border-radius:50%;
+animation:spin 18s linear infinite;
+}
+
+.avatar-ring:before{
+content:"";
+position:absolute;
+width:5px;
+height:5px;
+border-radius:50%;
+background:#aaa;
+top:10px;
+left:50%;
+box-shadow:0 0 15px #aaa;
+}
+
+.hero h1{
+font-size:clamp(42px,9vw,78px);
 font-weight:800;
-box-shadow:0 20px 60px #000
+letter-spacing:3px;
+margin-top:30px;
+line-height:1;
 }
 
-h1{
-font-size:32px;
-margin:20px 0 8px
-}
-
-.bio{
-margin:0;
-color:#929292;
-line-height:1.9;
-font-size:14px
-}
-
-.line{
-width:55px;
-height:1px;
-background:#666;
-margin:20px auto 30px
-}
-
-.title{
-font-size:12px;
+.hero h1 span{
 color:#666;
-margin:25px 4px 11px;
-letter-spacing:1px
 }
 
-.links{
-display:grid;
-gap:12px
+.subtitle{
+font-size:13px;
+color:#777;
+margin-top:18px;
+line-height:2;
 }
 
-a.card{
+.mystery{
+font-family:'Marhey',sans-serif;
+font-size:14px;
+color:#b1b1b1;
+margin-top:12px;
+}
+
+.hero-buttons{
 display:flex;
-align-items:center;
-gap:14px;
+justify-content:center;
+gap:10px;
+margin-top:30px;
+flex-wrap:wrap;
+}
+
+.btn{
 text-decoration:none;
 color:#fff;
-padding:16px;
-border:1px solid #1d1d1d;
-border-radius:17px;
-background:rgba(255,255,255,.035);
-transition:.22s ease;
-backdrop-filter:blur(10px)
-}
-
-a.card:hover{
-transform:translateY(-3px);
-border-color:#3a3a3a;
-background:rgba(255,255,255,.07)
-}
-
-.icon{
-width:45px;
-height:45px;
+border:1px solid #272727;
+background:#0b0b0b;
+padding:12px 20px;
 border-radius:13px;
-background:#101010;
-border:1px solid #242424;
+font-size:12px;
+transition:.3s;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+border-color:#555;
+box-shadow:0 15px 35px rgba(0,0,0,.5);
+}
+
+.btn.primary{
+background:#f3f3f3;
+color:#050505;
+border-color:#f3f3f3;
+font-weight:700;
+}
+
+section{
+padding:105px 0;
+}
+
+.section-head{
+margin-bottom:28px;
+}
+
+.section-number{
+font-size:10px;
+color:#555;
+letter-spacing:3px;
+}
+
+.section-title{
+font-size:28px;
+font-weight:800;
+margin-top:7px;
+}
+
+.section-desc{
+color:#777;
+font-size:12px;
+margin-top:7px;
+}
+
+.about-box{
+border:1px solid #1c1c1c;
+border-radius:24px;
+padding:32px;
+background:
+linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+box-shadow:0 25px 70px rgba(0,0,0,.3);
+position:relative;
+overflow:hidden;
+}
+
+.about-box:after{
+content:"";
+position:absolute;
+width:180px;
+height:180px;
+border-radius:50%;
+background:radial-gradient(circle,rgba(255,255,255,.05),transparent 70%);
+top:-100px;
+left:-60px;
+}
+
+.quote{
+font-family:'Marhey',sans-serif;
+font-size:21px;
+line-height:2;
+color:#ddd;
+position:relative;
+z-index:2;
+}
+
+.about-text{
+color:#777;
+font-size:13px;
+line-height:2.1;
+margin-top:20px;
+position:relative;
+z-index:2;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:13px;
+}
+
+.card{
+text-decoration:none;
+color:#fff;
+border:1px solid #1c1c1c;
+background:rgba(255,255,255,.025);
+border-radius:19px;
+padding:20px;
+display:flex;
+align-items:center;
+gap:15px;
+transition:.3s;
+position:relative;
+overflow:hidden;
+}
+
+.card:hover{
+transform:translateY(-5px);
+border-color:#3b3b3b;
+background:rgba(255,255,255,.055);
+box-shadow:0 20px 45px rgba(0,0,0,.35);
+}
+
+.card-icon{
+width:50px;
+height:50px;
+border-radius:15px;
+background:#0b0b0b;
+border:1px solid #252525;
 display:grid;
 place-items:center;
-font-size:20px;
-flex:none
+font-size:22px;
+flex:none;
 }
 
-.txt{
-flex:1
+.card-info{
+flex:1;
 }
 
-.name{
-font-size:15px;
-font-weight:700
+.card-name{
+font-weight:700;
+font-size:14px;
 }
 
-.handle{
-font-size:12px;
-color:#777;
+.card-handle{
+font-size:11px;
+color:#666;
 margin-top:5px;
 direction:ltr;
-text-align:right
+text-align:right;
 }
 
-.arrow{
-font-size:18px;
-color:#666
+.card-arrow{
+color:#555;
+transition:.3s;
 }
 
-.featured{
-padding:19px 16px!important
+.card:hover .card-arrow{
+color:#fff;
+transform:translateX(-4px);
+}
+
+.community{
+margin-top:13px;
+display:block;
+}
+
+.community .card-icon{
+background:linear-gradient(145deg,#1c1c1c,#080808);
 }
 
 .badge{
 display:inline-block;
-font-size:10px;
-color:#aaa;
-border:1px solid #333;
-border-radius:99px;
+font-size:9px;
+color:#888;
+border:1px solid #292929;
+border-radius:999px;
 padding:3px 8px;
-margin-bottom:7px
+margin-bottom:7px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+}
+
+.stat{
+border:1px solid #191919;
+background:#080808;
+border-radius:18px;
+padding:24px 10px;
+text-align:center;
+transition:.3s;
+}
+
+.stat:hover{
+transform:translateY(-4px);
+border-color:#333;
+}
+
+.stat-number{
+font-size:24px;
+font-weight:800;
+}
+
+.stat-label{
+font-size:10px;
+color:#666;
+margin-top:6px;
+}
+
+.works{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
+
+.work{
+height:190px;
+border-radius:19px;
+border:1px solid #1c1c1c;
+background:
+linear-gradient(145deg,#121212,#070707);
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+overflow:hidden;
+cursor:pointer;
+transition:.3s;
+}
+
+.work:hover{
+transform:translateY(-5px);
+border-color:#3a3a3a;
+}
+
+.work:before{
+content:"";
+position:absolute;
+width:160px;
+height:160px;
+border-radius:50%;
+background:radial-gradient(circle,rgba(255,255,255,.07),transparent 70%);
+}
+
+.work-text{
+position:relative;
+color:#555;
+font-size:11px;
+}
+
+.contact{
+text-align:center;
+padding-bottom:50px;
+}
+
+.contact-box{
+border:1px solid #1d1d1d;
+border-radius:25px;
+padding:45px 25px;
+background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.01));
+}
+
+.contact-title{
+font-size:25px;
+font-weight:800;
+}
+
+.contact-desc{
+font-size:12px;
+color:#777;
+margin-top:10px;
 }
 
 footer{
+border-top:1px solid #111;
+padding:25px 0 35px;
 text-align:center;
-color:#4f4f4f;
-font-size:11px;
+color:#444;
+font-size:10px;
 line-height:2;
-margin-top:35px
 }
 
-@keyframes rise{
+.reveal{
+opacity:0;
+transform:translateY(35px);
+transition:opacity .8s ease,transform .8s ease;
+}
+
+.reveal.show{
+opacity:1;
+transform:none;
+}
+
+@keyframes heroIn{
 from{
 opacity:0;
-transform:translateY(15px)
+transform:translateY(25px);
 }
 to{
 opacity:1;
-transform:none
+transform:none;
 }
 }
 
-@media(max-width:480px){
-.wrap{
-padding-top:45px
+@keyframes spin{
+to{
+transform:rotate(360deg);
 }
-h1{
-font-size:28px
 }
+
+@media(max-width:650px){
+
+nav{
+top:10px;
+width:94%;
+}
+
+.nav-links a{
+font-size:9px;
+padding:7px 8px;
+}
+
+.logo{
+font-size:12px;
+}
+
+.hero{
+padding-top:100px;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+.works{
+grid-template-columns:1fr 1fr;
+}
+
+.work{
+height:150px;
+}
+
+.about-box{
+padding:24px;
+}
+
+.quote{
+font-size:18px;
+}
+
+section{
+padding:80px 0;
+}
+
+}
+
+@media(max-width:390px){
+
+.nav-links a:nth-child(2){
+display:none;
+}
+
+.hero h1{
+font-size:42px;
+}
+
+.works{
+grid-template-columns:1fr;
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<div class="glow"></div>
+<div class="background"></div>
+<div class="grid"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 
-<main class="wrap">
+<nav>
+<div class="logo">ABDULLAH</div>
 
-<header class="hero">
+<div class="nav-links">
+<a href="#home">الرئيسية</a>
+<a href="#about">عني</a>
+<a href="#works">أعمالي</a>
+<a href="#contact">تواصل</a>
+</div>
+</nav>
 
+<main>
+
+<section class="hero" id="home">
+<div class="container hero-content">
+
+<div class="status">
+<span class="status-dot"></span>
+متصل الآن
+</div>
+
+<div class="avatar-wrap">
+<div class="avatar-ring"></div>
 <div class="avatar">A</div>
+</div>
 
-<h1>عبدالله</h1>
+<h1>عبدالله<span>.</span></h1>
 
-<p class="bio">
-صانع محتوى ومصمم<br>
-كل حساباتي وروابطي في مكان واحد
+<p class="subtitle">
+صانع محتوى ومصمم
 </p>
 
-<div class="line"></div>
+<p class="mystery">
+«وراء كل تصميم... فكرة لا يراها الجميع.»
+</p>
 
-</header>
-
-<section>
-
-<div class="title">حساباتي</div>
-
-<div class="links">
-
-<a class="card"
-href="https://www.tiktok.com/@4_ad10"
-target="_blank"
-rel="noopener">
-
-<div class="icon">♪</div>
-
-<div class="txt">
-<div class="name">TikTok</div>
-<div class="handle">@4_ad10</div>
+<div class="hero-buttons">
+<a class="btn primary" href="#links">اكتشف عالمي</a>
+<a class="btn" href="#about">من أنا؟</a>
 </div>
-
-<div class="arrow">←</div>
-
-</a>
-
-<a class="card"
-href="https://www.instagram.com/4_ad22"
-target="_blank"
-rel="noopener">
-
-<div class="icon">◎</div>
-
-<div class="txt">
-<div class="name">Instagram</div>
-<div class="handle">@4_ad22</div>
-</div>
-
-<div class="arrow">←</div>
-
-</a>
 
 </div>
 </section>
 
-<section>
+<section id="about" class="reveal">
+<div class="container">
 
-<div class="title">المجتمع</div>
-
-<div class="links">
-
-<a class="card featured"
-href="https://tiktok.me/group/ZSVQP24vx/"
-target="_blank"
-rel="noopener">
-
-<div class="icon">✦</div>
-
-<div class="txt">
-
-<span class="badge">مجموعة المصممين</span>
-
-<div class="name">
-انضم إلى مجموعة المصممين
+<div class="section-head">
+<div class="section-number">01 — ABOUT</div>
+<div class="section-title">من أنا؟</div>
+<div class="section-desc">نبذة قصيرة عن عبدالله</div>
 </div>
 
-<div class="handle">
+<div class="about-box">
+
+<div class="quote">
+«لا أصنع الأشياء لتُرى فقط... أصنعها لتترك أثرًا.»
+</div>
+
+<p class="about-text">
+أصنع محتوى وتصاميم تجمع بين الغموض، الجمال، والهوية الخاصة.
+هذا الموقع هو مساحتي الرقمية التي أشارك من خلالها أعمالي
+وحساباتي ومشاريعي مع من يهتم بما أصنعه.
+</p>
+
+</div>
+
+</div>
+</section>
+
+<section id="links" class="reveal">
+<div class="container">
+
+<div class="section-head">
+<div class="section-number">02 — SOCIAL</div>
+<div class="section-title">حساباتي</div>
+<div class="section-desc">كل شيء في مكان واحد</div>
+</div>
+
+<div class="cards">
+
+<a class="card" href="https://www.tiktok.com/@4_ad10" target="_blank" rel="noopener">
+
+<div class="card-icon">♪</div>
+
+<div class="card-info">
+<div class="card-name">TikTok</div>
+<div class="card-handle">@4_ad10</div>
+</div>
+
+<div class="card-arrow">←</div>
+
+</a>
+
+<a class="card" href="https://www.instagram.com/4_ad22" target="_blank" rel="noopener">
+
+<div class="card-icon">◎</div>
+
+<div class="card-info">
+<div class="card-name">Instagram</div>
+<div class="card-handle">@4_ad22</div>
+</div>
+
+<div class="card-arrow">←</div>
+
+</a>
+
+</div>
+
+<a class="card community" href="https://tiktok.me/group/ZSVQP24vx/" target="_blank" rel="noopener">
+
+<div class="card-icon">✦</div>
+
+<div class="card-info">
+
+<span class="badge">مجتمع المصممين</span>
+
+<div class="card-name">
+مجموعة المصممين
+</div>
+
+<div class="card-handle">
 مجتمع للتصميم وتبادل الدعم
 </div>
 
 </div>
 
-<div class="arrow">←</div>
+<div class="card-arrow">←</div>
 
 </a>
 
 </div>
 </section>
 
-<footer>
-عبدالله © 2026<br>
-كل الروابط في مكان واحد
-</footer>
+<section class="reveal">
+<div class="container">
+
+<div class="section-head">
+<div class="section-number">03 — NUMBERS</div>
+<div class="section-title">رحلتي</div>
+<div class="section-desc">أرقام قابلة للتعديل لاحقًا</div>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<div class="stat-number">∞</div>
+<div class="stat-label">الأفكار</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">01</div>
+<div class="stat-label">الهوية</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">24/7</div>
+<div class="stat-label">الإبداع</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">∞</div>
+<div class="stat-label">المستقبل</div>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section id="works" class="reveal">
+<div class="container">
+
+<div class="section-head">
+<div class="section-number">04 — WORKS</div>
+<div class="section-title">أعمالي</div>
+<div class="section-desc">مساحة لأعمالك وتصاميمك القادمة</div>
+</div>
+
+<div class="works">
+
+<div class="work">
+<div class="work-text">تصميم جديد</div>
+</div>
+
+<div class="work">
+<div class="work-text">مشروع قادم</div>
+</div>
+
+<div class="work">
+<div class="work-text">قريبًا</div>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section id="contact" class="contact reveal">
+<div class="container">
+
+<div class="contact-box">
+
+<div class="contact-title">
+وصلت إلى النهاية...
+</div>
+
+<div class="contact-desc">
+إذا وصلت إلى هنا، فأنت تعرف أين تجدني.
+</div>
+
+<div class="hero-buttons">
+
+<a class="btn primary"
+href="https://www.tiktok.com/@4_ad10"
+target="_blank"
+rel="noopener">
+TikTok
+</a>
+
+<a class="btn"
+href="https://www.instagram.com/4_ad22"
+target="_blank"
+rel="noopener">
+Instagram
+</a>
+
+</div>
+
+</div>
+
+</div>
+</section>
 
 </main>
+
+<footer>
+<div class="container">
+عبدالله © 2026
+<br>
+صُمم ليكون مختلفًا.
+</div>
+</footer>
+
+<script>
+
+const glow=document.getElementById("cursorGlow");
+
+document.addEventListener("mousemove",(e)=>{
+glow.style.left=e.clientX+"px";
+glow.style.top=e.clientY+"px";
+});
+
+const observer=new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+},{
+threshold:.12
+});
+
+document.querySelectorAll(".reveal").forEach(el=>{
+observer.observe(el);
+});
+
+</script>
 
 </body>
 </html>
