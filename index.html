@@ -1,16 +1,25 @@
-موقع عبدالله — النسخة الغامضة
-
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#030303">
-<meta name="description" content="عبدالله — صانع محتوى ومصمم">
-<title>عبدالله | الهوية الرقمية</title>
+<meta name="description" content="عبدالله — منصة للمصممين وصنّاع المحتوى">
+<title>عبدالله | منصة المصممين</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Marhey:wght@400;500;600;700&display=swap');
+
+:root{
+--bg:#030303;
+--panel:#090909;
+--panel2:#0d0d0d;
+--line:#1d1d1d;
+--line2:#292929;
+--white:#f5f5f5;
+--gray:#888;
+--darkgray:#555;
+}
 
 *{
 box-sizing:border-box;
@@ -23,8 +32,8 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#030303;
-color:#f5f5f5;
+background:var(--bg);
+color:var(--white);
 font-family:'Cairo',Tahoma,Arial,sans-serif;
 overflow-x:hidden;
 }
@@ -33,91 +42,180 @@ body:before{
 content:"";
 position:fixed;
 inset:0;
+z-index:9999;
 pointer-events:none;
-z-index:999;
 opacity:.035;
 background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
 }
 
-.cursor-glow{
+::selection{
+background:#fff;
+color:#000;
+}
+
+a{
+color:inherit;
+text-decoration:none;
+}
+
+button{
+font-family:inherit;
+}
+
+#loader{
 position:fixed;
-width:280px;
-height:280px;
-border-radius:50%;
-background:radial-gradient(circle,rgba(255,255,255,.065),transparent 68%);
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:0;
+inset:0;
+background:#030303;
+z-index:10000;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:opacity .8s,visibility .8s;
+}
+
+#loader.hide{
+opacity:0;
+visibility:hidden;
+}
+
+.loader-content{
+text-align:center;
+}
+
+.loader-name{
+font-family:'Marhey',sans-serif;
+font-size:34px;
+font-weight:700;
+letter-spacing:3px;
+}
+
+.loader-line{
+width:150px;
+height:1px;
+background:#222;
+margin:20px auto;
+overflow:hidden;
+}
+
+.loader-line span{
+display:block;
+width:40%;
+height:100%;
+background:#eee;
+animation:loader 1.4s infinite ease-in-out;
+}
+
+.loader-text{
+font-size:9px;
+color:#555;
+letter-spacing:3px;
+}
+
+@keyframes loader{
+0%{transform:translateX(-150px)}
+100%{transform:translateX(150px)}
 }
 
 .background{
 position:fixed;
 inset:0;
-z-index:-2;
+z-index:-5;
 background:
-radial-gradient(circle at 50% 0%,rgba(255,255,255,.055),transparent 35%),
-radial-gradient(circle at 20% 70%,rgba(255,255,255,.025),transparent 30%),
+radial-gradient(circle at 50% -10%,rgba(255,255,255,.075),transparent 35%),
+radial-gradient(circle at 0% 70%,rgba(255,255,255,.025),transparent 30%),
+radial-gradient(circle at 100% 40%,rgba(255,255,255,.018),transparent 30%),
 #030303;
 }
 
 .grid{
 position:fixed;
 inset:0;
-z-index:-1;
-opacity:.12;
+z-index:-4;
+opacity:.11;
 background-image:
 linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
 linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
 background-size:55px 55px;
-mask-image:linear-gradient(to bottom,#000,transparent 85%);
+mask-image:linear-gradient(to bottom,#000,transparent 90%);
+}
+
+.cursor-glow{
+position:fixed;
+width:300px;
+height:300px;
+border-radius:50%;
+background:radial-gradient(circle,rgba(255,255,255,.07),transparent 68%);
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:-2;
+}
+
+.scroll-progress{
+position:fixed;
+top:0;
+right:0;
+height:2px;
+width:0%;
+background:#eee;
+z-index:5000;
 }
 
 .container{
-width:min(920px,92%);
+width:min(1080px,92%);
 margin:auto;
 }
 
 nav{
 position:fixed;
-top:18px;
+top:15px;
 left:50%;
 transform:translateX(-50%);
-width:min(700px,90%);
-z-index:100;
+width:min(1050px,94%);
+z-index:1000;
 display:flex;
 align-items:center;
 justify-content:space-between;
+gap:15px;
 padding:10px 12px;
+background:rgba(5,5,5,.78);
 border:1px solid rgba(255,255,255,.09);
-background:rgba(5,5,5,.72);
-backdrop-filter:blur(18px);
-border-radius:18px;
-box-shadow:0 15px 50px rgba(0,0,0,.4);
+backdrop-filter:blur(22px);
+-webkit-backdrop-filter:blur(22px);
+border-radius:20px;
+box-shadow:0 20px 70px rgba(0,0,0,.5);
 }
 
 .logo{
 font-weight:800;
-font-size:15px;
+font-size:14px;
 letter-spacing:2px;
+white-space:nowrap;
 }
 
 .nav-links{
 display:flex;
-gap:5px;
+gap:4px;
+overflow-x:auto;
+scrollbar-width:none;
+}
+
+.nav-links::-webkit-scrollbar{
+display:none;
 }
 
 .nav-links a{
-color:#888;
-text-decoration:none;
-font-size:11px;
-padding:8px 11px;
+font-size:10px;
+color:#777;
+padding:8px 10px;
 border-radius:10px;
+white-space:nowrap;
 transition:.25s;
 }
 
-.nav-links a:hover{
+.nav-links a:hover,
+.nav-links a.active{
 color:#fff;
-background:rgba(255,255,255,.06);
+background:rgba(255,255,255,.07);
 }
 
 .hero{
@@ -126,12 +224,22 @@ display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-padding:110px 0 70px;
+padding:130px 0 90px;
 position:relative;
 }
 
+.hero:after{
+content:"";
+position:absolute;
+bottom:0;
+left:50%;
+width:1px;
+height:90px;
+background:linear-gradient(#555,transparent);
+}
+
 .hero-content{
-animation:heroIn 1.2s ease both;
+animation:heroIn 1.3s ease both;
 }
 
 .status{
@@ -139,12 +247,12 @@ display:inline-flex;
 align-items:center;
 gap:8px;
 font-size:10px;
-color:#777;
+color:#888;
 border:1px solid #1d1d1d;
 padding:7px 13px;
 border-radius:999px;
 background:rgba(255,255,255,.025);
-margin-bottom:28px;
+margin-bottom:30px;
 }
 
 .status-dot{
@@ -152,21 +260,21 @@ width:6px;
 height:6px;
 border-radius:50%;
 background:#aaa;
-box-shadow:0 0 12px #aaa;
+box-shadow:0 0 15px #aaa;
 }
 
 .avatar-wrap{
 position:relative;
-width:145px;
-height:145px;
+width:155px;
+height:155px;
 margin:auto;
 }
 
 .avatar{
-width:125px;
-height:125px;
+width:128px;
+height:128px;
+margin:13px auto;
 border-radius:50%;
-margin:10px auto;
 display:grid;
 place-items:center;
 font-family:'Marhey',sans-serif;
@@ -174,14 +282,21 @@ font-size:48px;
 font-weight:600;
 color:#eee;
 background:
-radial-gradient(circle at 35% 25%,#303030,#0a0a0a 62%);
+radial-gradient(circle at 35% 25%,#333,#080808 65%);
 border:1px solid #303030;
 box-shadow:
 0 0 0 10px rgba(255,255,255,.012),
-0 0 70px rgba(255,255,255,.08),
+0 0 80px rgba(255,255,255,.08),
 inset 0 0 35px rgba(255,255,255,.04);
 position:relative;
 z-index:2;
+overflow:hidden;
+}
+
+.avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
 .avatar-ring{
@@ -205,7 +320,7 @@ box-shadow:0 0 15px #aaa;
 }
 
 .hero h1{
-font-size:clamp(42px,9vw,78px);
+font-size:clamp(50px,9vw,88px);
 font-weight:800;
 letter-spacing:3px;
 margin-top:30px;
@@ -217,16 +332,15 @@ color:#666;
 }
 
 .subtitle{
-font-size:13px;
-color:#777;
+font-size:14px;
+color:#888;
 margin-top:18px;
-line-height:2;
 }
 
 .mystery{
 font-family:'Marhey',sans-serif;
 font-size:14px;
-color:#b1b1b1;
+color:#aaa;
 margin-top:12px;
 }
 
@@ -239,27 +353,30 @@ flex-wrap:wrap;
 }
 
 .btn{
-text-decoration:none;
-color:#fff;
-border:1px solid #272727;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+border:1px solid #292929;
 background:#0b0b0b;
+color:#fff;
 padding:12px 20px;
 border-radius:13px;
-font-size:12px;
+font-size:11px;
+cursor:pointer;
 transition:.3s;
 }
 
 .btn:hover{
-transform:translateY(-3px);
+transform:translateY(-4px);
 border-color:#555;
-box-shadow:0 15px 35px rgba(0,0,0,.5);
+box-shadow:0 15px 40px rgba(0,0,0,.55);
 }
 
 .btn.primary{
 background:#f3f3f3;
 color:#050505;
 border-color:#f3f3f3;
-font-weight:700;
+font-weight:800;
 }
 
 section{
@@ -267,7 +384,7 @@ padding:105px 0;
 }
 
 .section-head{
-margin-bottom:28px;
+margin-bottom:30px;
 }
 
 .section-number{
@@ -277,37 +394,42 @@ letter-spacing:3px;
 }
 
 .section-title{
-font-size:28px;
+font-size:31px;
 font-weight:800;
 margin-top:7px;
 }
 
 .section-desc{
-color:#777;
 font-size:12px;
-margin-top:7px;
+color:#777;
+margin-top:6px;
 }
 
-.about-box{
-border:1px solid #1c1c1c;
-border-radius:24px;
-padding:32px;
-background:
-linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
-box-shadow:0 25px 70px rgba(0,0,0,.3);
+.about-grid{
+display:grid;
+grid-template-columns:1.3fr .7fr;
+gap:14px;
+}
+
+.box{
+border:1px solid var(--line);
+border-radius:25px;
+padding:30px;
+background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
 position:relative;
 overflow:hidden;
+box-shadow:0 25px 70px rgba(0,0,0,.3);
 }
 
-.about-box:after{
+.box:after{
 content:"";
 position:absolute;
-width:180px;
-height:180px;
+width:220px;
+height:220px;
 border-radius:50%;
 background:radial-gradient(circle,rgba(255,255,255,.05),transparent 70%);
-top:-100px;
-left:-60px;
+top:-130px;
+left:-70px;
 }
 
 .quote{
@@ -322,49 +444,68 @@ z-index:2;
 .about-text{
 color:#777;
 font-size:13px;
-line-height:2.1;
+line-height:2.2;
 margin-top:20px;
 position:relative;
 z-index:2;
 }
 
+.mini-list{
+display:grid;
+gap:10px;
+}
+
+.mini-item{
+padding:16px;
+border:1px solid #1a1a1a;
+border-radius:16px;
+background:rgba(255,255,255,.02);
+}
+
+.mini-item b{
+font-size:12px;
+}
+
+.mini-item p{
+font-size:10px;
+color:#666;
+margin-top:5px;
+line-height:1.8;
+}
+
 .cards{
 display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:13px;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
 }
 
 .card{
-text-decoration:none;
-color:#fff;
-border:1px solid #1c1c1c;
+border:1px solid var(--line);
 background:rgba(255,255,255,.025);
 border-radius:19px;
 padding:20px;
 display:flex;
 align-items:center;
-gap:15px;
+gap:14px;
 transition:.3s;
-position:relative;
-overflow:hidden;
 }
 
 .card:hover{
-transform:translateY(-5px);
+transform:translateY(-6px);
 border-color:#3b3b3b;
-background:rgba(255,255,255,.055);
-box-shadow:0 20px 45px rgba(0,0,0,.35);
+background:rgba(255,255,255,.06);
+box-shadow:0 20px 45px rgba(0,0,0,.4);
 }
 
 .card-icon{
-width:50px;
-height:50px;
+width:48px;
+height:48px;
 border-radius:15px;
 background:#0b0b0b;
 border:1px solid #252525;
 display:grid;
 place-items:center;
-font-size:22px;
+font-size:20px;
 flex:none;
 }
 
@@ -374,13 +515,13 @@ flex:1;
 
 .card-name{
 font-weight:700;
-font-size:14px;
+font-size:13px;
 }
 
 .card-handle{
-font-size:11px;
+font-size:10px;
 color:#666;
-margin-top:5px;
+margin-top:4px;
 direction:ltr;
 text-align:right;
 }
@@ -392,26 +533,7 @@ transition:.3s;
 
 .card:hover .card-arrow{
 color:#fff;
-transform:translateX(-4px);
-}
-
-.community{
-margin-top:13px;
-display:block;
-}
-
-.community .card-icon{
-background:linear-gradient(145deg,#1c1c1c,#080808);
-}
-
-.badge{
-display:inline-block;
-font-size:9px;
-color:#888;
-border:1px solid #292929;
-border-radius:999px;
-padding:3px 8px;
-margin-bottom:7px;
+transform:translateX(-5px);
 }
 
 .stats{
@@ -424,18 +546,18 @@ gap:10px;
 border:1px solid #191919;
 background:#080808;
 border-radius:18px;
-padding:24px 10px;
+padding:25px 10px;
 text-align:center;
 transition:.3s;
 }
 
 .stat:hover{
-transform:translateY(-4px);
+transform:translateY(-5px);
 border-color:#333;
 }
 
 .stat-number{
-font-size:24px;
+font-size:25px;
 font-weight:800;
 }
 
@@ -445,6 +567,178 @@ color:#666;
 margin-top:6px;
 }
 
+.tip-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
+
+.tip{
+border:1px solid #1b1b1b;
+background:linear-gradient(145deg,#ffffff06,#ffffff02);
+border-radius:20px;
+padding:22px;
+transition:.3s;
+position:relative;
+overflow:hidden;
+}
+
+.tip:hover{
+transform:translateY(-6px);
+border-color:#3a3a3a;
+box-shadow:0 20px 45px rgba(0,0,0,.35);
+}
+
+.tip-number{
+font-size:10px;
+color:#555;
+letter-spacing:2px;
+}
+
+.tip h3{
+font-size:15px;
+margin-top:15px;
+}
+
+.tip p{
+font-size:11px;
+line-height:2;
+color:#777;
+margin-top:8px;
+}
+
+.tag{
+display:inline-block;
+margin-top:15px;
+font-size:9px;
+color:#888;
+border:1px solid #292929;
+border-radius:999px;
+padding:4px 9px;
+}
+
+.palette{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px;
+}
+
+.color{
+height:160px;
+border-radius:19px;
+border:1px solid #242424;
+display:flex;
+align-items:flex-end;
+padding:12px;
+cursor:pointer;
+overflow:hidden;
+transition:.3s;
+}
+
+.color:hover{
+transform:translateY(-6px) scale(1.01);
+}
+
+.color span{
+background:rgba(0,0,0,.7);
+padding:6px 9px;
+border-radius:8px;
+font-size:10px;
+direction:ltr;
+}
+
+.font-demo{
+border:1px solid #1b1b1b;
+border-radius:20px;
+padding:26px;
+margin-bottom:12px;
+background:rgba(255,255,255,.025);
+}
+
+.font-demo .big{
+font-family:'Marhey',sans-serif;
+font-size:27px;
+}
+
+.font-demo p{
+font-size:11px;
+color:#777;
+line-height:2;
+margin-top:8px;
+}
+
+.flow{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+}
+
+.flow-step{
+border:1px solid #1b1b1b;
+border-radius:18px;
+padding:23px;
+background:#080808;
+text-align:center;
+transition:.3s;
+}
+
+.flow-step:hover{
+transform:translateY(-5px);
+border-color:#333;
+}
+
+.flow-step strong{
+display:block;
+font-size:25px;
+}
+
+.flow-step b{
+display:block;
+font-size:12px;
+margin-top:8px;
+}
+
+.flow-step span{
+display:block;
+font-size:10px;
+color:#666;
+margin-top:5px;
+}
+
+.tools{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
+
+.tool{
+border:1px solid #1c1c1c;
+border-radius:18px;
+padding:20px;
+background:rgba(255,255,255,.025);
+transition:.3s;
+}
+
+.tool:hover{
+transform:translateY(-5px);
+border-color:#333;
+}
+
+.tool b{
+font-size:13px;
+}
+
+.tool p{
+font-size:10px;
+color:#777;
+margin-top:7px;
+line-height:1.9;
+}
+
+.tool .tag{
+margin-top:12px;
+}
+
 .works{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -452,66 +746,95 @@ gap:12px;
 }
 
 .work{
-height:190px;
-border-radius:19px;
+height:215px;
+border-radius:20px;
 border:1px solid #1c1c1c;
 background:
-linear-gradient(145deg,#121212,#070707);
+radial-gradient(circle at 50% 30%,#222,#070707 65%);
 display:flex;
 align-items:center;
 justify-content:center;
 position:relative;
 overflow:hidden;
-cursor:pointer;
-transition:.3s;
+transition:.35s;
 }
 
 .work:hover{
-transform:translateY(-5px);
-border-color:#3a3a3a;
+transform:translateY(-7px);
+border-color:#444;
 }
 
 .work:before{
 content:"";
 position:absolute;
-width:160px;
-height:160px;
+width:170px;
+height:170px;
 border-radius:50%;
-background:radial-gradient(circle,rgba(255,255,255,.07),transparent 70%);
+background:radial-gradient(circle,rgba(255,255,255,.08),transparent 70%);
 }
 
 .work-text{
 position:relative;
-color:#555;
 font-size:11px;
+color:#666;
+}
+
+.faq{
+display:grid;
+gap:9px;
+}
+
+.faq details{
+border:1px solid #1b1b1b;
+border-radius:16px;
+background:rgba(255,255,255,.025);
+padding:16px 18px;
+transition:.3s;
+}
+
+.faq details:hover{
+border-color:#333;
+}
+
+.faq summary{
+cursor:pointer;
+font-size:12px;
+font-weight:700;
+}
+
+.faq p{
+font-size:11px;
+color:#777;
+line-height:2;
+margin-top:10px;
 }
 
 .contact{
 text-align:center;
-padding-bottom:50px;
+padding-bottom:60px;
 }
 
 .contact-box{
 border:1px solid #1d1d1d;
-border-radius:25px;
-padding:45px 25px;
-background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.01));
+border-radius:26px;
+padding:50px 25px;
+background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.01));
 }
 
 .contact-title{
-font-size:25px;
+font-size:28px;
 font-weight:800;
 }
 
 .contact-desc{
 font-size:12px;
 color:#777;
-margin-top:10px;
+margin-top:9px;
 }
 
 footer{
 border-top:1px solid #111;
-padding:25px 0 35px;
+padding:28px 0 40px;
 text-align:center;
 color:#444;
 font-size:10px;
@@ -520,7 +843,7 @@ line-height:2;
 
 .reveal{
 opacity:0;
-transform:translateY(35px);
+transform:translateY(40px);
 transition:opacity .8s ease,transform .8s ease;
 }
 
@@ -529,10 +852,56 @@ opacity:1;
 transform:none;
 }
 
+.toast{
+position:fixed;
+bottom:25px;
+left:50%;
+transform:translate(-50%,20px);
+background:#eee;
+color:#050505;
+padding:10px 17px;
+border-radius:12px;
+font-size:11px;
+font-weight:700;
+opacity:0;
+pointer-events:none;
+transition:.3s;
+z-index:6000;
+}
+
+.toast.show{
+opacity:1;
+transform:translate(-50%,0);
+}
+
+.back-top{
+position:fixed;
+bottom:20px;
+left:20px;
+width:42px;
+height:42px;
+border:1px solid #292929;
+border-radius:13px;
+background:#090909;
+color:#fff;
+display:grid;
+place-items:center;
+cursor:pointer;
+opacity:0;
+visibility:hidden;
+transition:.3s;
+z-index:900;
+}
+
+.back-top.show{
+opacity:1;
+visibility:visible;
+}
+
 @keyframes heroIn{
 from{
 opacity:0;
-transform:translateY(25px);
+transform:translateY(30px);
 }
 to{
 opacity:1;
@@ -546,11 +915,45 @@ transform:rotate(360deg);
 }
 }
 
-@media(max-width:650px){
+@media(max-width:850px){
+
+.about-grid{
+grid-template-columns:1fr;
+}
+
+.cards,
+.tip-grid,
+.tools{
+grid-template-columns:1fr 1fr;
+}
+
+.palette{
+grid-template-columns:repeat(3,1fr);
+}
+
+.works{
+grid-template-columns:1fr 1fr;
+}
+
+.flow{
+grid-template-columns:1fr 1fr;
+}
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:550px){
 
 nav{
-top:10px;
-width:94%;
+width:96%;
+top:9px;
+}
+
+.logo{
+font-size:11px;
 }
 
 .nav-links a{
@@ -558,55 +961,55 @@ font-size:9px;
 padding:7px 8px;
 }
 
-.logo{
-font-size:12px;
-}
-
 .hero{
-padding-top:100px;
+padding-top:120px;
 }
 
-.cards{
+.hero h1{
+font-size:52px;
+}
+
+.cards,
+.tip-grid,
+.tools,
+.works,
+.about-grid{
 grid-template-columns:1fr;
 }
 
-.stats{
-grid-template-columns:repeat(2,1fr);
-}
-
-.works{
+.palette{
 grid-template-columns:1fr 1fr;
 }
 
-.work{
-height:150px;
+.flow{
+grid-template-columns:1fr 1fr;
 }
 
-.about-box{
-padding:24px;
+.section-title{
+font-size:27px;
+}
+
+.box{
+padding:23px;
 }
 
 .quote{
 font-size:18px;
 }
 
-section{
-padding:80px 0;
 }
 
-}
+@media(max-width:380px){
 
-@media(max-width:390px){
-
-.nav-links a:nth-child(2){
+.nav-links a:nth-child(n+5){
 display:none;
 }
 
 .hero h1{
-font-size:42px;
+font-size:45px;
 }
 
-.works{
+.palette{
 grid-template-columns:1fr;
 }
 
@@ -616,129 +1019,250 @@ grid-template-columns:1fr;
 
 <body>
 
+<div id="loader">
+<div class="loader-content">
+<div class="loader-name">عبدالله</div>
+<div class="loader-line"><span></span></div>
+<div class="loader-text">ENTERING THE UNKNOWN</div>
+</div>
+</div>
+
 <div class="background"></div>
 <div class="grid"></div>
 <div class="cursor-glow" id="cursorGlow"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <nav>
+
 <div class="logo">ABDULLAH</div>
 
 <div class="nav-links">
-<a href="#home">الرئيسية</a>
+<a href="#home" class="active">الرئيسية</a>
 <a href="#about">عني</a>
-<a href="#works">أعمالي</a>
+<a href="#social">حساباتي</a>
+<a href="#tips">النصائح</a>
+<a href="#colors">الألوان</a>
+<a href="#fonts">الخطوط</a>
+<a href="#content">المحتوى</a>
+<a href="#tools">الأدوات</a>
+<a href="#works">الأعمال</a>
 <a href="#contact">تواصل</a>
 </div>
+
 </nav>
 
 <main>
 
 <section class="hero" id="home">
+
 <div class="container hero-content">
 
 <div class="status">
 <span class="status-dot"></span>
-متصل الآن
+منصة عبدالله للمصممين وصنّاع المحتوى
 </div>
 
 <div class="avatar-wrap">
+
 <div class="avatar-ring"></div>
-<div class="avatar">A</div>
+
+<div class="avatar">
+A
+</div>
+
 </div>
 
 <h1>عبدالله<span>.</span></h1>
 
 <p class="subtitle">
-صانع محتوى ومصمم
+مصمم وصانع محتوى — أفكار، تصميم، وهوية.
 </p>
 
 <p class="mystery">
-«وراء كل تصميم... فكرة لا يراها الجميع.»
+«الفكرة القوية لا تحتاج أن تصرخ... يكفي أن تُرى.»
 </p>
 
 <div class="hero-buttons">
-<a class="btn primary" href="#links">اكتشف عالمي</a>
-<a class="btn" href="#about">من أنا؟</a>
+
+<a class="btn primary" href="#tips">
+ابدأ التعلّم
+</a>
+
+<a class="btn" href="#works">
+شاهد الأعمال
+</a>
+
 </div>
 
 </div>
+
 </section>
 
+
 <section id="about" class="reveal">
+
 <div class="container">
 
 <div class="section-head">
-<div class="section-number">01 — ABOUT</div>
-<div class="section-title">من أنا؟</div>
-<div class="section-desc">نبذة قصيرة عن عبدالله</div>
+
+<div class="section-number">
+01 — ABOUT
 </div>
 
-<div class="about-box">
+<div class="section-title">
+من أنا؟
+</div>
+
+<div class="section-desc">
+هوية عبدالله ومساحة الموقع
+</div>
+
+</div>
+
+
+<div class="about-grid">
+
+<div class="box">
 
 <div class="quote">
 «لا أصنع الأشياء لتُرى فقط... أصنعها لتترك أثرًا.»
 </div>
 
 <p class="about-text">
-أصنع محتوى وتصاميم تجمع بين الغموض، الجمال، والهوية الخاصة.
-هذا الموقع هو مساحتي الرقمية التي أشارك من خلالها أعمالي
-وحساباتي ومشاريعي مع من يهتم بما أصنعه.
+هذه المنصة ليست مجرد بطاقة تعريف. هي مساحة تجمع أفكارًا ونصائح وأدوات تساعد المصممين وصنّاع المحتوى على تطوير أسلوبهم وصناعة محتوى أقوى، مع مساحة لعرض الأعمال والحسابات.
 </p>
 
 </div>
 
+
+<div class="box">
+
+<div class="mini-list">
+
+<div class="mini-item">
+<b>01 — الفكرة</b>
+<p>
+ابدأ برسالة واضحة قبل أن تبدأ بالتفاصيل.
+</p>
 </div>
+
+<div class="mini-item">
+<b>02 — الهوية</b>
+<p>
+اجعل أسلوبك قابلًا للتعرّف عليه.
+</p>
+</div>
+
+<div class="mini-item">
+<b>03 — الأثر</b>
+<p>
+التصميم الجيد يجعل المشاهد يتوقف.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="links" class="reveal">
+
+<section id="social" class="reveal">
+
 <div class="container">
 
 <div class="section-head">
-<div class="section-number">02 — SOCIAL</div>
-<div class="section-title">حساباتي</div>
-<div class="section-desc">كل شيء في مكان واحد</div>
+
+<div class="section-number">
+02 — SOCIAL
 </div>
+
+<div class="section-title">
+حساباتي
+</div>
+
+<div class="section-desc">
+كل شيء في مكان واحد
+</div>
+
+</div>
+
 
 <div class="cards">
 
-<a class="card" href="https://www.tiktok.com/@4_ad10" target="_blank" rel="noopener">
+<a class="card"
+href="https://www.tiktok.com/@4_ad10"
+target="_blank"
+rel="noopener">
 
-<div class="card-icon">♪</div>
-
-<div class="card-info">
-<div class="card-name">TikTok</div>
-<div class="card-handle">@4_ad10</div>
+<div class="card-icon">
+♪
 </div>
 
-<div class="card-arrow">←</div>
-
-</a>
-
-<a class="card" href="https://www.instagram.com/4_ad22" target="_blank" rel="noopener">
-
-<div class="card-icon">◎</div>
-
 <div class="card-info">
-<div class="card-name">Instagram</div>
-<div class="card-handle">@4_ad22</div>
-</div>
-
-<div class="card-arrow">←</div>
-
-</a>
-
-</div>
-
-<a class="card community" href="https://tiktok.me/group/ZSVQP24vx/" target="_blank" rel="noopener">
-
-<div class="card-icon">✦</div>
-
-<div class="card-info">
-
-<span class="badge">مجتمع المصممين</span>
 
 <div class="card-name">
-مجموعة المصممين
+TikTok
+</div>
+
+<div class="card-handle">
+@4_ad10
+</div>
+
+</div>
+
+<div class="card-arrow">
+←
+</div>
+
+</a>
+
+
+<a class="card"
+href="https://www.instagram.com/4_ad22"
+target="_blank"
+rel="noopener">
+
+<div class="card-icon">
+◎
+</div>
+
+<div class="card-info">
+
+<div class="card-name">
+Instagram
+</div>
+
+<div class="card-handle">
+@4_ad22
+</div>
+
+</div>
+
+<div class="card-arrow">
+←
+</div>
+
+</a>
+
+
+<a class="card"
+href="https://tiktok.me/group/ZSVQP24vx/"
+target="_blank"
+rel="noopener">
+
+<div class="card-icon">
+✦
+</div>
+
+<div class="card-info">
+
+<div class="card-name">
+مجتمع المصممين
 </div>
 
 <div class="card-handle">
@@ -747,20 +1271,37 @@ grid-template-columns:1fr;
 
 </div>
 
-<div class="card-arrow">←</div>
+<div class="card-arrow">
+←
+</div>
 
 </a>
 
 </div>
+
+</div>
+
 </section>
 
+
 <section class="reveal">
+
 <div class="container">
 
 <div class="section-head">
-<div class="section-number">03 — NUMBERS</div>
-<div class="section-title">رحلتي</div>
-<div class="section-desc">أرقام قابلة للتعديل لاحقًا</div>
+
+<div class="section-number">
+03 — JOURNEY
+</div>
+
+<div class="section-title">
+رحلتي
+</div>
+
+<div class="section-desc">
+أرقام رمزية تعبّر عن الفكرة
+</div>
+
 </div>
 
 <div class="stats">
@@ -772,12 +1313,12 @@ grid-template-columns:1fr;
 
 <div class="stat">
 <div class="stat-number">01</div>
-<div class="stat-label">الهوية</div>
+<div class="stat-label">هوية خاصة</div>
 </div>
 
 <div class="stat">
 <div class="stat-number">24/7</div>
-<div class="stat-label">الإبداع</div>
+<div class="stat-label">إبداع</div>
 </div>
 
 <div class="stat">
@@ -788,37 +1329,509 @@ grid-template-columns:1fr;
 </div>
 
 </div>
+
 </section>
 
-<section id="works" class="reveal">
+
+<section id="tips" class="reveal">
+
 <div class="container">
 
 <div class="section-head">
-<div class="section-number">04 — WORKS</div>
-<div class="section-title">أعمالي</div>
-<div class="section-desc">مساحة لأعمالك وتصاميمك القادمة</div>
+
+<div class="section-number">
+04 — DESIGN TIPS
 </div>
+
+<div class="section-title">
+نصائح للمصممين
+</div>
+
+<div class="section-desc">
+أشياء صغيرة تصنع فرقًا كبيرًا
+</div>
+
+</div>
+
+
+<div class="tip-grid">
+
+<div class="tip">
+<div class="tip-number">TIP 01</div>
+<h3>لا تبدأ بالتفاصيل</h3>
+<p>
+حدد الفكرة والرسالة والهدف أولًا. التفاصيل تأتي بعد أن يصبح الهيكل واضحًا.
+</p>
+<span class="tag">أساسيات</span>
+</div>
+
+
+<div class="tip">
+<div class="tip-number">TIP 02</div>
+<h3>الفراغ جزء من التصميم</h3>
+<p>
+لا تحاول ملء كل مساحة. الفراغ يمنح العين راحة ويجعل العنصر المهم أكثر بروزًا.
+</p>
+<span class="tag">تكوين</span>
+</div>
+
+
+<div class="tip">
+<div class="tip-number">TIP 03</div>
+<h3>عنصر واحد يقود العين</h3>
+<p>
+حدد نقطة التركيز الرئيسية ولا تجعل كل العناصر تتنافس على الانتباه.
+</p>
+<span class="tag">تركيز</span>
+</div>
+
+
+<div class="tip">
+<div class="tip-number">TIP 04</div>
+<h3>اختصر النص</h3>
+<p>
+النص القصير والواضح أقوى في الفيديوهات السريعة، خصوصًا على الهاتف.
+</p>
+<span class="tag">نصوص</span>
+</div>
+
+
+<div class="tip">
+<div class="tip-number">TIP 05</div>
+<h3>الثبات يصنع الهوية</h3>
+<p>
+كرر أسلوبك في الألوان والخطوط والمعالجة البصرية حتى يصبح التعرف عليك أسرع.
+</p>
+<span class="tag">هوية</span>
+</div>
+
+
+<div class="tip">
+<div class="tip-number">TIP 06</div>
+<h3>اختبر على الهاتف</h3>
+<p>
+صغّر التصميم وشاهده كما سيشاهده الجمهور. الوضوح على الشاشة الصغيرة اختبار حقيقي.
+</p>
+<span class="tag">موبايل</span>
+</div>
+
+
+<div class="tip">
+<div class="tip-number">TIP 07</div>
+<h3>لا تقتل الصورة بالنص</h3>
+<p>
+استخدم أقل عدد ممكن من الكلمات، واترك للصورة مساحة حتى تتحدث عن نفسها.
+</p>
+<span class="tag">تصميم</span>
+</div>
+
+
+<div class="tip">
+<div class="tip-number">TIP 08</div>
+<h3>التباين صديقك</h3>
+<p>
+اجعل الفرق واضحًا بين العنوان والخلفية والعناصر حتى يكون التصميم سهل القراءة.
+</p>
+<span class="tag">ألوان</span>
+</div>
+
+
+<div class="tip">
+<div class="tip-number">TIP 09</div>
+<h3>لا تقلّد النتيجة</h3>
+<p>
+استفد من الإلهام، لكن خذ الفكرة وطوّرها بطريقتك حتى تصنع أسلوبك الخاص.
+</p>
+<span class="tag">إبداع</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="colors" class="reveal">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="section-number">
+05 — COLORS
+</div>
+
+<div class="section-title">
+عالم الألوان
+</div>
+
+<div class="section-desc">
+اضغط على أي لون لنسخ الكود
+</div>
+
+</div>
+
+
+<div class="palette">
+
+<div class="color"
+style="background:#030303"
+data-color="#030303">
+<span>#030303</span>
+</div>
+
+<div class="color"
+style="background:#111111"
+data-color="#111111">
+<span>#111111</span>
+</div>
+
+<div class="color"
+style="background:#292929"
+data-color="#292929">
+<span>#292929</span>
+</div>
+
+<div class="color"
+style="background:#666666"
+data-color="#666666">
+<span>#666666</span>
+</div>
+
+<div class="color"
+style="background:#f3f3f3;color:#000"
+data-color="#F3F3F3">
+<span>#F3F3F3</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="fonts" class="reveal">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="section-number">
+06 — TYPOGRAPHY
+</div>
+
+<div class="section-title">
+الخطوط والنصوص
+</div>
+
+<div class="section-desc">
+الخط ليس زينة؛ هو جزء من الشخصية
+</div>
+
+</div>
+
+
+<div class="font-demo">
+
+<div class="big">
+العنوان يجب أن يُرى قبل أن يُقرأ.
+</div>
+
+<p>
+اجعل العنوان واضحًا، واستخدم وزنًا قويًا عند الحاجة، ثم اترك للنص الثانوي مساحة أهدأ.
+</p>
+
+</div>
+
+
+<div class="font-demo">
+
+<div style="font-size:22px;font-weight:800">
+قاعدة بسيطة: خطان يكفيان غالبًا.
+</div>
+
+<p>
+خط للعناوين وخط للنصوص. كثرة الخطوط تجعل التصميم مشتتًا وتضعف الهوية.
+</p>
+
+</div>
+
+
+<div class="font-demo">
+
+<div style="font-size:18px;font-weight:600">
+لا تجعل الخط أجمل من الفكرة.
+</div>
+
+<p>
+وظيفة الخط أن يخدم الرسالة، لا أن يسرق الانتباه منها.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="content" class="reveal">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="section-number">
+07 — CONTENT
+</div>
+
+<div class="section-title">
+صناعة المحتوى
+</div>
+
+<div class="section-desc">
+طريقة تفكير مختصرة قبل نشر أي فيديو
+</div>
+
+</div>
+
+
+<div class="flow">
+
+<div class="flow-step">
+<strong>01</strong>
+<b>الفكرة</b>
+<span>ما الذي تريد قوله؟</span>
+</div>
+
+<div class="flow-step">
+<strong>02</strong>
+<b>الخطاف</b>
+<span>لماذا يتوقف المشاهد؟</span>
+</div>
+
+<div class="flow-step">
+<strong>03</strong>
+<b>التنفيذ</b>
+<span>الصورة والصوت والإيقاع.</span>
+</div>
+
+<div class="flow-step">
+<strong>04</strong>
+<b>النهاية</b>
+<span>اترك أثرًا أو سببًا للعودة.</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="tools" class="reveal">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="section-number">
+08 — TOOLS
+</div>
+
+<div class="section-title">
+أدوات المصممين
+</div>
+
+<div class="section-desc">
+أشياء تستحق أن تكون في صندوق أدواتك
+</div>
+
+</div>
+
+
+<div class="tools">
+
+<div class="tool">
+<b>CapCut</b>
+<p>
+للمونتاج السريع، النصوص، الحركة، والمؤثرات.
+</p>
+<span class="tag">فيديو</span>
+</div>
+
+
+<div class="tool">
+<b>Motionleap</b>
+<p>
+لإضافة حركة للصور وصناعة مشاهد أكثر حياة.
+</p>
+<span class="tag">حركة</span>
+</div>
+
+
+<div class="tool">
+<b>أدوات الذكاء الاصطناعي</b>
+<p>
+للعصف الذهني، الصور، الفيديو، وتطوير الأفكار.
+</p>
+<span class="tag">AI</span>
+</div>
+
+
+<div class="tool">
+<b>أدوات الخطوط</b>
+<p>
+اختيار الخط المناسب أهم من جمع عشرات الخطوط.
+</p>
+<span class="tag">Typography</span>
+</div>
+
+
+<div class="tool">
+<b>أدوات الألوان</b>
+<p>
+ابنِ لوحة ألوان متناسقة بدل اختيار الألوان عشوائيًا.
+</p>
+<span class="tag">Colors</span>
+</div>
+
+
+<div class="tool">
+<b>مراجع التصميم</b>
+<p>
+اجمع الإلهام، ثم أعد بناء الفكرة بأسلوبك أنت.
+</p>
+<span class="tag">Inspiration</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="works" class="reveal">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="section-number">
+09 — WORKS
+</div>
+
+<div class="section-title">
+أعمالي
+</div>
+
+<div class="section-desc">
+مساحة جاهزة لإضافة تصاميمك
+</div>
+
+</div>
+
 
 <div class="works">
 
 <div class="work">
-<div class="work-text">تصميم جديد</div>
+<div class="work-text">
+تصميم جديد
+</div>
 </div>
 
 <div class="work">
-<div class="work-text">مشروع قادم</div>
+<div class="work-text">
+مشروع قادم
+</div>
 </div>
 
 <div class="work">
-<div class="work-text">قريبًا</div>
+<div class="work-text">
+قريبًا
+</div>
 </div>
 
 </div>
 
 </div>
+
 </section>
 
+
+<section class="reveal">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="section-number">
+10 — FAQ
+</div>
+
+<div class="section-title">
+أسئلة سريعة
+</div>
+
+<div class="section-desc">
+ملاحظات مختصرة للمصممين
+</div>
+
+</div>
+
+
+<div class="faq">
+
+<details>
+<summary>
+هل أحتاج برامج كثيرة حتى أصبح مصممًا جيدًا؟
+</summary>
+<p>
+لا. تعلّم أداة أو أداتين بعمق، وركز على التكوين واللون والهوية قبل جمع البرامج.
+</p>
+</details>
+
+
+<details>
+<summary>
+ما أهم شيء في تصميم محتوى قصير؟
+</summary>
+<p>
+وضوح الفكرة وسرعة فهمها. أول ثانية مهمة، لكن جودة الفكرة هي التي تجعل المشاهد يكمل.
+</p>
+</details>
+
+
+<details>
+<summary>
+كيف أطور أسلوبي؟
+</summary>
+<p>
+اصنع كثيرًا، حلل أعمالك، احتفظ بما يميزك، وتوقف عن تقليد النتيجة النهائية للآخرين.
+</p>
+</details>
+
+
+<details>
+<summary>
+هل التصميم الجميل يعني تصميمًا ناجحًا؟
+</summary>
+<p>
+ليس دائمًا. التصميم الناجح يجمع بين الجمال والوضوح والهدف، ويجعل المشاهد يفهم الرسالة بسهولة.
+</p>
+</details>
+
+</div>
+
+</div>
+
+</section>
+
+
 <section id="contact" class="contact reveal">
+
 <div class="container">
 
 <div class="contact-box">
@@ -828,7 +1841,7 @@ grid-template-columns:1fr;
 </div>
 
 <div class="contact-desc">
-إذا وصلت إلى هنا، فأنت تعرف أين تجدني.
+إذا أعجبك المحتوى، تابعني وكن جزءًا من الرحلة.
 </div>
 
 <div class="hero-buttons">
@@ -852,42 +1865,195 @@ Instagram
 </div>
 
 </div>
+
 </section>
 
 </main>
 
+
 <footer>
+
 <div class="container">
+
 عبدالله © 2026
+
 <br>
+
 صُمم ليكون مختلفًا.
+
 </div>
+
 </footer>
 
+
+<button class="back-top" id="backTop">
+↑
+</button>
+
+
+<div class="toast" id="toast">
+تم النسخ
+</div>
+
+
 <script>
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+document.getElementById("loader").classList.add("hide");
+
+},900);
+
+});
+
 
 const glow=document.getElementById("cursorGlow");
 
 document.addEventListener("mousemove",(e)=>{
+
 glow.style.left=e.clientX+"px";
 glow.style.top=e.clientY+"px";
+
 });
+
 
 const observer=new IntersectionObserver((entries)=>{
+
 entries.forEach(entry=>{
+
 if(entry.isIntersecting){
+
 entry.target.classList.add("show");
+
 }
-});
-},{
-threshold:.12
+
 });
 
+},{
+threshold:.1
+});
+
+
 document.querySelectorAll(".reveal").forEach(el=>{
+
 observer.observe(el);
+
+});
+
+
+const progress=document.getElementById("scrollProgress");
+
+const backTop=document.getElementById("backTop");
+
+window.addEventListener("scroll",()=>{
+
+const height=document.documentElement.scrollHeight-window.innerHeight;
+
+const percentage=height>0?(window.scrollY/height)*100:0;
+
+progress.style.width=percentage+"%";
+
+
+if(window.scrollY>500){
+
+backTop.classList.add("show");
+
+}else{
+
+backTop.classList.remove("show");
+
+}
+
+
+let current="home";
+
+document.querySelectorAll("main section[id]").forEach(section=>{
+
+if(window.scrollY>=section.offsetTop-220){
+
+current=section.id;
+
+}
+
+});
+
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+link.classList.toggle(
+"active",
+link.getAttribute("href")==="#"+current
+);
+
+});
+
+});
+
+
+backTop.addEventListener("click",()=>{
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+});
+
+
+const toast=document.getElementById("toast");
+
+document.querySelectorAll(".color").forEach(color=>{
+
+color.addEventListener("click",async()=>{
+
+const value=color.dataset.color;
+
+try{
+
+await navigator.clipboard.writeText(value);
+
+}catch(error){}
+
+toast.textContent="تم نسخ "+value;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},1500);
+
+});
+
+});
+
+
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+
+link.addEventListener("click",(e)=>{
+
+const target=document.querySelector(
+link.getAttribute("href")
+);
+
+if(target){
+
+e.preventDefault();
+
+target.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+});
+
 });
 
 </script>
 
 </body>
-</html>
+  </html>
