@@ -4,10 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>عبدالله | Official</title>
+<title>عبدالله | الموقع الرسمي</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+    --purple:#7657ff;
+    --blue:#00a8ff;
+    --pink:#ff4fa3;
+    --cyan:#00d9c0;
+    --yellow:#ffc83d;
+    --dark:#17182b;
+    --text:#202235;
+    --muted:#74788d;
+    --white:#ffffff;
+    --bg:#f7f9ff;
+    --card:rgba(255,255,255,.82);
+}
 
 *{
     margin:0;
@@ -20,147 +34,176 @@ html{
 }
 
 body{
-    font-family:'Cairo',sans-serif;
-    background:#f5f7fb;
-    color:#171927;
+    font-family:"Cairo",sans-serif;
+    background:var(--bg);
+    color:var(--text);
     overflow-x:hidden;
 }
 
-/* الخلفية */
-body::before{
-    content:"";
-    position:fixed;
-    width:420px;
-    height:420px;
-    background:rgba(124,92,255,.16);
-    filter:blur(100px);
-    border-radius:50%;
-    top:-150px;
-    right:-120px;
-    z-index:-2;
-}
-
+/* خلفية ملونة */
+body::before,
 body::after{
     content:"";
     position:fixed;
-    width:350px;
-    height:350px;
-    background:rgba(0,194,255,.13);
-    filter:blur(100px);
     border-radius:50%;
-    bottom:-120px;
+    filter:blur(90px);
+    pointer-events:none;
+    z-index:-10;
+}
+
+body::before{
+    width:420px;
+    height:420px;
+    background:rgba(118,87,255,.18);
+    top:-150px;
+    right:-100px;
+}
+
+body::after{
+    width:400px;
+    height:400px;
+    background:rgba(0,168,255,.14);
+    bottom:-160px;
     left:-100px;
-    z-index:-2;
 }
 
 /* شاشة البداية */
-.loader{
+#loader{
     position:fixed;
     inset:0;
-    background:#11121b;
+    background:linear-gradient(135deg,#7657ff,#00a8ff,#ff4fa3);
+    z-index:99999;
     display:flex;
-    justify-content:center;
     align-items:center;
-    z-index:9999;
-    transition:opacity .8s, visibility .8s;
+    justify-content:center;
+    transition:.8s ease;
 }
 
-.loader.hide{
+#loader.hide{
     opacity:0;
     visibility:hidden;
 }
 
-.loader-box{
+.loader-content{
     text-align:center;
     color:white;
 }
 
 .loader-logo{
-    width:82px;
-    height:82px;
-    border-radius:50%;
+    width:80px;
+    height:80px;
+    border-radius:28px;
     margin:auto;
-    border:3px solid rgba(255,255,255,.15);
-    border-top-color:#8b6cff;
-    animation:spin 1s linear infinite;
+    background:rgba(255,255,255,.18);
+    border:2px solid rgba(255,255,255,.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:900;
+    animation:loaderPulse 1.5s infinite;
 }
 
-.loader p{
-    margin-top:18px;
-    font-size:14px;
-    opacity:.7;
+.loader-content h2{
+    margin-top:20px;
 }
 
-@keyframes spin{
-    to{transform:rotate(360deg)}
+.loader-bar{
+    width:180px;
+    height:4px;
+    background:rgba(255,255,255,.3);
+    border-radius:20px;
+    margin:15px auto 0;
+    overflow:hidden;
 }
 
-/* الهيدر */
+.loader-bar span{
+    display:block;
+    width:0;
+    height:100%;
+    background:white;
+    animation:loadBar 1.5s forwards;
+}
+
+@keyframes loadBar{
+    to{width:100%}
+}
+
+@keyframes loaderPulse{
+    50%{transform:scale(1.08) rotate(3deg)}
+}
+
+/* النافبار */
 header{
     position:fixed;
-    top:15px;
+    top:16px;
     left:50%;
     transform:translateX(-50%);
     width:calc(100% - 28px);
-    max-width:1000px;
-    z-index:1000;
+    max-width:1100px;
+    z-index:5000;
 }
 
-.nav{
-    background:rgba(255,255,255,.72);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.8);
-    box-shadow:0 10px 35px rgba(30,30,60,.08);
-    border-radius:22px;
-    padding:10px 14px;
+.navbar{
     display:flex;
     align-items:center;
     justify-content:space-between;
+    padding:10px 12px;
+    border-radius:22px;
+    background:rgba(255,255,255,.78);
+    backdrop-filter:blur(25px);
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:0 15px 45px rgba(45,50,90,.1);
 }
 
-.logo{
-    font-size:19px;
+.brand{
+    font-size:20px;
     font-weight:900;
-    background:linear-gradient(90deg,#7257ff,#00aeea);
+    text-decoration:none;
+    background:linear-gradient(90deg,var(--purple),var(--blue));
     -webkit-background-clip:text;
     color:transparent;
+    padding:0 12px;
 }
 
 .nav-links{
     display:flex;
-    gap:6px;
+    gap:5px;
 }
 
 .nav-links button{
     border:0;
     background:transparent;
-    padding:9px 13px;
-    border-radius:13px;
+    color:#65697d;
     font-family:inherit;
+    font-size:12px;
+    font-weight:700;
+    padding:10px 13px;
+    border-radius:14px;
     cursor:pointer;
-    color:#555;
     transition:.3s;
 }
 
 .nav-links button:hover,
 .nav-links button.active{
-    background:#171927;
+    background:var(--dark);
     color:white;
+    transform:translateY(-2px);
 }
 
 /* الصفحات */
 .page{
     display:none;
     min-height:100vh;
-    padding:125px 18px 50px;
-    animation:pageIn .65s ease;
+    padding:130px 18px 60px;
+    animation:pageEnter .65s ease;
 }
 
 .page.active{
     display:block;
 }
 
-@keyframes pageIn{
+@keyframes pageEnter{
     from{
         opacity:0;
         transform:translateY(25px);
@@ -173,69 +216,90 @@ header{
 
 .container{
     width:100%;
-    max-width:1050px;
+    max-width:1100px;
     margin:auto;
 }
 
 /* الرئيسية */
 .hero{
-    min-height:calc(100vh - 150px);
+    min-height:calc(100vh - 160px);
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
 }
 
-.profile-wrap{
+.hero-content{
+    max-width:850px;
+}
+
+.profile-box{
     position:relative;
-    display:inline-block;
-    margin-bottom:25px;
+    width:165px;
+    height:165px;
+    margin:0 auto 25px;
 }
 
 .profile{
-    width:150px;
-    height:150px;
+    width:165px;
+    height:165px;
     object-fit:cover;
     border-radius:50%;
-    border:6px solid white;
+    border:7px solid white;
     box-shadow:
-        0 20px 50px rgba(75,55,180,.25),
-        0 0 0 8px rgba(124,92,255,.08);
+        0 25px 60px rgba(75,55,180,.2),
+        0 0 0 10px rgba(118,87,255,.07);
 }
 
-.online{
+/* استبدل الرابط بصورة حسابك لاحقاً */
+.profile-placeholder{
+    background:linear-gradient(135deg,var(--purple),var(--blue),var(--pink));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:42px;
+    font-weight:900;
+}
+
+.status{
     position:absolute;
-    width:20px;
-    height:20px;
-    background:#25d366;
-    border:4px solid white;
-    border-radius:50%;
+    right:10px;
     bottom:12px;
-    right:12px;
+    width:25px;
+    height:25px;
+    border:5px solid white;
+    background:#2bd66f;
+    border-radius:50%;
 }
 
 .hero h1{
-    font-size:clamp(38px,10vw,75px);
-    line-height:1.1;
+    font-size:clamp(42px,8vw,82px);
+    line-height:1.08;
     font-weight:900;
-    letter-spacing:-2px;
+    letter-spacing:-3px;
 }
 
 .gradient{
-    background:linear-gradient(90deg,#7257ff,#00aeea);
+    background:linear-gradient(
+        90deg,
+        var(--purple),
+        var(--blue),
+        var(--pink)
+    );
     -webkit-background-clip:text;
     color:transparent;
 }
 
-.hero p{
+.hero-description{
     max-width:650px;
-    margin:18px auto;
-    color:#707487;
+    margin:22px auto;
+    color:var(--muted);
     font-size:16px;
     line-height:2;
 }
 
-.buttons{
+.hero-buttons{
     display:flex;
     justify-content:center;
     gap:12px;
@@ -245,50 +309,78 @@ header{
 
 .btn{
     border:0;
-    padding:14px 24px;
     border-radius:16px;
+    padding:14px 25px;
     font-family:inherit;
     font-weight:800;
     cursor:pointer;
-    transition:.3s;
+    transition:.35s;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
 }
 
 .primary{
     color:white;
-    background:#171927;
-    box-shadow:0 12px 25px rgba(23,25,39,.18);
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+    box-shadow:0 15px 30px rgba(88,76,220,.22);
 }
 
-.secondary{
+.light{
     background:white;
-    border:1px solid #e7e8ee;
+    color:var(--text);
+    border:1px solid #e8eaf2;
 }
 
-.btn:hover{
-    transform:translateY(-4px);
+/* إحصائيات */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:45px;
 }
 
-/* عنوان */
+.stat{
+    background:var(--card);
+    backdrop-filter:blur(15px);
+    border:1px solid white;
+    padding:20px;
+    border-radius:22px;
+    box-shadow:0 12px 35px rgba(30,35,70,.06);
+}
+
+.stat strong{
+    display:block;
+    font-size:27px;
+    font-weight:900;
+}
+
+.stat span{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* العناوين */
 .section-title{
     text-align:center;
-    margin-bottom:35px;
+    margin-bottom:38px;
 }
 
-.section-title span{
-    font-size:13px;
-    font-weight:800;
-    color:#775fff;
+.section-title small{
+    color:var(--purple);
+    font-weight:900;
+    letter-spacing:1px;
 }
 
 .section-title h2{
-    font-size:34px;
+    font-size:40px;
     font-weight:900;
-    margin-top:5px;
+    margin:5px 0;
 }
 
 .section-title p{
-    color:#777b8d;
-    margin-top:8px;
+    color:var(--muted);
 }
 
 /* البطاقات */
@@ -299,44 +391,44 @@ header{
 }
 
 .card{
-    background:rgba(255,255,255,.78);
+    background:var(--card);
     backdrop-filter:blur(18px);
     border:1px solid rgba(255,255,255,.9);
-    border-radius:25px;
-    padding:25px;
-    box-shadow:0 15px 45px rgba(35,35,70,.07);
+    border-radius:26px;
+    padding:27px;
+    box-shadow:0 15px 45px rgba(35,40,80,.07);
     transition:.35s;
-    position:relative;
     overflow:hidden;
-}
-
-.card::before{
-    content:"";
-    position:absolute;
-    width:100px;
-    height:100px;
-    background:rgba(115,87,255,.1);
-    border-radius:50%;
-    top:-50px;
-    left:-50px;
+    position:relative;
 }
 
 .card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 22px 55px rgba(35,35,70,.12);
+    transform:translateY(-8px);
+    box-shadow:0 25px 60px rgba(35,40,80,.12);
 }
 
-.icon{
-    width:50px;
-    height:50px;
+.card::after{
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    background:rgba(118,87,255,.06);
+    top:-70px;
+    left:-50px;
+}
+
+.card-icon{
+    width:55px;
+    height:55px;
+    border-radius:17px;
     display:flex;
     align-items:center;
     justify-content:center;
-    background:#171927;
     color:white;
-    border-radius:16px;
-    font-size:22px;
+    font-size:23px;
     margin-bottom:18px;
+    background:linear-gradient(135deg,var(--purple),var(--blue));
 }
 
 .card h3{
@@ -345,8 +437,59 @@ header{
 }
 
 .card p{
-    color:#777b8d;
-    line-height:1.9;
+    color:var(--muted);
+    line-height:2;
+    font-size:14px;
+}
+
+/* الأعمال */
+.work-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.work-card{
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(30,35,70,.07);
+    transition:.4s;
+}
+
+.work-card:hover{
+    transform:translateY(-9px) scale(1.01);
+}
+
+.work-image{
+    height:230px;
+    overflow:hidden;
+    background:linear-gradient(135deg,#7657ff,#00a8ff);
+}
+
+.work-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.6s;
+}
+
+.work-card:hover img{
+    transform:scale(1.08);
+}
+
+.work-info{
+    padding:20px;
+}
+
+.work-info h3{
+    margin-bottom:7px;
+}
+
+.work-info p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
 }
 
 /* معرض */
@@ -357,11 +500,11 @@ header{
 }
 
 .gallery-item{
-    height:260px;
-    border-radius:22px;
+    height:270px;
+    border-radius:23px;
     overflow:hidden;
+    cursor:pointer;
     background:#ddd;
-    position:relative;
 }
 
 .gallery-item img{
@@ -372,37 +515,71 @@ header{
 }
 
 .gallery-item:hover img{
-    transform:scale(1.08);
+    transform:scale(1.1);
 }
 
-/* نصائح */
+/* النصائح */
 .tip{
     display:flex;
     align-items:flex-start;
     gap:15px;
 }
 
-.number{
-    min-width:42px;
-    height:42px;
-    border-radius:13px;
+.tip-number{
+    min-width:45px;
+    height:45px;
+    border-radius:14px;
     display:flex;
-    align-items:center;
     justify-content:center;
-    background:linear-gradient(135deg,#7257ff,#00aeea);
+    align-items:center;
     color:white;
     font-weight:900;
+    background:linear-gradient(135deg,var(--pink),var(--purple));
 }
 
-/* روابط */
-.link-card{
+/* المشاريع */
+.project{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.project-status{
+    display:inline-block;
+    padding:5px 11px;
+    border-radius:30px;
+    background:#e8fff1;
+    color:#16a85a;
+    font-size:11px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+/* الروابط */
+.links{
+    max-width:700px;
+    margin:auto;
+}
+
+.link{
+    text-decoration:none;
+    color:inherit;
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:15px;
-    text-decoration:none;
-    color:inherit;
-    margin-bottom:14px;
+    background:white;
+    border:1px solid #eceef5;
+    padding:17px;
+    border-radius:20px;
+    margin-bottom:13px;
+    transition:.35s;
+}
+
+.link:hover{
+    transform:translateX(-7px);
+    box-shadow:0 15px 35px rgba(30,35,70,.08);
 }
 
 .link-left{
@@ -414,75 +591,134 @@ header{
 .link-icon{
     width:48px;
     height:48px;
+    border-radius:15px;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:15px;
-    background:#171927;
     color:white;
-    font-size:20px;
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+    font-weight:900;
 }
 
-.arrow{
+.link small{
+    color:var(--muted);
+}
+
+.link-arrow{
     font-size:22px;
-    opacity:.5;
+    color:#999;
+}
+
+/* التواصل */
+.contact-box{
+    max-width:800px;
+    margin:auto;
+    text-align:center;
+    background:linear-gradient(
+        135deg,
+        rgba(118,87,255,.95),
+        rgba(0,168,255,.95)
+    );
+    color:white;
+    border-radius:35px;
+    padding:55px 25px;
+    box-shadow:0 30px 70px rgba(80,70,220,.2);
+}
+
+.contact-box h2{
+    font-size:38px;
+    font-weight:900;
+}
+
+.contact-box p{
+    margin:12px auto 25px;
+    max-width:550px;
+    opacity:.9;
+    line-height:2;
+}
+
+.contact-box .btn{
+    background:white;
+    color:#25263a;
 }
 
 /* الفوتر */
 footer{
     text-align:center;
     padding:35px 15px;
-    color:#888c9d;
-    font-size:13px;
+    color:#85899b;
+    font-size:12px;
 }
 
-/* زر العودة */
-.top{
+/* زر الأعلى */
+#top{
     position:fixed;
     bottom:20px;
     left:20px;
-    width:48px;
-    height:48px;
+    width:50px;
+    height:50px;
     border:0;
-    border-radius:16px;
-    background:#171927;
+    border-radius:17px;
+    background:var(--dark);
     color:white;
+    font-size:20px;
     cursor:pointer;
     opacity:0;
     pointer-events:none;
     transition:.3s;
-    z-index:500;
+    z-index:4000;
 }
 
-.top.show{
+#top.show{
     opacity:1;
     pointer-events:auto;
 }
 
+/* زر الصوت */
+#sound{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+    border:0;
+    border-radius:17px;
+    background:white;
+    box-shadow:0 10px 30px rgba(30,35,70,.12);
+    cursor:pointer;
+    z-index:4000;
+}
+
 /* موبايل */
-@media(max-width:700px){
+@media(max-width:800px){
 
     header{
-        top:10px;
+        top:8px;
     }
 
-    .nav{
-        padding:8px;
-    }
-
-    .logo{
+    .brand{
         display:none;
+    }
+
+    .navbar{
+        justify-content:center;
     }
 
     .nav-links{
         width:100%;
-        justify-content:center;
+        overflow-x:auto;
+        scrollbar-width:none;
+    }
+
+    .nav-links::-webkit-scrollbar{
+        display:none;
     }
 
     .nav-links button{
+        white-space:nowrap;
         flex:1;
-        font-size:11px;
-        padding:9px 4px;
+        font-size:10px;
+        padding:10px 8px;
     }
 
     .page{
@@ -490,23 +726,33 @@ footer{
     }
 
     .hero{
-        min-height:calc(100vh - 120px);
+        min-height:calc(100vh - 130px);
     }
 
+    .profile-box,
     .profile{
-        width:125px;
-        height:125px;
+        width:135px;
+        height:135px;
     }
 
     .hero h1{
-        font-size:42px;
+        font-size:45px;
+        letter-spacing:-2px;
     }
 
-    .hero p{
+    .hero-description{
         font-size:14px;
     }
 
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
     .grid{
+        grid-template-columns:1fr;
+    }
+
+    .work-grid{
         grid-template-columns:1fr;
     }
 
@@ -519,7 +765,43 @@ footer{
     }
 
     .section-title h2{
-        font-size:28px;
+        font-size:30px;
+    }
+
+    .contact-box{
+        padding:40px 20px;
+    }
+
+    .contact-box h2{
+        font-size:30px;
+    }
+}
+
+@media(max-width:420px){
+
+    .hero h1{
+        font-size:39px;
+    }
+
+    .stats{
+        gap:9px;
+    }
+
+    .stat{
+        padding:15px 8px;
+    }
+
+    .stat strong{
+        font-size:22px;
+    }
+
+    .gallery{
+        gap:9px;
+    }
+
+    .gallery-item{
+        height:160px;
+        border-radius:17px;
     }
 }
 </style>
@@ -528,27 +810,60 @@ footer{
 <body>
 
 <!-- شاشة البداية -->
-<div class="loader" id="loader">
-    <div class="loader-box">
-        <div class="loader-logo"></div>
-        <p>جاري تجهيز الموقع...</p>
+<div id="loader">
+    <div class="loader-content">
+        <div class="loader-logo">A</div>
+        <h2>عبدالله</h2>
+        <div class="loader-bar">
+            <span></span>
+        </div>
     </div>
 </div>
 
+
+<!-- التنقل -->
 <header>
-    <nav class="nav">
+<nav class="navbar">
 
-        <div class="logo">ABDULLAH</div>
+<a class="brand">ABDULLAH</a>
 
-        <div class="nav-links">
-            <button class="active" onclick="showPage('home',this)">الرئيسية</button>
-            <button onclick="showPage('about',this)">عني</button>
-            <button onclick="showPage('work',this)">أعمالي</button>
-            <button onclick="showPage('tips',this)">نصائح</button>
-            <button onclick="showPage('links',this)">روابطي</button>
-        </div>
+<div class="nav-links">
 
-    </nav>
+<button class="active" onclick="openPage('home',this)">
+الرئيسية
+</button>
+
+<button onclick="openPage('about',this)">
+عني
+</button>
+
+<button onclick="openPage('work',this)">
+أعمالي
+</button>
+
+<button onclick="openPage('projects',this)">
+مشاريعي
+</button>
+
+<button onclick="openPage('tips',this)">
+نصائح
+</button>
+
+<button onclick="openPage('gallery',this)">
+المعرض
+</button>
+
+<button onclick="openPage('links',this)">
+روابطي
+</button>
+
+<button onclick="openPage('contact',this)">
+تواصل
+</button>
+
+</div>
+
+</nav>
 </header>
 
 
@@ -557,37 +872,68 @@ footer{
 
 <div class="container hero">
 
-<div>
+<div class="hero-content">
 
-<div class="profile-wrap">
-    <!-- ضع رابط صورة تيك توك هنا -->
-    <img class="profile"
-         src="https://via.placeholder.com/500"
-         alt="Abdullah">
-    <span class="online"></span>
+<div class="profile-box">
+
+<!-- ضع صورة حسابك هنا -->
+<img
+class="profile profile-placeholder"
+src=""
+alt="عبدالله"
+onerror="this.style.display='none';this.parentElement.classList.add('profile-placeholder');this.parentElement.innerHTML='<span>A</span>';"
+>
+
+<span class="status"></span>
+
 </div>
 
 <h1>
-    أهلاً بك في<br>
-    <span class="gradient">عالم عبدالله</span>
+مرحباً بك في<br>
+<span class="gradient">عالم عبدالله</span>
 </h1>
 
-<p>
-    صانع محتوى ومصمم أحب تحويل الأفكار البسيطة
-    إلى أعمال مختلفة تستحق المشاهدة.
+<p class="hero-description">
+مساحتي الرقمية الخاصة، هنا ستجد أعمالي،
+مشاريعي، أفكاري، نصائحي وجميع روابط حساباتي
+في مكان واحد.
 </p>
 
-<div class="buttons">
+<div class="hero-buttons">
 
 <button class="btn primary"
-onclick="showPage('work')">
-    اكتشف أعمالي
+onclick="openPage('work')">
+شاهد أعمالي
 </button>
 
-<button class="btn secondary"
-onclick="showPage('links')">
-    جميع روابطي
+<button class="btn light"
+onclick="openPage('about')">
+اكتشف المزيد
 </button>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<strong>+</strong>
+<span>مشاريع</span>
+</div>
+
+<div class="stat">
+<strong>∞</strong>
+<span>أفكار</span>
+</div>
+
+<div class="stat">
+<strong>24/7</strong>
+<span>تطوير</span>
+</div>
+
+<div class="stat">
+<strong>2026</strong>
+<span>البداية الجديدة</span>
+</div>
 
 </div>
 
@@ -604,46 +950,46 @@ onclick="showPage('links')">
 <div class="container">
 
 <div class="section-title">
-<span>ABOUT ME</span>
+<small>ABOUT ME</small>
 <h2>من أنا؟</h2>
-<p>نبذة بسيطة عن صاحب هذا الموقع</p>
+<p>تعرف أكثر على صاحب الموقع</p>
 </div>
 
 <div class="grid">
 
 <div class="card">
-<div class="icon">✦</div>
+<div class="card-icon">✦</div>
 <h3>صناعة المحتوى</h3>
 <p>
-أعمل على صناعة محتوى بصري يعتمد على الأفكار
-والتصميم والمونتاج بطريقة مختلفة.
+أحب صناعة المحتوى الذي يجمع بين الفكرة،
+التصميم، المونتاج واللمسة الخاصة.
 </p>
 </div>
 
 <div class="card">
-<div class="icon">◈</div>
+<div class="card-icon">◆</div>
 <h3>التصميم</h3>
 <p>
-أحب التفاصيل الصغيرة، وأحاول دائماً أن يكون
-لكل تصميم هوية خاصة به.
+أهتم بالتفاصيل والألوان والحركة حتى يكون
+لكل عمل شخصية مختلفة.
 </p>
 </div>
 
 <div class="card">
-<div class="icon">⚡</div>
-<h3>التطوير</h3>
+<div class="card-icon">⚡</div>
+<h3>التطوير المستمر</h3>
 <p>
-هذا الموقع ليس نسخة نهائية، بل مشروع مستمر
-سيتطور ويتغير مع الوقت.
+لا أعتبر أي مشروع نسخة نهائية.
+دائماً توجد فكرة جديدة يمكن إضافتها.
 </p>
 </div>
 
 <div class="card">
-<div class="icon">∞</div>
-<h3>المستقبل</h3>
+<div class="card-icon">★</div>
+<h3>الطموح</h3>
 <p>
-الهدف هو بناء هوية رقمية قوية ومكان يجمع
-كل أعمالي وروابطي في مكان واحد.
+الهدف هو بناء هوية رقمية قوية ومحتوى
+يستحق أن يتذكره الناس.
 </p>
 </div>
 
@@ -660,35 +1006,93 @@ onclick="showPage('links')">
 <div class="container">
 
 <div class="section-title">
-<span>MY WORK</span>
+<small>MY WORK</small>
 <h2>أعمالي</h2>
-<p>بعض الأعمال والمشاريع التي أعمل عليها</p>
+<p>مساحة لعرض أفضل أعمالي</p>
 </div>
 
-<div class="gallery">
+<div class="work-grid">
 
-<div class="gallery-item">
-<img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=800&q=80">
+<div class="work-card">
+<div class="work-image">
+<img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=85">
+</div>
+<div class="work-info">
+<h3>تصاميم بصرية</h3>
+<p>أعمال وتصاميم تعتمد على الصورة والألوان.</p>
+</div>
 </div>
 
-<div class="gallery-item">
-<img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80">
+<div class="work-card">
+<div class="work-image">
+<img src="https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=900&q=85">
+</div>
+<div class="work-info">
+<h3>مشاريع إبداعية</h3>
+<p>أفكار ومشاريع مختلفة يتم تطويرها باستمرار.</p>
+</div>
 </div>
 
-<div class="gallery-item">
-<img src="https://images.unsplash.com/photo-1534791547706-9e9e8f5e8f6e?auto=format&fit=crop&w=800&q=80">
+<div class="work-card">
+<div class="work-image">
+<img src="https://images.unsplash.com/photo-1534791547706-9e9e8f5e8f6e?auto=format&fit=crop&w=900&q=85">
+</div>
+<div class="work-info">
+<h3>محتوى رقمي</h3>
+<p>محتوى بصري مخصص لمنصات التواصل الاجتماعي.</p>
+</div>
 </div>
 
-<div class="gallery-item">
-<img src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=800&q=80">
 </div>
 
-<div class="gallery-item">
-<img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=80">
 </div>
 
-<div class="gallery-item">
-<img src="https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=800&q=80">
+</section>
+
+
+<!-- المشاريع -->
+<section class="page" id="projects">
+
+<div class="container">
+
+<div class="section-title">
+<small>PROJECTS</small>
+<h2>مشاريعي</h2>
+<p>المشاريع الحالية والمستقبلية</p>
+</div>
+
+<div class="grid">
+
+<div class="card project">
+<div>
+<span class="project-status">مستمر</span>
+<h3>الموقع الشخصي</h3>
+<p>تطوير الموقع وتحسينه وإضافة أفكار جديدة باستمرار.</p>
+</div>
+</div>
+
+<div class="card project">
+<div>
+<span class="project-status">مستمر</span>
+<h3>صناعة المحتوى</h3>
+<p>تطوير أسلوب جديد للمحتوى والتصميم والمونتاج.</p>
+</div>
+</div>
+
+<div class="card project">
+<div>
+<span class="project-status">قريباً</span>
+<h3>مشروع جديد</h3>
+<p>مساحة مخصصة للمشروع القادم.</p>
+</div>
+</div>
+
+<div class="card project">
+<div>
+<span class="project-status">قريباً</span>
+<h3>تحديث كبير</h3>
+<p>أفكار جديدة سيتم إضافتها للموقع مستقبلاً.</p>
+</div>
 </div>
 
 </div>
@@ -704,43 +1108,121 @@ onclick="showPage('links')">
 <div class="container">
 
 <div class="section-title">
-<span>MY TIPS</span>
+<small>MY TIPS</small>
 <h2>نصائح</h2>
-<p>أشياء تعلمتها خلال صناعة المحتوى والتصميم</p>
+<p>أشياء مهمة لأي شخص يريد تطوير محتواه</p>
 </div>
 
 <div class="grid">
 
 <div class="card tip">
-<div class="number">01</div>
+<div class="tip-number">01</div>
 <div>
 <h3>ابدأ بالفكرة</h3>
-<p>التصميم القوي يبدأ بفكرة قوية، وليس بالمؤثرات.</p>
+<p>
+لا تبدأ بالمؤثرات قبل أن تعرف ما الذي
+تريد أن توصله للمشاهد.
+</p>
 </div>
 </div>
 
 <div class="card tip">
-<div class="number">02</div>
+<div class="tip-number">02</div>
 <div>
 <h3>اهتم بالبداية</h3>
-<p>الثواني الأولى هي أهم جزء في أي محتوى.</p>
+<p>
+أول ثوانٍ من المحتوى مهمة جداً.
+اجعل البداية تستحق التوقف.
+</p>
 </div>
 </div>
 
 <div class="card tip">
-<div class="number">03</div>
+<div class="tip-number">03</div>
+<div>
+<h3>الألوان تصنع الفرق</h3>
+<p>
+اختر مجموعة ألوان واضحة وحافظ عليها
+حتى تكون لك هوية مميزة.
+</p>
+</div>
+</div>
+
+<div class="card tip">
+<div class="tip-number">04</div>
 <div>
 <h3>لا تكثر المؤثرات</h3>
-<p>المؤثر الجيد هو الذي يخدم الفكرة ولا يشتت المشاهد.</p>
+<p>
+المؤثر الجميل هو الذي يخدم الفكرة،
+وليس الذي يسرق الانتباه منها.
+</p>
 </div>
 </div>
 
 <div class="card tip">
-<div class="number">04</div>
+<div class="tip-number">05</div>
+<div>
+<h3>جودة الصورة</h3>
+<p>
+الصورة الجيدة تجعل العمل يبدو احترافياً
+حتى قبل أن يبدأ المشاهد بالقراءة.
+</p>
+</div>
+</div>
+
+<div class="card tip">
+<div class="tip-number">06</div>
 <div>
 <h3>استمر بالتطوير</h3>
-<p>كل نسخة جديدة يجب أن تكون أفضل من النسخة السابقة.</p>
+<p>
+لا تتوقف عند تصميم واحد.
+كل نسخة جديدة يجب أن تكون أفضل.
+</p>
 </div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- المعرض -->
+<section class="page" id="gallery">
+
+<div class="container">
+
+<div class="section-title">
+<small>GALLERY</small>
+<h2>المعرض</h2>
+<p>مساحة لعرض الصور والتصاميم</p>
+</div>
+
+<div class="gallery">
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=85">
+</div>
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=900&q=85">
+</div>
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1534791547706-9e9e8f5e8f6e?auto=format&fit=crop&w=900&q=85">
+</div>
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85">
+</div>
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=900&q=85">
+</div>
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=900&q=85">
 </div>
 
 </div>
@@ -756,44 +1238,55 @@ onclick="showPage('links')">
 <div class="container">
 
 <div class="section-title">
-<span>MY LINKS</span>
+<small>MY LINKS</small>
 <h2>روابطي</h2>
-<p>يمكنك العثور عليّ من خلال الروابط التالية</p>
+<p>كل حساباتي في مكان واحد</p>
 </div>
 
-<div class="card">
+<div class="links">
 
-<a class="link-card" href="#" target="_blank">
+<a href="#" class="link">
 <div class="link-left">
 <div class="link-icon">♪</div>
 <div>
-<h3>TikTok</h3>
-<p>تابعني على تيك توك</p>
+<strong>TikTok</strong><br>
+<small>تابعني على تيك توك</small>
 </div>
 </div>
-<div class="arrow">←</div>
+<span class="link-arrow">←</span>
 </a>
 
-<a class="link-card" href="#" target="_blank">
+<a href="#" class="link">
 <div class="link-left">
 <div class="link-icon">◎</div>
 <div>
-<h3>Instagram</h3>
-<p>تابع آخر أعمالي</p>
+<strong>Instagram</strong><br>
+<small>شاهد آخر أعمالي</small>
 </div>
 </div>
-<div class="arrow">←</div>
+<span class="link-arrow">←</span>
 </a>
 
-<a class="link-card" href="#" target="_blank">
+<a href="#" class="link">
 <div class="link-left">
 <div class="link-icon">▶</div>
 <div>
-<h3>YouTube</h3>
-<p>شاهد المحتوى</p>
+<strong>YouTube</strong><br>
+<small>شاهد محتواي</small>
 </div>
 </div>
-<div class="arrow">←</div>
+<span class="link-arrow">←</span>
+</a>
+
+<a href="#" class="link">
+<div class="link-left">
+<div class="link-icon">✉</div>
+<div>
+<strong>للتواصل</strong><br>
+<small>تواصل معي</small>
+</div>
+</div>
+<span class="link-arrow">←</span>
 </a>
 
 </div>
@@ -803,101 +1296,174 @@ onclick="showPage('links')">
 </section>
 
 
+<!-- التواصل -->
+<section class="page" id="contact">
+
+<div class="container">
+
+<div class="contact-box">
+
+<h2>خلينا نبقى على تواصل</h2>
+
+<p>
+إذا وصلت إلى هنا، شكراً لأنك أخذت وقتك
+وتصفحت الموقع. يمكنك متابعة أعمالي
+من خلال حساباتي.
+</p>
+
+<button class="btn"
+onclick="openPage('links')">
+شاهد جميع الروابط
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
 <footer>
-© 2026 Abdullah — جميع الحقوق محفوظة
+© 2026 عبدالله — الموقع الرسمي
 </footer>
 
-<button class="top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-↑
-</button>
+
+<!-- زر الأعلى -->
+<button id="top" onclick="scrollTopPage()">↑</button>
+
+<!-- الصوت -->
+<button id="sound" onclick="toggleSound()">🔊</button>
 
 
 <script>
 
-/* شاشة البداية */
-window.addEventListener("load",()=>{
+/* =========================
+   شاشة البداية
+========================= */
 
-    setTimeout(()=>{
-        document.getElementById("loader").classList.add("hide");
-    },900);
+window.addEventListener("load",function(){
+
+    setTimeout(function(){
+
+        document
+        .getElementById("loader")
+        .classList.add("hide");
+
+    },1500);
 
 });
 
 
-/* صوت بسيط عند الضغط */
-let audioContext;
+/* =========================
+   نظام الصوت
+========================= */
 
-function clickSound(){
+let soundEnabled = true;
+let audioContext = null;
+
+function makeSound(){
+
+    if(!soundEnabled) return;
 
     try{
 
         if(!audioContext){
+
             audioContext =
-            new (window.AudioContext ||
+            new(window.AudioContext ||
             window.webkitAudioContext)();
+
         }
 
-        const osc =
+        const oscillator =
         audioContext.createOscillator();
 
         const gain =
         audioContext.createGain();
 
-        osc.type="sine";
+        oscillator.type="sine";
 
-        osc.frequency.setValueAtTime(
-            520,
+        oscillator.frequency.setValueAtTime(
+            480,
             audioContext.currentTime
         );
 
-        osc.frequency.exponentialRampToValueAtTime(
-            760,
-            audioContext.currentTime + .08
+        oscillator.frequency.exponentialRampToValueAtTime(
+            720,
+            audioContext.currentTime + .07
         );
 
         gain.gain.setValueAtTime(
-            .045,
+            .035,
             audioContext.currentTime
         );
 
         gain.gain.exponentialRampToValueAtTime(
             .001,
-            audioContext.currentTime + .12
+            audioContext.currentTime + .1
         );
 
-        osc.connect(gain);
+        oscillator.connect(gain);
         gain.connect(audioContext.destination);
 
-        osc.start();
-        osc.stop(
-            audioContext.currentTime + .12
+        oscillator.start();
+
+        oscillator.stop(
+            audioContext.currentTime + .1
         );
 
-    }catch(e){}
+    }catch(error){}
 
 }
 
 
-/* تغيير الصفحات */
-function showPage(page,button){
+function toggleSound(){
 
-    clickSound();
+    soundEnabled = !soundEnabled;
 
-    document.querySelectorAll(".page")
-    .forEach(p=>{
-        p.classList.remove("active");
+    document.getElementById("sound").textContent =
+    soundEnabled ? "🔊" : "🔇";
+
+}
+
+
+/* =========================
+   تغيير الصفحات
+========================= */
+
+function openPage(page,button){
+
+    makeSound();
+
+    document
+    .querySelectorAll(".page")
+    .forEach(function(item){
+
+        item.classList.remove("active");
+
     });
 
-    document.getElementById(page)
-    .classList.add("active");
+    const target =
+    document.getElementById(page);
 
-    document.querySelectorAll(".nav-links button")
-    .forEach(b=>{
-        b.classList.remove("active");
+    if(target){
+
+        target.classList.add("active");
+
+    }
+
+    document
+    .querySelectorAll(".nav-links button")
+    .forEach(function(btn){
+
+        btn.classList.remove("active");
+
     });
 
     if(button){
+
         button.classList.add("active");
+
     }
 
     window.scrollTo({
@@ -908,28 +1474,114 @@ function showPage(page,button){
 }
 
 
-/* كل الأزرار */
-document.querySelectorAll("button")
-.forEach(btn=>{
-    btn.addEventListener("click",clickSound);
+/* =========================
+   كل أزرار الموقع
+========================= */
+
+document
+.querySelectorAll("button")
+.forEach(function(button){
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            makeSound();
+
+        }
+    );
+
 });
 
 
-/* زر الصعود */
-window.addEventListener("scroll",()=>{
+/* =========================
+   زر العودة للأعلى
+========================= */
 
-    const btn =
-    document.getElementById("topBtn");
+function scrollTopPage(){
 
-    if(window.scrollY > 400){
-        btn.classList.add("show");
+    makeSound();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+window.addEventListener("scroll",function(){
+
+    const top =
+    document.getElementById("top");
+
+    if(window.scrollY > 450){
+
+        top.classList.add("show");
+
     }else{
-        btn.classList.remove("show");
+
+        top.classList.remove("show");
+
     }
+
+});
+
+
+/* =========================
+   تأثير الصور
+========================= */
+
+document
+.querySelectorAll(".gallery-item")
+.forEach(function(item){
+
+    item.addEventListener(
+        "click",
+        function(){
+
+            makeSound();
+
+            const image =
+            item.querySelector("img");
+
+            if(image){
+
+                window.open(
+                    image.src,
+                    "_blank"
+                );
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================
+   منع النقر على الروابط الفارغة
+========================= */
+
+document
+.querySelectorAll('a[href="#"]')
+.forEach(function(link){
+
+    link.addEventListener(
+        "click",
+        function(event){
+
+            event.preventDefault();
+
+            makeSound();
+
+        }
+    );
 
 });
 
 </script>
 
 </body>
-  </html>
+    </html>
