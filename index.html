@@ -1,0 +1,307 @@
+ملف index.html لموقع عبدالله
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070707">
+<meta name="description" content="الموقع الشخصي لعبدالله — حساباته ومجموعة المصممين.">
+<title>عبدالله | روابط</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+margin:0;
+min-height:100vh;
+background:#060606;
+color:#f5f5f5;
+font-family:Tahoma,Arial,sans-serif;
+overflow-x:hidden
+}
+
+body:before{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+opacity:.16;
+background-image:radial-gradient(#fff 1px,transparent 1px);
+background-size:34px 34px;
+mask-image:linear-gradient(#000,transparent 80%)
+}
+
+.glow{
+position:fixed;
+width:430px;
+height:430px;
+border-radius:50%;
+top:-210px;
+left:50%;
+transform:translateX(-50%);
+background:radial-gradient(circle,rgba(255,255,255,.12),transparent 68%);
+pointer-events:none
+}
+
+.wrap{
+width:min(680px,92%);
+margin:auto;
+padding:58px 0 35px;
+position:relative
+}
+
+.hero{
+text-align:center;
+animation:rise .7s ease both
+}
+
+.avatar{
+width:94px;
+height:94px;
+margin:auto;
+border:1px solid #292929;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:linear-gradient(145deg,#191919,#080808);
+font-size:34px;
+font-weight:800;
+box-shadow:0 20px 60px #000
+}
+
+h1{
+font-size:32px;
+margin:20px 0 8px
+}
+
+.bio{
+margin:0;
+color:#929292;
+line-height:1.9;
+font-size:14px
+}
+
+.line{
+width:55px;
+height:1px;
+background:#666;
+margin:20px auto 30px
+}
+
+.title{
+font-size:12px;
+color:#666;
+margin:25px 4px 11px;
+letter-spacing:1px
+}
+
+.links{
+display:grid;
+gap:12px
+}
+
+a.card{
+display:flex;
+align-items:center;
+gap:14px;
+text-decoration:none;
+color:#fff;
+padding:16px;
+border:1px solid #1d1d1d;
+border-radius:17px;
+background:rgba(255,255,255,.035);
+transition:.22s ease;
+backdrop-filter:blur(10px)
+}
+
+a.card:hover{
+transform:translateY(-3px);
+border-color:#3a3a3a;
+background:rgba(255,255,255,.07)
+}
+
+.icon{
+width:45px;
+height:45px;
+border-radius:13px;
+background:#101010;
+border:1px solid #242424;
+display:grid;
+place-items:center;
+font-size:20px;
+flex:none
+}
+
+.txt{
+flex:1
+}
+
+.name{
+font-size:15px;
+font-weight:700
+}
+
+.handle{
+font-size:12px;
+color:#777;
+margin-top:5px;
+direction:ltr;
+text-align:right
+}
+
+.arrow{
+font-size:18px;
+color:#666
+}
+
+.featured{
+padding:19px 16px!important
+}
+
+.badge{
+display:inline-block;
+font-size:10px;
+color:#aaa;
+border:1px solid #333;
+border-radius:99px;
+padding:3px 8px;
+margin-bottom:7px
+}
+
+footer{
+text-align:center;
+color:#4f4f4f;
+font-size:11px;
+line-height:2;
+margin-top:35px
+}
+
+@keyframes rise{
+from{
+opacity:0;
+transform:translateY(15px)
+}
+to{
+opacity:1;
+transform:none
+}
+}
+
+@media(max-width:480px){
+.wrap{
+padding-top:45px
+}
+h1{
+font-size:28px
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<main class="wrap">
+
+<header class="hero">
+
+<div class="avatar">A</div>
+
+<h1>عبدالله</h1>
+
+<p class="bio">
+صانع محتوى ومصمم<br>
+كل حساباتي وروابطي في مكان واحد
+</p>
+
+<div class="line"></div>
+
+</header>
+
+<section>
+
+<div class="title">حساباتي</div>
+
+<div class="links">
+
+<a class="card"
+href="https://www.tiktok.com/@4_ad10"
+target="_blank"
+rel="noopener">
+
+<div class="icon">♪</div>
+
+<div class="txt">
+<div class="name">TikTok</div>
+<div class="handle">@4_ad10</div>
+</div>
+
+<div class="arrow">←</div>
+
+</a>
+
+<a class="card"
+href="https://www.instagram.com/4_ad22"
+target="_blank"
+rel="noopener">
+
+<div class="icon">◎</div>
+
+<div class="txt">
+<div class="name">Instagram</div>
+<div class="handle">@4_ad22</div>
+</div>
+
+<div class="arrow">←</div>
+
+</a>
+
+</div>
+</section>
+
+<section>
+
+<div class="title">المجتمع</div>
+
+<div class="links">
+
+<a class="card featured"
+href="https://tiktok.me/group/ZSVQP24vx/"
+target="_blank"
+rel="noopener">
+
+<div class="icon">✦</div>
+
+<div class="txt">
+
+<span class="badge">مجموعة المصممين</span>
+
+<div class="name">
+انضم إلى مجموعة المصممين
+</div>
+
+<div class="handle">
+مجتمع للتصميم وتبادل الدعم
+</div>
+
+</div>
+
+<div class="arrow">←</div>
+
+</a>
+
+</div>
+</section>
+
+<footer>
+عبدالله © 2026<br>
+كل الروابط في مكان واحد
+</footer>
+
+</main>
+
+</body>
+</html>
