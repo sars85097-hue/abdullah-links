@@ -1,41 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0a0804">
-<meta name="description" content="عبدالله — الهوية الرقمية الرسمية">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050403">
+<meta name="description" content="عبدالله — صانع محتوى ومصمم">
 <title>عبدالله | الهوية الرقمية</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Marhey:wght@400;500;600;700&display=swap');
 
 :root{
-    --bg:#080704;
-    --bg2:#0d0b07;
-    --card:#11100c;
-    --card2:#15130e;
+    --black:#050403;
+    --black2:#0a0907;
+    --card:#0d0c0a;
     --gold:#c89b3c;
-    --gold2:#f1d27a;
-    --gold3:#8d641c;
-    --gold-light:#fff3c7;
-    --text:#f5f0e5;
-    --muted:#9a927f;
-    --muted2:#665f51;
+    --gold2:#f2d27a;
+    --gold3:#8d651d;
+    --white:#f5f1e8;
+    --muted:#817b70;
     --border:rgba(200,155,60,.22);
-    --border2:rgba(255,255,255,.07);
-    --success:#79b88a;
-    --danger:#d86d6d;
-    --shadow:0 25px 80px rgba(0,0,0,.45);
-    --radius:22px;
+    --goldGlow:rgba(200,155,60,.16);
 }
 
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:'Cairo',Tahoma,Arial,sans-serif;
-    -webkit-tap-highlight-color:transparent;
+    box-sizing:border-box;
 }
 
 html{
@@ -44,89 +35,123 @@ html{
 
 body{
     background:
-        radial-gradient(circle at 50% -10%,rgba(200,155,60,.11),transparent 32%),
-        radial-gradient(circle at 0 60%,rgba(200,155,60,.035),transparent 30%),
-        var(--bg);
-    color:var(--text);
-    min-height:100vh;
+        radial-gradient(circle at 50% -10%,rgba(200,155,60,.10),transparent 35%),
+        var(--black);
+    color:var(--white);
+    font-family:'Cairo',sans-serif;
     overflow-x:hidden;
 }
 
-/* خلفية */
+/* ===== BACKGROUND ===== */
+
 body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    z-index:999;
+    z-index:9999;
     opacity:.025;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .background{
     position:fixed;
     inset:0;
-    z-index:-3;
+    z-index:-5;
     background:
-        radial-gradient(circle at 50% 0%,rgba(241,210,122,.07),transparent 35%),
-        radial-gradient(circle at 80% 80%,rgba(200,155,60,.035),transparent 30%);
+        radial-gradient(circle at 50% 0%,rgba(242,210,122,.08),transparent 32%),
+        radial-gradient(circle at 10% 80%,rgba(200,155,60,.045),transparent 28%),
+        radial-gradient(circle at 90% 55%,rgba(200,155,60,.035),transparent 25%);
 }
 
 .grid{
     position:fixed;
     inset:0;
-    z-index:-2;
-    opacity:.12;
+    z-index:-4;
+    opacity:.13;
     background-image:
         linear-gradient(rgba(200,155,60,.035) 1px,transparent 1px),
         linear-gradient(90deg,rgba(200,155,60,.035) 1px,transparent 1px);
-    background-size:55px 55px;
-    mask-image:linear-gradient(to bottom,#000,transparent 88%);
+    background-size:60px 60px;
+    mask-image:linear-gradient(to bottom,#000,transparent 85%);
 }
+
+.gold-line{
+    position:fixed;
+    width:1px;
+    height:100vh;
+    background:linear-gradient(
+        transparent,
+        rgba(200,155,60,.15),
+        transparent
+    );
+    z-index:-3;
+}
+
+.gold-line.left{left:8%}
+.gold-line.right{right:8%}
+
+/* ===== CURSOR ===== */
 
 .cursor-glow{
     position:fixed;
     width:300px;
     height:300px;
     border-radius:50%;
-    background:radial-gradient(circle,rgba(200,155,60,.09),transparent 68%);
     pointer-events:none;
+    z-index:-1;
     transform:translate(-50%,-50%);
-    z-index:0;
-    transition:left .08s linear,top .08s linear;
+    background:radial-gradient(
+        circle,
+        rgba(200,155,60,.09),
+        transparent 68%
+    );
 }
 
+/* ===== CONTAINER ===== */
+
 .container{
-    width:min(940px,92%);
+    width:min(1000px,92%);
     margin:auto;
 }
 
-/* شريط التنقل */
+/* ===== NAVIGATION ===== */
+
 nav{
     position:fixed;
     top:16px;
     left:50%;
     transform:translateX(-50%);
-    width:min(760px,94%);
+    width:min(820px,94%);
     z-index:1000;
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:10px 12px;
     border:1px solid var(--border);
-    background:rgba(10,8,4,.78);
+    background:rgba(7,6,5,.78);
     backdrop-filter:blur(20px);
     border-radius:18px;
-    box-shadow:0 15px 60px rgba(0,0,0,.45);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.55),
+        inset 0 0 20px rgba(200,155,60,.025);
 }
 
 .logo{
     font-size:14px;
     font-weight:900;
-    letter-spacing:2px;
-    background:linear-gradient(135deg,var(--gold2),var(--gold),var(--gold3));
+    letter-spacing:3px;
+    background:linear-gradient(
+        120deg,
+        #8d651d,
+        #f2d27a,
+        #b78328,
+        #f2d27a
+    );
+    background-size:300% 300%;
     -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+    color:transparent;
+    animation:goldMove 5s ease infinite;
 }
 
 .nav-links{
@@ -135,12 +160,12 @@ nav{
 }
 
 .nav-links a{
-    color:var(--muted);
+    color:#77736b;
     text-decoration:none;
     font-size:10px;
     padding:8px 11px;
     border-radius:10px;
-    transition:.25s;
+    transition:.3s;
 }
 
 .nav-links a:hover{
@@ -148,7 +173,8 @@ nav{
     background:rgba(200,155,60,.08);
 }
 
-/* HERO */
+/* ===== HERO ===== */
+
 .hero{
     min-height:100vh;
     display:flex;
@@ -159,58 +185,71 @@ nav{
     position:relative;
 }
 
+.hero::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:radial-gradient(
+        circle,
+        rgba(200,155,60,.08),
+        transparent 68%
+    );
+    pointer-events:none;
+}
+
 .hero-content{
-    animation:heroIn 1.1s ease both;
+    position:relative;
+    z-index:2;
+    animation:heroIn 1.2s ease both;
 }
 
 .status{
     display:inline-flex;
     align-items:center;
     gap:8px;
-    font-size:10px;
-    color:var(--muted);
+    color:#8d887f;
     border:1px solid var(--border);
+    background:rgba(200,155,60,.035);
     padding:7px 14px;
     border-radius:999px;
-    background:rgba(200,155,60,.035);
+    font-size:10px;
     margin-bottom:28px;
 }
 
 .status-dot{
-    width:7px;
-    height:7px;
+    width:6px;
+    height:6px;
     border-radius:50%;
-    background:var(--gold);
+    background:var(--gold2);
     box-shadow:0 0 14px var(--gold);
+    animation:pulse 2s infinite;
 }
 
 .avatar-wrap{
-    position:relative;
-    width:155px;
-    height:155px;
+    width:165px;
+    height:165px;
     margin:auto;
+    position:relative;
 }
 
 .avatar{
-    width:130px;
-    height:130px;
+    position:absolute;
+    inset:15px;
     border-radius:50%;
-    margin:12px auto;
     display:grid;
     place-items:center;
     font-family:'Marhey',sans-serif;
-    font-size:50px;
-    font-weight:600;
-    color:var(--gold-light);
+    font-size:52px;
+    color:#f1dfad;
     background:
-        radial-gradient(circle at 35% 25%,#3b2d16,#100d07 62%);
-    border:1px solid rgba(241,210,122,.35);
+        radial-gradient(circle at 35% 25%,#3c3220,#0b0906 65%);
+    border:1px solid rgba(242,210,122,.38);
     box-shadow:
         0 0 0 10px rgba(200,155,60,.025),
         0 0 80px rgba(200,155,60,.13),
-        inset 0 0 35px rgba(241,210,122,.06);
-    position:relative;
-    z-index:2;
+        inset 0 0 40px rgba(242,210,122,.05);
 }
 
 .avatar-ring{
@@ -224,20 +263,20 @@ nav{
 .avatar-ring::before{
     content:"";
     position:absolute;
-    width:6px;
-    height:6px;
+    width:5px;
+    height:5px;
     border-radius:50%;
     background:var(--gold2);
-    top:9px;
+    top:8px;
     left:50%;
-    box-shadow:0 0 18px var(--gold);
+    box-shadow:0 0 15px var(--gold);
 }
 
 .hero h1{
-    font-size:clamp(44px,10vw,82px);
+    margin-top:32px;
+    font-size:clamp(48px,10vw,88px);
     font-weight:900;
     letter-spacing:4px;
-    margin-top:30px;
     line-height:1;
 }
 
@@ -246,15 +285,15 @@ nav{
 }
 
 .subtitle{
-    font-size:14px;
-    color:var(--muted);
     margin-top:18px;
+    color:#8d887f;
+    font-size:13px;
 }
 
 .mystery{
     font-family:'Marhey',sans-serif;
+    color:#b7ab91;
     font-size:14px;
-    color:#b8ae9a;
     margin-top:13px;
 }
 
@@ -262,519 +301,465 @@ nav{
     display:flex;
     justify-content:center;
     gap:10px;
-    margin-top:30px;
+    margin-top:32px;
     flex-wrap:wrap;
 }
 
 .btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
+    position:relative;
+    overflow:hidden;
     text-decoration:none;
-    color:var(--text);
+    color:#ddd5c4;
     border:1px solid var(--border);
-    background:rgba(255,255,255,.025);
-    padding:12px 20px;
+    background:#0b0907;
+    padding:12px 22px;
     border-radius:13px;
-    font-size:12px;
-    cursor:pointer;
-    transition:.3s;
+    font-size:11px;
+    transition:.35s;
+}
+
+.btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.16),
+        transparent
+    );
+    transition:.6s;
+}
+
+.btn:hover::before{
+    left:100%;
 }
 
 .btn:hover{
-    transform:translateY(-3px);
-    border-color:rgba(241,210,122,.45);
-    box-shadow:0 15px 35px rgba(0,0,0,.5);
+    transform:translateY(-4px);
+    border-color:var(--gold);
+    box-shadow:0 15px 40px rgba(200,155,60,.10);
 }
 
 .btn.primary{
-    color:#171107;
-    background:linear-gradient(135deg,var(--gold2),var(--gold),var(--gold3));
-    border-color:var(--gold);
+    color:#171209;
     font-weight:800;
+    border-color:var(--gold2);
+    background:linear-gradient(
+        135deg,
+        #8d651d,
+        #f2d27a,
+        #b78328
+    );
 }
 
-/* الأقسام */
+/* ===== SECTIONS ===== */
+
 section{
-    padding:105px 0;
+    padding:110px 0;
 }
 
 .section-head{
-    margin-bottom:28px;
+    margin-bottom:30px;
 }
 
 .section-number{
-    font-size:10px;
-    color:var(--gold3);
-    letter-spacing:3px;
-    font-weight:700;
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:4px;
 }
 
 .section-title{
-    font-size:29px;
+    font-size:30px;
     font-weight:900;
     margin-top:7px;
 }
 
 .section-desc{
-    color:var(--muted);
+    color:#77736b;
     font-size:12px;
     margin-top:7px;
 }
 
-/* عن عبدالله */
+/* ===== ABOUT ===== */
+
 .about-box{
-    border:1px solid var(--border);
-    border-radius:24px;
-    padding:34px;
-    background:
-        linear-gradient(135deg,rgba(200,155,60,.07),rgba(255,255,255,.012));
-    box-shadow:var(--shadow);
     position:relative;
     overflow:hidden;
+    padding:35px;
+    border:1px solid var(--border);
+    border-radius:25px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(200,155,60,.055),
+            rgba(255,255,255,.012)
+        );
+    box-shadow:0 30px 90px rgba(0,0,0,.4);
 }
 
-.about-box::after{
+.about-box::before{
     content:"";
     position:absolute;
-    width:220px;
-    height:220px;
+    width:250px;
+    height:250px;
+    top:-140px;
+    left:-80px;
     border-radius:50%;
-    background:radial-gradient(circle,rgba(200,155,60,.08),transparent 70%);
-    top:-120px;
-    left:-70px;
+    background:radial-gradient(
+        circle,
+        rgba(242,210,122,.09),
+        transparent 70%
+    );
 }
 
 .quote{
-    font-family:'Marhey',sans-serif;
-    font-size:21px;
-    line-height:2;
-    color:#e5d7b5;
     position:relative;
     z-index:2;
+    font-family:'Marhey',sans-serif;
+    color:#e5d8bd;
+    font-size:22px;
+    line-height:2;
 }
 
 .about-text{
-    color:var(--muted);
+    position:relative;
+    z-index:2;
+    color:#817b70;
     font-size:13px;
     line-height:2.2;
     margin-top:20px;
-    position:relative;
-    z-index:2;
 }
 
-/* الحسابات */
+/* ===== SOCIAL ===== */
+
 .cards{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:13px;
+    gap:14px;
 }
 
 .card{
-    text-decoration:none;
-    color:var(--text);
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.025);
-    border-radius:20px;
-    padding:20px;
+    position:relative;
+    overflow:hidden;
     display:flex;
     align-items:center;
     gap:15px;
-    transition:.3s;
-    position:relative;
-    overflow:hidden;
+    padding:21px;
+    color:#fff;
+    text-decoration:none;
+    border:1px solid var(--border);
+    border-radius:20px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(200,155,60,.045),
+            rgba(255,255,255,.012)
+        );
+    transition:.35s;
 }
 
-.card::before{
+.card::after{
     content:"";
     position:absolute;
-    inset:0;
-    background:linear-gradient(120deg,rgba(200,155,60,.06),transparent 45%);
-    opacity:0;
-    transition:.3s;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    right:-60px;
+    top:-60px;
+    background:radial-gradient(
+        circle,
+        rgba(242,210,122,.10),
+        transparent 70%
+    );
 }
 
 .card:hover{
-    transform:translateY(-5px);
-    border-color:rgba(241,210,122,.35);
-    background:rgba(200,155,60,.045);
-    box-shadow:0 20px 50px rgba(0,0,0,.4);
-}
-
-.card:hover::before{
-    opacity:1;
+    transform:translateY(-6px);
+    border-color:rgba(242,210,122,.45);
+    box-shadow:0 25px 55px rgba(0,0,0,.4);
 }
 
 .card-icon{
     width:52px;
     height:52px;
-    border-radius:15px;
-    background:linear-gradient(145deg,#211b0f,#0b0905);
-    border:1px solid var(--border);
+    flex:none;
     display:grid;
     place-items:center;
-    font-size:21px;
+    border-radius:15px;
     color:var(--gold2);
-    flex:none;
-    position:relative;
-    z-index:2;
+    font-size:22px;
+    background:#0a0806;
+    border:1px solid var(--border);
 }
 
 .card-info{
     flex:1;
-    position:relative;
-    z-index:2;
 }
 
 .card-name{
-    font-weight:800;
     font-size:14px;
+    font-weight:800;
 }
 
 .card-handle{
-    font-size:11px;
-    color:var(--muted2);
-    margin-top:5px;
     direction:ltr;
     text-align:right;
+    color:#676159;
+    font-size:10px;
+    margin-top:5px;
 }
 
 .card-arrow{
-    color:var(--gold3);
+    color:#5e584e;
     transition:.3s;
-    position:relative;
-    z-index:2;
 }
 
 .card:hover .card-arrow{
     color:var(--gold2);
-    transform:translateX(-4px);
+    transform:translateX(-5px);
 }
 
 .community{
-    margin-top:13px;
-    display:flex;
+    margin-top:14px;
 }
 
 .badge{
     display:inline-block;
-    font-size:9px;
-    color:var(--gold);
+    color:var(--gold2);
     border:1px solid var(--border);
+    background:rgba(200,155,60,.05);
     border-radius:999px;
-    padding:3px 8px;
+    padding:3px 9px;
+    font-size:9px;
     margin-bottom:7px;
 }
 
-/* الأرقام */
+/* ===== STATS ===== */
+
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:10px;
+    gap:12px;
 }
 
 .stat{
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.018);
-    border-radius:18px;
-    padding:24px 10px;
+    position:relative;
+    overflow:hidden;
     text-align:center;
-    transition:.3s;
+    padding:27px 10px;
+    border:1px solid rgba(200,155,60,.16);
+    background:#090806;
+    border-radius:19px;
+    transition:.35s;
 }
 
 .stat:hover{
-    transform:translateY(-4px);
-    border-color:rgba(241,210,122,.35);
+    transform:translateY(-5px);
+    border-color:rgba(242,210,122,.4);
+    box-shadow:0 20px 45px rgba(0,0,0,.4);
 }
 
 .stat-number{
-    font-size:25px;
+    font-size:27px;
     font-weight:900;
     color:var(--gold2);
 }
 
 .stat-label{
+    margin-top:6px;
+    color:#676159;
     font-size:10px;
-    color:var(--muted2);
+}
+
+/* ===== TIMELINE ===== */
+
+.timeline{
+    position:relative;
+    padding-right:28px;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    right:7px;
+    top:0;
+    bottom:0;
+    width:1px;
+    background:linear-gradient(
+        var(--gold),
+        rgba(200,155,60,.08)
+    );
+}
+
+.timeline-item{
+    position:relative;
+    margin-bottom:28px;
+    padding:22px;
+    border:1px solid rgba(200,155,60,.14);
+    border-radius:19px;
+    background:rgba(255,255,255,.018);
+}
+
+.timeline-item::before{
+    content:"";
+    position:absolute;
+    right:-28px;
+    top:27px;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--gold2);
+    box-shadow:0 0 15px var(--gold);
+}
+
+.timeline-year{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.timeline-title{
+    font-size:15px;
+    font-weight:800;
     margin-top:6px;
 }
 
-/* الأعمال */
+.timeline-text{
+    color:#77736b;
+    font-size:11px;
+    line-height:2;
+    margin-top:6px;
+}
+
+/* ===== WORKS ===== */
+
 .works{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:12px;
+    gap:13px;
 }
 
 .work{
-    height:190px;
-    border-radius:20px;
-    border:1px solid var(--border);
-    background:
-        radial-gradient(circle at 50% 40%,rgba(200,155,60,.09),transparent 42%),
-        linear-gradient(145deg,#151109,#080704);
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    height:200px;
     position:relative;
     overflow:hidden;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.work:hover{
-    transform:translateY(-5px);
-    border-color:rgba(241,210,122,.4);
+    display:flex;
+    align-items:flex-end;
+    padding:18px;
+    border:1px solid rgba(200,155,60,.17);
+    border-radius:20px;
+    background:
+        radial-gradient(circle at 50% 35%,rgba(200,155,60,.10),transparent 40%),
+        linear-gradient(145deg,#13100b,#070604);
+    transition:.35s;
 }
 
 .work::before{
     content:"";
     position:absolute;
-    width:170px;
-    height:170px;
-    border:1px solid rgba(200,155,60,.12);
-    border-radius:50%;
+    inset:0;
+    background:
+        linear-gradient(
+            135deg,
+            transparent 40%,
+            rgba(242,210,122,.07),
+            transparent 60%
+        );
+    transform:translateX(-100%);
+    transition:.8s;
 }
 
-.work-text{
+.work:hover::before{
+    transform:translateX(100%);
+}
+
+.work:hover{
+    transform:translateY(-6px);
+    border-color:rgba(242,210,122,.4);
+    box-shadow:0 25px 60px rgba(0,0,0,.45);
+}
+
+.work-content{
     position:relative;
-    color:var(--muted2);
-    font-size:11px;
+    z-index:2;
 }
 
-/* المساعد */
-.ai-box{
-    border:1px solid var(--border);
-    border-radius:24px;
-    background:rgba(255,255,255,.018);
-    overflow:hidden;
-    box-shadow:var(--shadow);
+.work-number{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:2px;
 }
 
-.ai-head{
-    padding:20px;
-    border-bottom:1px solid var(--border);
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.ai-icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
-    display:grid;
-    place-items:center;
-    color:#171107;
-    background:linear-gradient(135deg,var(--gold2),var(--gold));
-    font-size:20px;
-}
-
-.ai-title{
+.work-title{
+    margin-top:5px;
+    font-size:13px;
     font-weight:800;
 }
 
-.ai-subtitle{
-    font-size:10px;
-    color:var(--muted);
-    margin-top:3px;
-}
-
-.chat-log{
-    height:330px;
-    overflow-y:auto;
-    padding:18px;
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.message{
-    max-width:86%;
-    padding:12px 15px;
-    border-radius:16px;
-    font-size:12px;
-    line-height:1.8;
-    white-space:pre-wrap;
-}
-
-.message.ai{
-    align-self:flex-start;
-    background:rgba(200,155,60,.055);
-    border:1px solid var(--border);
-}
-
-.message.user{
-    align-self:flex-end;
-    background:#18140c;
-    border:1px solid rgba(255,255,255,.07);
-}
-
-.ai-input{
-    padding:12px;
-    border-top:1px solid var(--border);
-    background:rgba(0,0,0,.2);
-}
-
-.ai-counter{
+.work-desc{
+    margin-top:4px;
+    color:#69635a;
     font-size:9px;
-    color:var(--muted2);
-    margin-bottom:7px;
-    padding:0 5px;
 }
 
-.ai-input-row{
-    display:flex;
-    gap:8px;
+/* ===== CONTACT ===== */
+
+.contact{
+    padding-bottom:70px;
 }
 
-.ai-input textarea{
-    flex:1;
-    min-height:48px;
-    max-height:110px;
-    resize:none;
-    border:1px solid var(--border);
-    border-radius:15px;
-    background:#0b0906;
-    color:var(--text);
-    padding:12px;
-    outline:none;
-    font-size:12px;
-}
-
-.ai-input textarea:focus{
-    border-color:var(--gold);
-}
-
-.send-btn{
-    width:50px;
-    height:50px;
-    border-radius:15px;
-    border:1px solid var(--gold);
-    background:linear-gradient(135deg,var(--gold2),var(--gold));
-    color:#171107;
-    cursor:pointer;
-    font-size:18px;
-}
-
-/* النصوص */
-.tool-card{
-    border:1px solid var(--border);
-    border-radius:24px;
-    padding:25px;
-    background:rgba(255,255,255,.018);
-    box-shadow:var(--shadow);
-}
-
-.form-group{
-    margin-bottom:14px;
-}
-
-label{
-    display:block;
-    font-size:11px;
-    font-weight:700;
-    color:#c4bba8;
-    margin-bottom:6px;
-}
-
-input,textarea,select{
-    width:100%;
-    border:1px solid var(--border);
-    background:#0b0906;
-    color:var(--text);
-    border-radius:13px;
-    padding:12px;
-    outline:none;
-    font-size:12px;
-}
-
-input:focus,textarea:focus,select:focus{
-    border-color:var(--gold);
-    box-shadow:0 0 15px rgba(200,155,60,.07);
-}
-
-textarea{
-    min-height:120px;
-    resize:vertical;
-}
-
-.output{
-    display:none;
-    margin-top:15px;
-    padding:16px;
-    border:1px dashed var(--gold3);
-    background:rgba(200,155,60,.035);
-    border-radius:15px;
-    line-height:1.9;
-    font-size:12px;
-    white-space:pre-wrap;
-}
-
-/* التواصل */
 .contact-box{
+    text-align:center;
+    padding:50px 25px;
     border:1px solid var(--border);
-    border-radius:25px;
-    padding:38px 25px;
+    border-radius:26px;
     background:
-        linear-gradient(145deg,rgba(200,155,60,.065),rgba(255,255,255,.01));
-    box-shadow:var(--shadow);
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(200,155,60,.09),
+            transparent 55%
+        ),
+        #090806;
 }
 
 .contact-title{
-    font-size:25px;
+    font-size:27px;
     font-weight:900;
 }
 
 .contact-desc{
+    color:#77736b;
     font-size:12px;
-    color:var(--muted);
     margin-top:10px;
-    margin-bottom:25px;
 }
 
-/* الأمان */
-.security-box{
-    border:1px solid var(--border);
-    border-radius:24px;
-    padding:25px;
-    background:rgba(255,255,255,.018);
-}
+/* ===== FOOTER ===== */
 
-.security-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:14px 0;
-    border-bottom:1px solid rgba(255,255,255,.05);
-    font-size:11px;
-}
-
-.security-item:last-child{
-    border-bottom:0;
-}
-
-.security-status{
-    color:var(--success);
-    font-size:10px;
-}
-
-/* footer */
 footer{
-    border-top:1px solid rgba(200,155,60,.12);
-    padding:28px 0 40px;
+    border-top:1px solid rgba(200,155,60,.10);
+    padding:28px 0 38px;
     text-align:center;
-    color:var(--muted2);
+    color:#4f4a43;
     font-size:10px;
     line-height:2;
 }
 
-/* reveal */
+.footer-gold{
+    color:var(--gold3);
+}
+
+/* ===== REVEAL ===== */
+
 .reveal{
     opacity:0;
-    transform:translateY(35px);
-    transition:opacity .8s ease,transform .8s ease;
+    transform:translateY(40px);
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
 }
 
 .reveal.show{
@@ -782,11 +767,12 @@ footer{
     transform:none;
 }
 
-/* animations */
+/* ===== ANIMATIONS ===== */
+
 @keyframes heroIn{
     from{
         opacity:0;
-        transform:translateY(25px);
+        transform:translateY(30px);
     }
     to{
         opacity:1;
@@ -800,25 +786,47 @@ footer{
     }
 }
 
-/* mobile */
-@media(max-width:650px){
+@keyframes pulse{
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+    50%{
+        opacity:.5;
+        transform:scale(.75);
+    }
+}
+
+@keyframes goldMove{
+    0%,100%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:700px){
 
     nav{
         top:9px;
-        width:95%;
-    }
-
-    .nav-links a{
-        font-size:9px;
-        padding:7px 7px;
+        width:94%;
     }
 
     .logo{
         font-size:11px;
+        letter-spacing:2px;
+    }
+
+    .nav-links a{
+        font-size:8px;
+        padding:7px 7px;
     }
 
     .hero{
-        padding-top:100px;
+        padding-top:110px;
+    }
+
+    .hero h1{
+        font-size:54px;
     }
 
     .cards{
@@ -834,7 +842,7 @@ footer{
     }
 
     .work{
-        height:150px;
+        height:165px;
     }
 
     .about-box{
@@ -846,30 +854,35 @@ footer{
     }
 
     section{
-        padding:80px 0;
+        padding:85px 0;
     }
 
-    .message{
-        max-width:92%;
+    .gold-line{
+        display:none;
     }
 }
 
-@media(max-width:390px){
+@media(max-width:420px){
 
     .nav-links a:nth-child(2){
         display:none;
     }
 
     .hero h1{
-        font-size:43px;
+        font-size:47px;
     }
 
     .works{
         grid-template-columns:1fr;
     }
 
-    .ai-input-row{
-        align-items:flex-end;
+    .work{
+        height:175px;
+    }
+
+    .avatar-wrap{
+        width:145px;
+        height:145px;
     }
 }
 </style>
@@ -879,1173 +892,419 @@ footer{
 
 <div class="background"></div>
 <div class="grid"></div>
+<div class="gold-line left"></div>
+<div class="gold-line right"></div>
 <div class="cursor-glow" id="cursorGlow"></div>
 
-<!-- NAVIGATION -->
-<nav>
-    <div class="logo">♚ ABDULLAH ♚</div>
+<!-- NAV -->
 
-    <div class="nav-links">
-        <a href="#home">الرئيسية</a>
-        <a href="#about">عني</a>
-        <a href="#links">حساباتي</a>
-        <a href="#tools">الأدوات</a>
-        <a href="#contact">تواصل</a>
-    </div>
+<nav>
+
+<div class="logo">♚ ABDULLAH ♚</div>
+
+<div class="nav-links">
+<a href="#home">الرئيسية</a>
+<a href="#about">عني</a>
+<a href="#links">حساباتي</a>
+<a href="#works">أعمالي</a>
+<a href="#contact">تواصل</a>
+</div>
+
 </nav>
 
 <main>
 
 <!-- HERO -->
+
 <section class="hero" id="home">
+
 <div class="container hero-content">
 
-    <div class="status">
-        <span class="status-dot"></span>
-        الهوية الرقمية الرسمية
-    </div>
+<div class="status">
+<span class="status-dot"></span>
+الهوية الرقمية نشطة
+</div>
 
-    <div class="avatar-wrap">
-        <div class="avatar-ring"></div>
-        <div class="avatar">A</div>
-    </div>
+<div class="avatar-wrap">
+<div class="avatar-ring"></div>
+<div class="avatar">A</div>
+</div>
 
-    <h1>عبدالله<span>.</span></h1>
+<h1>عبدالله<span>.</span></h1>
 
-    <p class="subtitle">
-        صانع محتوى • مصمم • صاحب رؤية
-    </p>
+<p class="subtitle">
+صانع محتوى • مصمم • صاحب رؤية
+</p>
 
-    <p class="mystery">
-        «وراء كل تصميم... فكرة لا يراها الجميع.»
-    </p>
+<p class="mystery">
+«وراء كل تصميم... فكرة لا يراها الجميع.»
+</p>
 
-    <div class="hero-buttons">
-        <a class="btn primary" href="#links">
-            اكتشف عالمي
-        </a>
+<div class="hero-buttons">
 
-        <a class="btn" href="#about">
-            من أنا؟
-        </a>
-    </div>
+<a class="btn primary" href="#links">
+اكتشف عالمي
+</a>
+
+<a class="btn" href="#about">
+من أنا؟
+</a>
 
 </div>
-</section>
 
+</div>
+
+</section>
 
 <!-- ABOUT -->
+
 <section id="about" class="reveal">
+
 <div class="container">
 
-    <div class="section-head">
-        <div class="section-number">01 — ABOUT</div>
-        <div class="section-title">من أنا؟</div>
-        <div class="section-desc">نبذة عن عبدالله وهويته</div>
-    </div>
+<div class="section-head">
+<div class="section-number">01 — ABOUT</div>
+<div class="section-title">من أنا؟</div>
+<div class="section-desc">خلف الاسم توجد قصة وهوية</div>
+</div>
 
-    <div class="about-box">
+<div class="about-box">
 
-        <div class="quote">
-            «لا أصنع الأشياء لتُرى فقط... أصنعها لتترك أثرًا.»
-        </div>
+<div class="quote">
+«لا أصنع الأشياء لتُرى فقط... أصنعها لتترك أثرًا.»
+</div>
 
-        <p class="about-text">
-            أصنع محتوى وتصاميم تجمع بين الغموض، الجمال، والهوية الخاصة.
-            هذا الموقع هو مساحتي الرقمية التي أجمع فيها حساباتي،
-            أعمالي، وأدواتي ومشاريعي في مكان واحد.
-        </p>
-
-    </div>
+<p class="about-text">
+أنا عبدالله، صانع محتوى ومصمم أهتم بصناعة الأفكار
+والتصاميم التي تمتلك شخصية وهوية مختلفة.
+أجمع بين الغموض، الجمال، والبساطة لصناعة محتوى
+يبقى في الذاكرة ولا يمر مرورًا عابرًا.
+</p>
 
 </div>
-</section>
 
+</div>
+
+</section>
 
 <!-- SOCIAL -->
+
 <section id="links" class="reveal">
+
 <div class="container">
 
-    <div class="section-head">
-        <div class="section-number">02 — SOCIAL</div>
-        <div class="section-title">حساباتي</div>
-        <div class="section-desc">كل شيء في مكان واحد</div>
-    </div>
+<div class="section-head">
+<div class="section-number">02 — SOCIAL</div>
+<div class="section-title">حساباتي</div>
+<div class="section-desc">عالمي الرقمي في مكان واحد</div>
+</div>
 
-    <div class="cards">
+<div class="cards">
 
-        <a class="card"
-           href="https://www.tiktok.com/@4_ad10"
-           target="_blank"
-           rel="noopener noreferrer">
+<a class="card"
+href="https://www.tiktok.com/@4_ad10"
+target="_blank"
+rel="noopener">
 
-            <div class="card-icon">♪</div>
+<div class="card-icon">♪</div>
 
-            <div class="card-info">
-                <div class="card-name">TikTok</div>
-                <div class="card-handle">@4_ad10</div>
-            </div>
+<div class="card-info">
+<div class="card-name">TikTok</div>
+<div class="card-handle">@4_ad10</div>
+</div>
 
-            <div class="card-arrow">←</div>
+<div class="card-arrow">←</div>
 
-        </a>
+</a>
 
+<a class="card"
+href="https://www.instagram.com/4_ad22"
+target="_blank"
+rel="noopener">
 
-        <a class="card"
-           href="https://www.instagram.com/4_ad22"
-           target="_blank"
-           rel="noopener noreferrer">
+<div class="card-icon">◎</div>
 
-            <div class="card-icon">◎</div>
+<div class="card-info">
+<div class="card-name">Instagram</div>
+<div class="card-handle">@4_ad22</div>
+</div>
 
-            <div class="card-info">
-                <div class="card-name">Instagram</div>
-                <div class="card-handle">@4_ad22</div>
-            </div>
+<div class="card-arrow">←</div>
 
-            <div class="card-arrow">←</div>
-
-        </a>
-
-    </div>
-
-
-    <a class="card community"
-       href="https://tiktok.me/group/ZSVQP24vx/"
-       target="_blank"
-       rel="noopener noreferrer">
-
-        <div class="card-icon">✦</div>
-
-        <div class="card-info">
-
-            <span class="badge">مجتمع المصممين</span>
-
-            <div class="card-name">
-                مجموعة المصممين
-            </div>
-
-            <div class="card-handle">
-                مجتمع للتصميم وتبادل الدعم
-            </div>
-
-        </div>
-
-        <div class="card-arrow">←</div>
-
-    </a>
+</a>
 
 </div>
-</section>
 
+<a class="card community"
+href="https://tiktok.me/group/ZSVQP24vx/"
+target="_blank"
+rel="noopener">
+
+<div class="card-icon">✦</div>
+
+<div class="card-info">
+
+<span class="badge">
+مجتمع المصممين
+</span>
+
+<div class="card-name">
+مجموعة المصممين
+</div>
+
+<div class="card-handle">
+مجتمع للتصميم وتبادل الدعم
+</div>
+
+</div>
+
+<div class="card-arrow">←</div>
+
+</a>
+
+</div>
+
+</section>
 
 <!-- JOURNEY -->
+
 <section class="reveal">
+
 <div class="container">
 
-    <div class="section-head">
-        <div class="section-number">03 — JOURNEY</div>
-        <div class="section-title">رحلتي</div>
-        <div class="section-desc">أرقام تعبّر عن الفكرة</div>
-    </div>
+<div class="section-head">
+<div class="section-number">03 — JOURNEY</div>
+<div class="section-title">رحلتي</div>
+<div class="section-desc">من فكرة صغيرة إلى هوية كاملة</div>
+</div>
 
-    <div class="stats">
+<div class="timeline">
 
-        <div class="stat">
-            <div class="stat-number">∞</div>
-            <div class="stat-label">الأفكار</div>
-        </div>
+<div class="timeline-item">
 
-        <div class="stat">
-            <div class="stat-number">01</div>
-            <div class="stat-label">الهوية</div>
-        </div>
+<div class="timeline-year">01 — البداية</div>
 
-        <div class="stat">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">الإبداع</div>
-        </div>
+<div class="timeline-title">
+البداية وصناعة المحتوى
+</div>
 
-        <div class="stat">
-            <div class="stat-number">∞</div>
-            <div class="stat-label">المستقبل</div>
-        </div>
-
-    </div>
+<div class="timeline-text">
+كانت البداية مجرد فكرة، ثم تحولت الفكرة إلى محتوى
+وأسلوب وهوية خاصة.
+</div>
 
 </div>
+
+<div class="timeline-item">
+
+<div class="timeline-year">02 — التطور</div>
+
+<div class="timeline-title">
+التصميم وبناء الهوية
+</div>
+
+<div class="timeline-text">
+مع الوقت أصبح التصميم جزءًا أساسيًا من الرحلة،
+وأصبحت لكل فكرة طريقة مختلفة في الظهور.
+</div>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="timeline-year">03 — القادم</div>
+
+<div class="timeline-title">
+المشاريع القادمة
+</div>
+
+<div class="timeline-text">
+الرحلة لم تنتهِ بعد. القادم أكبر، والموقع نفسه
+سيستمر بالتطور مع كل مرحلة جديدة.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
+<!-- STATS -->
+
+<section class="reveal">
+
+<div class="container">
+
+<div class="section-head">
+<div class="section-number">04 — NUMBERS</div>
+<div class="section-title">فلسفتي</div>
+<div class="section-desc">الأرقام هنا ليست مجرد أرقام</div>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<div class="stat-number">∞</div>
+<div class="stat-label">الأفكار</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">01</div>
+<div class="stat-label">الهوية</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">24/7</div>
+<div class="stat-label">الإبداع</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">∞</div>
+<div class="stat-label">المستقبل</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 <!-- WORKS -->
+
 <section id="works" class="reveal">
+
 <div class="container">
 
-    <div class="section-head">
-        <div class="section-number">04 — WORKS</div>
-        <div class="section-title">أعمالي</div>
-        <div class="section-desc">مساحة لأعمال عبدالله ومشاريعه</div>
-    </div>
+<div class="section-head">
+<div class="section-number">05 — WORKS</div>
+<div class="section-title">أعمالي</div>
+<div class="section-desc">مساحة ستتحول لاحقًا إلى معرض حقيقي</div>
+</div>
 
-    <div class="works">
+<div class="works">
 
-        <div class="work">
-            <div class="work-text">تصميم جديد</div>
-        </div>
+<div class="work">
+<div class="work-content">
+<div class="work-number">PROJECT 01</div>
+<div class="work-title">تصاميم الأنمي</div>
+<div class="work-desc">أعمال بصرية وهوية خاصة</div>
+</div>
+</div>
 
-        <div class="work">
-            <div class="work-text">مشروع قادم</div>
-        </div>
+<div class="work">
+<div class="work-content">
+<div class="work-number">PROJECT 02</div>
+<div class="work-title">صناعة المحتوى</div>
+<div class="work-desc">أفكار ونصوص ومونتاج</div>
+</div>
+</div>
 
-        <div class="work">
-            <div class="work-text">قريبًا</div>
-        </div>
-
-    </div>
+<div class="work">
+<div class="work-content">
+<div class="work-number">PROJECT 03</div>
+<div class="work-title">مشروع قادم</div>
+<div class="work-desc">سيظهر هنا قريبًا</div>
+</div>
+</div>
 
 </div>
-</section>
-
-
-<!-- TOOLS -->
-<section id="tools" class="reveal">
-<div class="container">
-
-    <div class="section-head">
-        <div class="section-number">05 — TOOLS</div>
-        <div class="section-title">أدوات عبدالله</div>
-        <div class="section-desc">مساحة المساعد والأدوات الخاصة بالموقع</div>
-    </div>
-
-
-    <!-- AI -->
-    <div class="ai-box">
-
-        <div class="ai-head">
-
-            <div class="ai-icon">✦</div>
-
-            <div>
-                <div class="ai-title">المساعد الذكي</div>
-                <div class="ai-subtitle">
-                    مساعد عبدالله للتصميم والمحتوى
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="chat-log" id="chatLog">
-
-            <div class="message ai">
-                مرحبًا بك. أنا المساعد الذكي الخاص بمنصة عبدالله.
-                أستطيع مساعدتك في الأفكار، التصميم، المحتوى، والبرومبتات.
-            </div>
-
-        </div>
-
-
-        <div class="ai-input">
-
-            <div class="ai-counter">
-                الكلمات:
-                <span id="wordCount">0</span>
-                / 700
-            </div>
-
-            <div class="ai-input-row">
-
-                <textarea
-                    id="aiInput"
-                    maxlength="6000"
-                    placeholder="اكتب استفسارك هنا..."
-                    oninput="updateWordCount()"></textarea>
-
-                <button
-                    class="send-btn"
-                    id="sendBtn"
-                    onclick="sendAI()">
-                    ➤
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- SCRIPT GENERATOR -->
-    <div class="tool-card" style="margin-top:16px;">
-
-        <div class="section-head">
-            <div class="section-title" style="font-size:20px;">
-                مولد النصوص
-            </div>
-
-            <div class="section-desc">
-                أنشئ نصًا أوليًا مناسبًا للتعديل والـ AI Voice
-            </div>
-        </div>
-
-
-        <div class="form-group">
-
-            <label>اسم الشخصية</label>
-
-            <input
-                id="scriptCharacter"
-                type="text"
-                placeholder="مثال: مادارا، إيتاتشي، زورو...">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>نوع النص</label>
-
-            <select id="scriptType">
-
-                <option value="dramatic">
-                    مونولوج درامي
-                </option>
-
-                <option value="philosophical">
-                    نص فلسفي
-                </option>
-
-                <option value="mysterious">
-                    نص غامض
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>الفكرة أو الحالة</label>
-
-            <textarea
-                id="scriptIdea"
-                placeholder="الكبرياء، الألم، الانتقام، التضحية..."></textarea>
-
-        </div>
-
-
-        <button
-            class="btn primary"
-            style="width:100%;"
-            onclick="generateScript()">
-
-            ✦ توليد النص
-
-        </button>
-
-
-        <div
-            class="output"
-            id="scriptOutput">
-        </div>
-
-    </div>
 
 </div>
-</section>
 
+</section>
 
 <!-- CONTACT -->
-<section id="contact" class="reveal">
+
+<section id="contact" class="contact reveal">
+
 <div class="container">
 
-    <div class="section-head">
-        <div class="section-number">06 — CONTACT</div>
-        <div class="section-title">التواصل</div>
-        <div class="section-desc">
-            أرسل ملاحظتك أو رسالتك
-        </div>
-    </div>
+<div class="contact-box">
 
+<div class="contact-title">
+وصلت إلى النهاية...
+</div>
 
-    <div class="contact-box">
+<div class="contact-desc">
+لكن هذه ليست نهاية الرحلة.
+</div>
 
-        <div class="contact-title">
-            تواصل مع عبدالله
-        </div>
+<div class="hero-buttons">
 
-        <div class="contact-desc">
-            اكتب رسالتك وسيتعامل معها النظام بالطريقة المخصصة للموقع.
-        </div>
+<a class="btn primary"
+href="https://www.tiktok.com/@4_ad10"
+target="_blank"
+rel="noopener">
+TikTok
+</a>
 
-
-        <div class="form-group">
-
-            <label>العنوان</label>
-
-            <input
-                id="contactSubject"
-                type="text"
-                maxlength="150"
-                placeholder="عنوان الرسالة">
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>الرسالة</label>
-
-            <textarea
-                id="contactMessage"
-                maxlength="3000"
-                placeholder="اكتب رسالتك هنا..."></textarea>
-
-        </div>
-
-
-        <button
-            class="btn primary"
-            id="contactButton"
-            style="width:100%;"
-            onclick="sendContact()">
-
-            إرسال الرسالة
-
-        </button>
-
-    </div>
+<a class="btn"
+href="https://www.instagram.com/4_ad22"
+target="_blank"
+rel="noopener">
+Instagram
+</a>
 
 </div>
-</section>
-
-
-<!-- SECURITY -->
-<section class="reveal">
-<div class="container">
-
-    <div class="section-head">
-        <div class="section-number">07 — SECURITY</div>
-        <div class="section-title">الأمان</div>
-        <div class="section-desc">
-            فحص عناصر الواجهة الموجودة في المتصفح
-        </div>
-    </div>
-
-
-    <div class="security-box">
-
-        <div class="security-item">
-
-            <span>
-                المفاتيح السرية داخل الواجهة
-            </span>
-
-            <span
-                class="security-status"
-                id="tokenStatus">
-                جاري الفحص...
-            </span>
-
-        </div>
-
-
-        <div class="security-item">
-
-            <span>
-                حماية إدخال النصوص
-            </span>
-
-            <span class="security-status">
-                مفعلة
-            </span>
-
-        </div>
-
-
-        <div class="security-item">
-
-            <span>
-                تحديد حجم الرسائل
-            </span>
-
-            <span class="security-status">
-                مفعّل
-            </span>
-
-        </div>
-
-
-        <div class="security-item">
-
-            <span>
-                API Endpoint
-            </span>
-
-            <span
-                class="security-status"
-                id="apiStatus">
-                غير مهيأ
-            </span>
-
-        </div>
-
-
-        <button
-            class="btn"
-            style="width:100%;margin-top:18px;"
-            onclick="runSecurityAudit()">
-
-            إجراء فحص جديد
-
-        </button>
-
-    </div>
 
 </div>
+
+</div>
+
 </section>
 
 </main>
-
 
 <footer>
 
 <div class="container">
 
-    عبدالله © 2026
+عبدالله <span class="footer-gold">© 2026</span>
 
-    <br>
+<br>
 
-    صُمم ليكون مختلفًا.
+صُمم ليكون مختلفًا.
 
 </div>
 
 </footer>
 
-
 <script>
 
-/*
-=========================================================
-عبدالله | نظام الموقع
-كل JavaScript موجود داخل نفس ملف HTML.
-لا توجد توكنات أو مفاتيح حقيقية هنا.
-=========================================================
-*/
-
-
-/*
----------------------------------------------------------
-إعدادات الاتصال
----------------------------------------------------------
-
-إذا كان لديك Backend لاحقًا:
-ضع رابط الـ API هنا فقط.
-
-مثال:
-const API_BASE = "https://your-backend.example.com";
-
-أما إذا كان الموقع HTML فقط:
-اتركه فارغًا.
-*/
-
-const API_BASE = "";
-
-
-/*
----------------------------------------------------------
-Cursor Glow
----------------------------------------------------------
-*/
+/* ===== CURSOR GOLD GLOW ===== */
 
 const glow = document.getElementById("cursorGlow");
 
-document.addEventListener("mousemove", function(e){
+document.addEventListener("mousemove",(e)=>{
 
-    if(!glow) return;
-
-    glow.style.left = e.clientX + "px";
-    glow.style.top = e.clientY + "px";
+glow.style.left = e.clientX + "px";
+glow.style.top = e.clientY + "px";
 
 });
 
+/* ===== SCROLL REVEAL ===== */
 
-/*
----------------------------------------------------------
-Reveal Animation
----------------------------------------------------------
-*/
+const observer = new IntersectionObserver((entries)=>{
 
-const observer = new IntersectionObserver(
+entries.forEach(entry=>{
 
-    function(entries){
+if(entry.isIntersecting){
 
-        entries.forEach(function(entry){
+entry.target.classList.add("show");
 
-            if(entry.isIntersecting){
-
-                entry.target.classList.add("show");
-
-            }
-
-        });
-
-    },
-
-    {
-        threshold:.12
-    }
-
-);
-
-
-document.querySelectorAll(".reveal").forEach(function(el){
-
-    observer.observe(el);
+}
 
 });
 
-
-/*
----------------------------------------------------------
-Word Counter
----------------------------------------------------------
-*/
-
-function countWords(text){
-
-    if(!text || !text.trim()) return 0;
-
-    return text
-        .trim()
-        .replace(/\n/g," ")
-        .split(/\s+/)
-        .filter(Boolean)
-        .length;
-
-}
-
-
-function updateWordCount(){
-
-    const input =
-        document.getElementById("aiInput");
-
-    const counter =
-        document.getElementById("wordCount");
-
-    if(!input || !counter) return;
-
-    let words = countWords(input.value);
-
-    if(words > 700){
-
-        const list =
-            input.value
-            .trim()
-            .replace(/\n/g," ")
-            .split(/\s+/)
-            .slice(0,700);
-
-        input.value = list.join(" ");
-
-        words = 700;
-
-    }
-
-    counter.textContent = words;
-
-}
-
-
-/*
----------------------------------------------------------
-AI
----------------------------------------------------------
-*/
-
-async function sendAI(){
-
-    const input =
-        document.getElementById("aiInput");
-
-    const button =
-        document.getElementById("sendBtn");
-
-    const log =
-        document.getElementById("chatLog");
-
-    const prompt =
-        input.value.trim();
-
-
-    if(!prompt){
-
-        return;
-
-    }
-
-
-    if(countWords(prompt) > 700){
-
-        addMessage(
-            "ai",
-            "الرسالة تجاوزت الحد المسموح به وهو 700 كلمة."
-        );
-
-        return;
-
-    }
-
-
-    addMessage("user",prompt);
-
-    input.value = "";
-
-    updateWordCount();
-
-    button.disabled = true;
-
-    const loading =
-        addMessage(
-            "ai",
-            "جاري معالجة الرسالة..."
-        );
-
-
-    /*
-    إذا لم يتم ربط Backend:
-    يعرض النظام رسالة واضحة بدل كشف أي مفتاح.
-    */
-
-    if(!API_BASE){
-
-        setTimeout(function(){
-
-            loading.textContent =
-                "المساعد جاهز، لكن خدمة الذكاء الاصطناعي غير مربوطة حاليًا بالـ Backend. يمكن تشغيلها لاحقًا دون وضع أي API Key داخل هذا الملف.";
-
-            button.disabled = false;
-
-        },700);
-
-        return;
-
-    }
-
-
-    try{
-
-        const controller =
-            new AbortController();
-
-        const timeout =
-            setTimeout(
-                () => controller.abort(),
-                15000
-            );
-
-
-        const response =
-            await fetch(
-                API_BASE + "/api/chat",
-                {
-                    method:"POST",
-
-                    headers:{
-                        "Content-Type":
-                        "application/json"
-                    },
-
-                    body:JSON.stringify({
-                        prompt:prompt
-                    }),
-
-                    signal:
-                        controller.signal
-                }
-            );
-
-
-        clearTimeout(timeout);
-
-
-        const data =
-            await response.json();
-
-
-        if(response.ok && data.success){
-
-            loading.textContent =
-                String(data.reply || "تمت معالجة الطلب.");
-
-        }else{
-
-            loading.textContent =
-                "تعذر الحصول على رد من الخادم.";
-
-        }
-
-    }catch(error){
-
-        loading.textContent =
-            "تعذر الاتصال بخدمة المساعد حاليًا.";
-
-    }
-
-
-    button.disabled = false;
-
-}
-
-
-/*
----------------------------------------------------------
-إضافة رسالة آمنة
----------------------------------------------------------
-*/
-
-function addMessage(type,text){
-
-    const log =
-        document.getElementById("chatLog");
-
-    const bubble =
-        document.createElement("div");
-
-    bubble.className =
-        "message " + type;
-
-    /*
-    مهم:
-    استخدام textContent بدل innerHTML
-    */
-
-    bubble.textContent = text;
-
-    log.appendChild(bubble);
-
-    log.scrollTop =
-        log.scrollHeight;
-
-    return bubble;
-
-}
-
-
-/*
----------------------------------------------------------
-مولد النصوص
----------------------------------------------------------
-*/
-
-function generateScript(){
-
-    const character =
-        document.getElementById("scriptCharacter")
-        .value
-        .trim() || "الشخصية";
-
-
-    const type =
-        document.getElementById("scriptType")
-        .value;
-
-
-    const idea =
-        document.getElementById("scriptIdea")
-        .value
-        .trim() ||
-        "الصراع والكبرياء";
-
-
-    let result = "";
-
-
-    if(type === "dramatic"){
-
-        result =
-`[مونولوج درامي — ${character}]
-
-يا ${character}... لقد تعلمت أن الطريق الذي يصنع الأقوياء لا يكون مليئًا بالراحة.
-
-كل ألم مررت به ترك أثرًا، وكل خسارة علمتني شيئًا.
-
-أما ${idea}، فقد كان جزءًا من الرحلة التي جعلتني ما أنا عليه اليوم.
-
-القوة الحقيقية ليست في ألا تسقط...
-بل في أن تعرف كيف تنهض كل مرة.`;
-
-    }
-
-
-    else if(type === "philosophical"){
-
-        result =
-`[نص فلسفي — ${character}]
-
-يظن الناس أن ${idea} ضعف...
-لكنهم لا يعرفون ما الذي يصنعه الألم داخل الإنسان.
-
-الزمن لا يغيّر الحقيقة،
-بل يكشفها.
-
-وفي النهاية...
-لا يبقى مع الإنسان إلا ما اختار أن يؤمن به.`;
-
-    }
-
-
-    else{
-
-        result =
-`[نص غامض — ${character}]
-
-في مكان لا يصل إليه الضوء...
-كان هناك شخص يعرف الحقيقة.
-
-لم يكن ${idea} مجرد شعور.
-
-كان بداية شيء أكبر.
-
-وأحيانًا...
-أخطر الأشياء هي التي لا نراها قادمة.`;
-
-    }
-
-
-    const output =
-        document.getElementById("scriptOutput");
-
-    output.textContent = result;
-
-    output.style.display = "block";
-
-}
-
-
-/*
----------------------------------------------------------
-التواصل
----------------------------------------------------------
-*/
-
-async function sendContact(){
-
-    const subject =
-        document.getElementById("contactSubject")
-        .value
-        .trim();
-
-
-    const message =
-        document.getElementById("contactMessage")
-        .value
-        .trim();
-
-
-    const button =
-        document.getElementById("contactButton");
-
-
-    if(!subject || !message){
-
-        alert("يرجى كتابة العنوان والرسالة.");
-
-        return;
-
-    }
-
-
-    if(subject.length > 150){
-
-        alert("العنوان طويل جدًا.");
-
-        return;
-
-    }
-
-
-    if(message.length > 3000){
-
-        alert("الرسالة طويلة جدًا.");
-
-        return;
-
-    }
-
-
-    /*
-    لا يوجد Telegram Token هنا.
-    */
-
-    if(!API_BASE){
-
-        alert(
-            "واجهة التواصل جاهزة، لكن خدمة الإرسال الآمنة غير مربوطة بالـ Backend حاليًا."
-        );
-
-        return;
-
-    }
-
-
-    button.disabled = true;
-
-    try{
-
-        const response =
-            await fetch(
-                API_BASE + "/api/telegram",
-                {
-                    method:"POST",
-
-                    headers:{
-                        "Content-Type":
-                        "application/json"
-                    },
-
-                    body:JSON.stringify({
-                        subject:subject,
-                        message:message
-                    })
-                }
-            );
-
-
-        const data =
-            await response.json();
-
-
-        if(response.ok && data.success){
-
-            alert("تم إرسال الرسالة بنجاح.");
-
-            document.getElementById(
-                "contactSubject"
-            ).value = "";
-
-            document.getElementById(
-                "contactMessage"
-            ).value = "";
-
-        }else{
-
-            alert(
-                data.error ||
-                "تعذر إرسال الرسالة."
-            );
-
-        }
-
-    }catch(error){
-
-        alert(
-            "تعذر الاتصال بالخادم."
-        );
-
-    }
-
-
-    button.disabled = false;
-
-}
-
-
-/*
----------------------------------------------------------
-Security Audit
----------------------------------------------------------
-*/
-
-function runSecurityAudit(){
-
-    const status =
-        document.getElementById("tokenStatus");
-
-    const apiStatus =
-        document.getElementById("apiStatus");
-
-
-    const page =
-        document.documentElement.outerHTML;
-
-
-    /*
-    فحص بسيط للواجهة.
-    لا يعتبر بديلًا عن فحص الخادم.
-    */
-
-    const tokenPattern =
-        /bot\d+:[A-Za-z0-9_-]+/i;
-
-
-    const hasToken =
-        tokenPattern.test(page);
-
-
-    const hasEnvName =
-        page.includes("TELEGRAM_BOT_TOKEN=") ||
-        page.includes("OPENAI_API_KEY=");
-
-
-    if(!hasToken && !hasEnvName){
-
-        status.textContent =
-            "لا توجد أسرار ظاهرة";
-
-        status.style.color =
-            "var(--success)";
-
-    }else{
-
-        status.textContent =
-            "تحذير: راجع الكود";
-
-        status.style.color =
-            "var(--danger)";
-
-    }
-
-
-    if(API_BASE){
-
-        apiStatus.textContent =
-            "مهيأ";
-
-        apiStatus.style.color =
-            "var(--success)";
-
-    }else{
-
-        apiStatus.textContent =
-            "واجهة فقط";
-
-        apiStatus.style.color =
-            "var(--muted)";
-
-    }
-
-}
-
-
-/*
----------------------------------------------------------
-تشغيل الفحص عند فتح الموقع
----------------------------------------------------------
-*/
-
-window.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-        runSecurityAudit();
-
-        updateWordCount();
-
-    }
-);
+},{
+threshold:.12
+});
+
+document.querySelectorAll(".reveal").forEach(el=>{
+observer.observe(el);
+});
 
 </script>
 
