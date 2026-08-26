@@ -3,390 +3,501 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
-
-<title>عبدالله | الموقع الشخصي</title>
-
-<meta name="description" content="الموقع الشخصي لعبدالله — جميع حساباتي وروابطي في مكان واحد.">
+<meta name="theme-color" content="#08090c">
+<title>Studio</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-:root {
-    --gold: #d4af37;
-    --gold-light: #f7df8a;
-    --gold-dark: #8f6f16;
-    --black: #050505;
-    --card: rgba(255,255,255,0.045);
-    --border: rgba(212,175,55,0.25);
+:root{
+    --bg:#07080b;
+    --card:#0d0f14;
+    --card2:#11141b;
+    --border:rgba(255,255,255,.08);
+    --text:#f5f5f7;
+    --muted:#858b98;
+    --accent:#ffffff;
+    --danger:#ff4d67;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    min-height: 100vh;
+body{
+    min-height:100vh;
     background:
-        radial-gradient(circle at 50% 0%, rgba(212,175,55,0.12), transparent 35%),
-        radial-gradient(circle at 100% 100%, rgba(212,175,55,0.06), transparent 30%),
-        #050505;
-    color: #fff;
-    font-family: 'Cairo', sans-serif;
-    overflow-x: hidden;
+        radial-gradient(circle at 50% -10%,rgba(255,255,255,.08),transparent 35%),
+        linear-gradient(180deg,#090a0e 0%,#050609 100%);
+    color:var(--text);
+    font-family:"Cairo",sans-serif;
+    overflow-x:hidden;
 }
 
-/* الخلفية الذهبية */
-body::before {
-    content: "";
-    position: fixed;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: rgba(212,175,55,0.055);
-    filter: blur(100px);
-    top: -250px;
-    left: 50%;
-    transform: translateX(-50%);
-    pointer-events: none;
+button,
+input{
+    font-family:inherit;
 }
 
-/* الحاوية */
-.container {
-    width: min(100% - 32px, 700px);
-    margin: auto;
+.app{
+    width:min(1180px,92%);
+    margin:auto;
+    padding:28px 0 70px;
 }
 
-/* الواجهة */
-.hero {
-    text-align: center;
-    padding: 70px 0 35px;
+/* HEADER */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
 }
 
-/* الدائرة الشخصية */
-.profile {
-    width: 125px;
-    height: 125px;
-    margin: 0 auto 25px;
-    border-radius: 50%;
-    padding: 3px;
-    background: linear-gradient(135deg, #fff0a6, #d4af37, #8f6f16, #f7df8a);
-    box-shadow:
-        0 0 25px rgba(212,175,55,0.28),
-        0 0 70px rgba(212,175,55,0.08);
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.profile-inner {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: #101010;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+.brand-icon{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    background:#fff;
+    color:#050609;
+    font-size:19px;
+    font-weight:800;
+    box-shadow:0 8px 35px rgba(255,255,255,.12);
 }
 
-.profile-inner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.brand-title{
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:.5px;
 }
 
-/* إذا لم توجد صورة */
-.profile-placeholder {
-    color: var(--gold-light);
-    font-size: 42px;
-    font-weight: 800;
+.status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#8f96a4;
+    font-size:12px;
 }
 
-/* الاسم */
-.name {
-    font-size: clamp(32px, 8vw, 48px);
-    font-weight: 800;
-    letter-spacing: -1px;
-    background: linear-gradient(
-        90deg,
-        #fff1a8,
-        #d4af37,
-        #fff3b0,
-        #a57d20
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.status-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#53e18c;
+    box-shadow:0 0 12px #53e18c;
 }
 
-.username {
-    color: #999;
-    font-size: 15px;
-    margin-top: 2px;
+/* HERO */
+
+.hero{
+    position:relative;
+    padding:48px 38px;
+    border:1px solid var(--border);
+    border-radius:28px;
+    background:
+        linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.012)),
+        rgba(10,11,15,.8);
+    overflow:hidden;
+    margin-bottom:22px;
 }
 
-.bio {
-    max-width: 520px;
-    margin: 17px auto 0;
-    color: #c9c9c9;
-    line-height: 1.9;
-    font-size: 15px;
+.hero:before{
+    content:"";
+    position:absolute;
+    width:280px;
+    height:280px;
+    left:-100px;
+    top:-150px;
+    background:rgba(255,255,255,.06);
+    filter:blur(70px);
+    border-radius:50%;
 }
 
-/* خط ذهبي */
-.gold-line {
-    width: 70px;
-    height: 2px;
-    margin: 28px auto 0;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+.hero-content{
+    position:relative;
+    z-index:1;
+    max-width:700px;
 }
 
-/* الحسابات */
-.socials {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin: 25px 0;
+.hero h1{
+    font-size:clamp(32px,6vw,58px);
+    line-height:1.15;
+    font-weight:800;
+    letter-spacing:-2px;
+    margin-bottom:14px;
 }
 
-.social {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-height: 70px;
-    padding: 14px 17px;
-    text-decoration: none;
-    color: #fff;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    backdrop-filter: blur(15px);
-    transition: 0.3s ease;
-    overflow: hidden;
+.hero p{
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.9;
+    max-width:620px;
 }
 
-.social::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        110deg,
-        transparent,
-        rgba(212,175,55,0.10),
-        transparent
-    );
-    transform: translateX(-100%);
-    transition: 0.5s;
+/* UPLOAD */
+
+.upload-box{
+    margin-top:28px;
+    border:1px dashed rgba(255,255,255,.17);
+    border-radius:22px;
+    padding:26px;
+    background:rgba(255,255,255,.025);
+    transition:.25s;
 }
 
-.social:hover::before {
-    transform: translateX(100%);
+.upload-box.dragging{
+    border-color:#fff;
+    background:rgba(255,255,255,.07);
+    transform:scale(1.01);
 }
 
-.social:hover {
-    transform: translateY(-4px);
-    border-color: rgba(212,175,55,0.65);
-    box-shadow: 0 10px 35px rgba(212,175,55,0.12);
+.upload-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 
-.social-icon {
-    width: 43px;
-    height: 43px;
-    flex-shrink: 0;
-    border-radius: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold-light);
-    background: rgba(212,175,55,0.09);
-    border: 1px solid rgba(212,175,55,0.18);
+.upload-info{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-.social-icon svg {
-    width: 22px;
-    height: 22px;
-    fill: currentColor;
+.upload-icon{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    background:#171a21;
+    display:grid;
+    place-items:center;
+    font-size:22px;
 }
 
-.social-info {
-    text-align: right;
-    position: relative;
-    z-index: 1;
+.upload-text strong{
+    display:block;
+    font-size:15px;
+    margin-bottom:3px;
 }
 
-.social-title {
-    display: block;
-    font-weight: 700;
-    font-size: 14px;
+.upload-text span{
+    color:var(--muted);
+    font-size:12px;
 }
 
-.social-sub {
-    display: block;
-    color: #888;
-    font-size: 11px;
-    margin-top: 2px;
+.upload-button{
+    border:0;
+    background:#fff;
+    color:#08090c;
+    padding:12px 21px;
+    border-radius:13px;
+    font-size:13px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
+    white-space:nowrap;
 }
 
-/* العناوين */
-.section-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 38px 0 14px;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 800;
+.upload-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(255,255,255,.12);
 }
 
-.section-title::before {
-    content: "";
-    width: 4px;
-    height: 24px;
-    border-radius: 10px;
-    background: linear-gradient(#f7df8a, #8f6f16);
+#fileInput{
+    display:none;
 }
 
-/* الروابط الرئيسية */
-.links {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+/* PROGRESS */
+
+.progress-area{
+    display:none;
+    margin-top:20px;
 }
 
-.link {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 68px;
-    padding: 12px 18px;
-    text-decoration: none;
-    color: #fff;
-    background: linear-gradient(
-        135deg,
-        rgba(255,255,255,0.055),
-        rgba(255,255,255,0.025)
-    );
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 18px;
-    transition: 0.3s ease;
-    overflow: hidden;
+.progress-area.show{
+    display:block;
 }
 
-.link:hover {
-    transform: translateY(-3px);
-    border-color: rgba(212,175,55,0.5);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    margin-bottom:8px;
 }
 
-.link-left {
-    display: flex;
-    align-items: center;
-    gap: 13px;
+.progress-top span:last-child{
+    color:var(--muted);
 }
 
-.link-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(212,175,55,0.08);
-    color: var(--gold-light);
+.progress{
+    height:7px;
+    border-radius:10px;
+    background:#1a1d24;
+    overflow:hidden;
 }
 
-.link-icon svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
+.progress-bar{
+    width:0%;
+    height:100%;
+    border-radius:10px;
+    background:#fff;
+    transition:.2s;
 }
 
-.link-name {
-    font-weight: 700;
-    font-size: 14px;
+/* SECTION */
+
+.section{
+    margin-top:30px;
 }
 
-.link-desc {
-    color: #858585;
-    font-size: 11px;
-    margin-top: 2px;
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
 }
 
-.arrow {
-    color: var(--gold);
-    font-size: 20px;
+.section-title{
+    font-size:18px;
+    font-weight:800;
 }
 
-/* بطاقة التعريف */
-.about {
-    padding: 22px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.035);
-    border: 1px solid rgba(212,175,55,0.16);
-    line-height: 2;
-    color: #bdbdbd;
-    font-size: 14px;
+.counter{
+    color:var(--muted);
+    font-size:12px;
 }
 
-/* الفوتر */
-footer {
-    text-align: center;
-    padding: 45px 0 28px;
-    color: #666;
-    font-size: 12px;
+/* VIDEOS */
+
+.videos{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
 }
 
-.footer-gold {
-    color: var(--gold);
+.empty{
+    grid-column:1/-1;
+    padding:55px 20px;
+    border:1px solid var(--border);
+    border-radius:22px;
+    text-align:center;
+    background:rgba(255,255,255,.018);
 }
 
-/* ظهور العناصر */
-.fade {
-    opacity: 0;
-    transform: translateY(15px);
-    animation: fadeIn 0.7s ease forwards;
+.empty-icon{
+    font-size:30px;
+    opacity:.55;
+    margin-bottom:12px;
 }
 
-.delay-1 { animation-delay: .1s; }
-.delay-2 { animation-delay: .2s; }
-.delay-3 { animation-delay: .3s; }
-.delay-4 { animation-delay: .4s; }
+.empty strong{
+    display:block;
+    font-size:14px;
+    margin-bottom:5px;
+}
 
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
+.empty span{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* CARD */
+
+.video-card{
+    border:1px solid var(--border);
+    border-radius:20px;
+    background:var(--card);
+    overflow:hidden;
+    transition:.25s;
+}
+
+.video-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(255,255,255,.15);
+}
+
+.video-preview{
+    position:relative;
+    aspect-ratio:9/16;
+    background:#050609;
+    overflow:hidden;
+}
+
+.video-preview video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.video-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,.1),transparent 50%,rgba(0,0,0,.7));
+    pointer-events:none;
+}
+
+.video-details{
+    padding:14px;
+}
+
+.video-name{
+    font-size:13px;
+    font-weight:700;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.video-date{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:4px;
+}
+
+.card-actions{
+    display:flex;
+    gap:7px;
+    margin-top:12px;
+}
+
+.card-btn{
+    flex:1;
+    border:1px solid var(--border);
+    background:#14171d;
+    color:#fff;
+    border-radius:10px;
+    padding:9px 6px;
+    cursor:pointer;
+    font-size:10px;
+    transition:.2s;
+}
+
+.card-btn:hover{
+    background:#1b1f27;
+}
+
+.card-btn.delete{
+    color:#ff7386;
+}
+
+/* NOTICE */
+
+.notice{
+    margin-top:25px;
+    padding:15px 17px;
+    border:1px solid var(--border);
+    border-radius:16px;
+    background:rgba(255,255,255,.018);
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.8;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translate(-50%,30px);
+    background:#fff;
+    color:#07080b;
+    padding:12px 20px;
+    border-radius:13px;
+    font-size:12px;
+    font-weight:700;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:100;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+    .videos{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero{
+        padding:35px 22px;
+    }
+
+    .upload-inner{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .upload-button{
+        width:100%;
     }
 }
 
-/* الموبايل */
-@media (max-width: 520px) {
-    .hero {
-        padding-top: 50px;
+@media(max-width:500px){
+    .app{
+        width:94%;
+        padding-top:18px;
     }
 
-    .socials {
-        grid-template-columns: 1fr;
+    .header{
+        margin-bottom:22px;
     }
 
-    .profile {
-        width: 110px;
-        height: 110px;
+    .brand-title{
+        font-size:18px;
     }
-}
 
-/* تقليل الحركة لمن يفضل ذلك */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
+    .status{
+        display:none;
+    }
+
+    .hero{
+        border-radius:22px;
+        padding:30px 20px;
+    }
+
+    .hero h1{
+        font-size:34px;
+        letter-spacing:-1.5px;
+    }
+
+    .hero p{
+        font-size:13px;
+    }
+
+    .upload-box{
+        padding:18px;
+    }
+
+    .videos{
+        gap:10px;
+    }
+
+    .video-card{
+        border-radius:15px;
+    }
+
+    .video-details{
+        padding:10px;
+    }
+
+    .card-actions{
+        flex-direction:column;
     }
 }
 </style>
@@ -394,180 +505,486 @@ footer {
 
 <body>
 
-<main class="container">
+<div class="app">
 
-    <!-- الواجهة الرئيسية -->
-    <header class="hero fade">
-
-        <div class="profile">
-            <div class="profile-inner">
-                <!-- ضع رابط صورتك هنا -->
-                <img src="https://i.imgur.com/REPLACE.jpg"
-                     alt="عبدالله"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-
-                <div class="profile-placeholder" style="display:none;">
-                    ع
-                </div>
-            </div>
+    <header class="header">
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div class="brand-title">Studio</div>
         </div>
 
-        <h1 class="name">عبدالله</h1>
-
-        <div class="username">@YOUR_USERNAME</div>
-
-        <p class="bio">
-            صانع محتوى ومصمم رقمي.
-            أشارك أفكاري وأعمالي ومحتواي من هنا.
-        </p>
-
-        <div class="gold-line"></div>
-
+        <div class="status">
+            <span class="status-dot"></span>
+            جاهز للعمل
+        </div>
     </header>
 
 
-    <!-- TikTok + Instagram -->
-    <section class="socials fade delay-1">
+    <section class="hero">
 
-        <a class="social"
-           href="https://www.tiktok.com/@YOUR_TIKTOK"
-           target="_blank"
-           rel="noopener noreferrer">
+        <div class="hero-content">
 
-            <div class="social-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.7v13.2a2.9 2.9 0 1 1-2-2.75V8.7a6.6 6.6 0 1 0 5.7 6.5V8.52a8.5 8.5 0 0 0 5.77 2.26V7.1a4.84 4.84 0 0 1-2-.41z"/>
-                </svg>
+            <h1>استوديو الفيديو</h1>
+
+            <p>
+                مساحة خاصة لرفع الفيديوهات وتنظيمها وتجهيزها للتحليل والمراجعة.
+                ارفع الفيديو وسيظهر مباشرة داخل مكتبة الاستوديو.
+            </p>
+
+            <div class="upload-box" id="uploadBox">
+
+                <div class="upload-inner">
+
+                    <div class="upload-info">
+
+                        <div class="upload-icon">↑</div>
+
+                        <div class="upload-text">
+                            <strong>ارفع فيديو جديد</strong>
+                            <span>MP4 • MOV • WEBM</span>
+                        </div>
+
+                    </div>
+
+                    <button class="upload-button" id="uploadButton">
+                        اختيار فيديو
+                    </button>
+
+                </div>
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    accept="video/mp4,video/mov,video/webm,video/*"
+                >
+
+                <div class="progress-area" id="progressArea">
+
+                    <div class="progress-top">
+                        <span id="progressName">جاري الرفع...</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="social-info">
-                <span class="social-title">TikTok</span>
-                <span class="social-sub">تابعني على تيك توك</span>
-            </div>
-
-        </a>
-
-
-        <a class="social"
-           href="https://www.instagram.com/YOUR_INSTAGRAM"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="social-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.5 6.5A1 1 0 1 1 16.5 7a1 1 0 0 1 1-1z"/>
-                </svg>
-            </div>
-
-            <div class="social-info">
-                <span class="social-title">Instagram</span>
-                <span class="social-sub">تابعني على إنستغرام</span>
-            </div>
-
-        </a>
+        </div>
 
     </section>
 
 
-    <!-- الروابط -->
-    <h2 class="section-title fade delay-2">روابطي</h2>
+    <section class="section">
 
-    <section class="links fade delay-2">
+        <div class="section-head">
+            <div class="section-title">مكتبة الفيديوهات</div>
+            <div class="counter" id="counter">0 فيديو</div>
+        </div>
 
-        <a class="link"
-           href="https://www.tiktok.com/@YOUR_TIKTOK"
-           target="_blank"
-           rel="noopener noreferrer">
+        <div class="videos" id="videos">
 
-            <div class="link-left">
+            <div class="empty" id="empty">
 
-                <div class="link-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.7v13.2a2.9 2.9 0 1 1-2-2.75V8.7a6.6 6.6 0 1 0 5.7 6.5V8.52a8.5 8.5 0 0 0 5.77 2.26V7.1a4.84 4.84 0 0 1-2-.41z"/>
-                    </svg>
-                </div>
+                <div class="empty-icon">▣</div>
 
-                <div>
-                    <div class="link-name">حسابي على TikTok</div>
-                    <div class="link-desc">المحتوى والفيديوهات</div>
-                </div>
+                <strong>لا توجد فيديوهات حتى الآن</strong>
+
+                <span>
+                    ارفع أول فيديو ليظهر هنا
+                </span>
 
             </div>
 
-            <div class="arrow">‹</div>
-
-        </a>
-
-
-        <a class="link"
-           href="https://www.instagram.com/YOUR_INSTAGRAM"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="link-left">
-
-                <div class="link-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.5 6.5A1 1 0 1 1 16.5 7a1 1 0 0 1 1-1z"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <div class="link-name">حسابي على Instagram</div>
-                    <div class="link-desc">الصور والتحديثات</div>
-                </div>
-
-            </div>
-
-            <div class="arrow">‹</div>
-
-        </a>
-
-
-        <a class="link"
-           href="YOUR_OTHER_LINK"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="link-left">
-
-                <div class="link-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm1 17.93V17h-2v2.93A8.006 8.006 0 0 1 4.07 13H7v-2H4.07A8.006 8.006 0 0 1 11 4.07V7h2V4.07A8.006 8.006 0 0 1 19.93 11H17v2h2.93A8.006 8.006 0 0 1 13 19.93z"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <div class="link-name">رابط آخر</div>
-                    <div class="link-desc">أضف أي حساب أو رابط مهم</div>
-                </div>
-
-            </div>
-
-            <div class="arrow">‹</div>
-
-        </a>
+        </div>
 
     </section>
 
 
-    <!-- نبذة -->
-    <h2 class="section-title fade delay-3">نبذة عني</h2>
+    <div class="notice">
+        ملاحظة: هذه النسخة تحفظ الفيديوهات محليًا داخل المتصفح.
+        لرفع الفيديوهات إلى الإنترنت والحصول على روابط عامة يمكن فتحها من أي مكان،
+        اربط هذا القسم بخدمة تخزين مثل Supabase Storage أو Cloudinary.
+    </div>
 
-    <section class="about fade delay-3">
-        أنا عبدالله، أعمل على صناعة المحتوى والتصميم الرقمي،
-        وأسعى دائمًا إلى تطوير أفكاري وتحويلها إلى أعمال مميزة.
-        يمكنك الوصول إلى جميع حساباتي وروابطي من خلال هذا الموقع.
-    </section>
+</div>
 
 
-    <footer class="fade delay-4">
-        © 2026 عبدالله — جميع الحقوق محفوظة
-        <br>
-        <span class="footer-gold">صُمم بشغف</span>
-    </footer>
+<div class="toast" id="toast"></div>
 
-</main>
+
+<script>
+
+/* =========================================================
+   STUDIO VIDEO SYSTEM
+   ========================================================= */
+
+const fileInput = document.getElementById("fileInput");
+const uploadButton = document.getElementById("uploadButton");
+const uploadBox = document.getElementById("uploadBox");
+const progressArea = document.getElementById("progressArea");
+const progressBar = document.getElementById("progressBar");
+const progressPercent = document.getElementById("progressPercent");
+const progressName = document.getElementById("progressName");
+const videosContainer = document.getElementById("videos");
+const empty = document.getElementById("empty");
+const counter = document.getElementById("counter");
+const toast = document.getElementById("toast");
+
+let videos = JSON.parse(localStorage.getItem("studio_videos") || "[]");
+
+
+/* OPEN FILE */
+
+uploadButton.addEventListener("click", () => {
+    fileInput.click();
+});
+
+
+fileInput.addEventListener("change", () => {
+
+    const file = fileInput.files[0];
+
+    if (!file) return;
+
+    uploadVideo(file);
+});
+
+
+/* DRAG & DROP */
+
+["dragenter","dragover"].forEach(eventName => {
+
+    uploadBox.addEventListener(eventName, event => {
+
+        event.preventDefault();
+
+        uploadBox.classList.add("dragging");
+
+    });
+
+});
+
+
+["dragleave","drop"].forEach(eventName => {
+
+    uploadBox.addEventListener(eventName, event => {
+
+        event.preventDefault();
+
+        uploadBox.classList.remove("dragging");
+
+    });
+
+});
+
+
+uploadBox.addEventListener("drop", event => {
+
+    const file = event.dataTransfer.files[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("video/")) {
+
+        showToast("الملف يجب أن يكون فيديو");
+
+        return;
+    }
+
+    uploadVideo(file);
+
+});
+
+
+/* UPLOAD */
+
+function uploadVideo(file){
+
+    if (!file.type.startsWith("video/")) {
+
+        showToast("الملف المحدد ليس فيديو");
+
+        return;
+    }
+
+
+    /*
+       الحد الموجود هنا لحماية التخزين المحلي.
+       عند ربط Supabase/Cloudinary يمكن إزالة هذا الحد.
+    */
+
+    if (file.size > 150 * 1024 * 1024){
+
+        showToast("حجم الفيديو أكبر من 150MB");
+
+        return;
+    }
+
+
+    progressArea.classList.add("show");
+
+    progressName.textContent = file.name;
+
+    let progress = 0;
+
+    const interval = setInterval(() => {
+
+        progress += Math.floor(Math.random() * 12) + 5;
+
+        if(progress >= 100){
+
+            progress = 100;
+
+            clearInterval(interval);
+
+            saveVideo(file);
+
+        }
+
+        progressBar.style.width = progress + "%";
+
+        progressPercent.textContent = progress + "%";
+
+    },120);
+
+}
+
+
+/* SAVE */
+
+function saveVideo(file){
+
+    const reader = new FileReader();
+
+    reader.onload = function(){
+
+        const item = {
+
+            id: Date.now(),
+
+            name: file.name,
+
+            type: file.type,
+
+            size: file.size,
+
+            date: new Date().toLocaleString("ar-IQ"),
+
+            url: reader.result
+
+        };
+
+
+        videos.unshift(item);
+
+        /*
+           ملاحظة:
+           localStorage مناسب للتجربة فقط.
+           الفيديوهات الكبيرة قد تتجاوز مساحة التخزين.
+        */
+
+        try{
+
+            localStorage.setItem(
+                "studio_videos",
+                JSON.stringify(videos)
+            );
+
+        }catch(error){
+
+            videos.shift();
+
+            showToast("مساحة المتصفح غير كافية لهذا الفيديو");
+
+            progressArea.classList.remove("show");
+
+            return;
+        }
+
+
+        progressArea.classList.remove("show");
+
+        fileInput.value = "";
+
+        renderVideos();
+
+        showToast("تمت إضافة الفيديو بنجاح");
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* RENDER */
+
+function renderVideos(){
+
+    videosContainer.innerHTML = "";
+
+    counter.textContent =
+        videos.length + (videos.length === 1 ? " فيديو" : " فيديوهات");
+
+
+    if(videos.length === 0){
+
+        videosContainer.appendChild(empty);
+
+        return;
+    }
+
+
+    videos.forEach(video => {
+
+        const card = document.createElement("div");
+
+        card.className = "video-card";
+
+        card.innerHTML = `
+
+            <div class="video-preview">
+
+                <video
+                    src="${video.url}"
+                    preload="metadata"
+                    controls
+                    playsinline>
+                </video>
+
+                <div class="video-overlay"></div>
+
+            </div>
+
+            <div class="video-details">
+
+                <div class="video-name" title="${escapeHTML(video.name)}">
+                    ${escapeHTML(video.name)}
+                </div>
+
+                <div class="video-date">
+                    ${video.date}
+                </div>
+
+                <div class="card-actions">
+
+                    <button
+                        class="card-btn"
+                        onclick="copyVideoLink(${video.id})">
+                        نسخ الرابط
+                    </button>
+
+                    <button
+                        class="card-btn delete"
+                        onclick="deleteVideo(${video.id})">
+                        حذف
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        videosContainer.appendChild(card);
+
+    });
+
+}
+
+
+/* DELETE */
+
+function deleteVideo(id){
+
+    const confirmed = confirm("هل تريد حذف هذا الفيديو؟");
+
+    if(!confirmed) return;
+
+    videos = videos.filter(video => video.id !== id);
+
+    localStorage.setItem(
+        "studio_videos",
+        JSON.stringify(videos)
+    );
+
+    renderVideos();
+
+    showToast("تم حذف الفيديو");
+
+}
+
+
+/* COPY LINK */
+
+async function copyVideoLink(id){
+
+    const video = videos.find(item => item.id === id);
+
+    if(!video) return;
+
+    /*
+       الرابط الحالي محلي داخل المتصفح.
+       بعد ربط التخزين السحابي سيتم استبدال هذا
+       بالرابط العام الحقيقي للفيديو.
+    */
+
+    try{
+
+        await navigator.clipboard.writeText(video.url);
+
+        showToast("تم نسخ الرابط");
+
+    }catch{
+
+        showToast("تعذر نسخ الرابط");
+
+    }
+
+}
+
+
+/* TOAST */
+
+function showToast(message){
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },2500);
+
+}
+
+
+/* SECURITY */
+
+function escapeHTML(text){
+
+    return text
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* START */
+
+renderVideos();
+
+</script>
 
 </body>
-    </html>
+</html>
