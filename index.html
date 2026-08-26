@@ -1,1833 +1,1192 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#07080c">
-<title>Studio</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-:root{
-    --bg:#050609;
-    --panel:#0b0d12;
-    --panel2:#10131a;
-    --line:rgba(255,255,255,.08);
-    --line2:rgba(255,255,255,.14);
-    --text:#f7f7f8;
-    --muted:#858b98;
-    --green:#55e49a;
-    --red:#ff5d72;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    background:
-        radial-gradient(circle at 50% -15%,rgba(255,255,255,.10),transparent 34%),
-        radial-gradient(circle at 100% 40%,rgba(100,100,255,.04),transparent 30%),
-        var(--bg);
-    color:var(--text);
-    font-family:"Cairo",sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
-}
-
-button,
-input{
-    font-family:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-/* =========================
-   APP
-========================= */
-
-.app{
-    width:min(1200px,94%);
-    margin:auto;
-    padding:24px 0 80px;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.header{
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:25px;
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.brand-mark{
-    width:42px;
-    height:42px;
-    border-radius:14px;
-    display:grid;
-    place-items:center;
-    background:#fff;
-    color:#050609;
-    font-size:19px;
-    font-weight:900;
-    box-shadow:0 0 35px rgba(255,255,255,.10);
-}
-
-.brand-name{
-    font-size:20px;
-    font-weight:900;
-    letter-spacing:.5px;
-}
-
-.system{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:8px 13px;
-    border:1px solid var(--line);
-    border-radius:30px;
-    color:var(--muted);
-    font-size:11px;
-    background:rgba(255,255,255,.02);
-}
-
-.system-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 13px var(--green);
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    position:relative;
-    overflow:hidden;
-    padding:50px 42px;
-    border:1px solid var(--line);
-    border-radius:30px;
-    background:
-        linear-gradient(135deg,
-        rgba(255,255,255,.06),
-        rgba(255,255,255,.015));
-    margin-bottom:20px;
-}
-
-.hero:before{
-    content:"";
-    position:absolute;
-    width:450px;
-    height:450px;
-    top:-330px;
-    left:50%;
-    transform:translateX(-50%);
-    border-radius:50%;
-    background:rgba(255,255,255,.08);
-    filter:blur(100px);
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-    max-width:760px;
-}
-
-.eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
-    padding:6px 11px;
-    border:1px solid var(--line);
-    border-radius:30px;
-    color:#aeb4c0;
-    font-size:10px;
-    margin-bottom:17px;
-    background:rgba(255,255,255,.025);
-}
-
-.eyebrow span{
-    width:5px;
-    height:5px;
-    background:#fff;
-    border-radius:50%;
-}
-
-.hero h1{
-    font-size:clamp(35px,6vw,64px);
-    line-height:1.1;
-    letter-spacing:-2.5px;
-    font-weight:900;
-    margin-bottom:17px;
-}
-
-.hero p{
-    color:var(--muted);
-    font-size:14px;
-    line-height:2;
-    max-width:670px;
-}
-
-/* =========================
-   UPLOAD ZONE
-========================= */
-
-.upload-zone{
-    margin-top:32px;
-    padding:25px;
-    border:1px dashed rgba(255,255,255,.18);
-    border-radius:23px;
-    background:rgba(255,255,255,.025);
-    transition:.25s ease;
-}
-
-.upload-zone.drag{
-    border-color:#fff;
-    background:rgba(255,255,255,.07);
-    transform:scale(1.01);
-}
-
-.upload-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.upload-left{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.upload-symbol{
-    width:53px;
-    height:53px;
-    display:grid;
-    place-items:center;
-    border-radius:17px;
-    background:#171a21;
-    font-size:23px;
-}
-
-.upload-title{
-    font-size:14px;
-    font-weight:800;
-}
-
-.upload-sub{
-    color:var(--muted);
-    font-size:10px;
-    margin-top:3px;
-}
-
-.upload-btn{
-    border:0;
-    border-radius:13px;
-    padding:13px 22px;
-    background:#fff;
-    color:#050609;
-    font-size:12px;
-    font-weight:900;
-    transition:.2s;
-}
-
-.upload-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 12px 30px rgba(255,255,255,.12);
-}
-
-#file{
-    display:none;
-}
-
-/* =========================
-   UPLOAD STATUS
-========================= */
-
-.upload-status{
-    display:none;
-    margin-top:22px;
-}
-
-.upload-status.active{
-    display:block;
-}
-
-.upload-meta{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:8px;
-    font-size:11px;
-}
-
-.upload-meta .filename{
-    max-width:70%;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-}
-
-.upload-meta .percent{
-    color:#fff;
-    font-weight:800;
-}
-
-.progress-track{
-    height:7px;
-    background:#1a1d24;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.progress-fill{
-    width:0%;
-    height:100%;
-    background:#fff;
-    border-radius:20px;
-    transition:width .2s linear;
-}
-
-.upload-info{
-    display:flex;
-    justify-content:space-between;
-    color:var(--muted);
-    font-size:9px;
-    margin-top:8px;
-}
-
-/* =========================
-   STATS
-========================= */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:13px;
-    margin-bottom:30px;
-}
-
-.stat{
-    padding:18px;
-    border:1px solid var(--line);
-    border-radius:18px;
-    background:rgba(255,255,255,.018);
-}
-
-.stat-label{
-    color:var(--muted);
-    font-size:10px;
-    margin-bottom:6px;
-}
-
-.stat-value{
-    font-size:21px;
-    font-weight:900;
-}
-
-/* =========================
-   LIBRARY
-========================= */
-
-.library-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:15px;
-}
-
-.library-title{
-    font-size:19px;
-    font-weight:900;
-}
-
-.library-count{
-    color:var(--muted);
-    font-size:10px;
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-.search{
-    width:230px;
-    padding:10px 13px;
-    border:1px solid var(--line);
-    outline:none;
-    border-radius:12px;
-    background:#0b0d12;
-    color:#fff;
-    font-size:10px;
-}
-
-.search:focus{
-    border-color:var(--line2);
-}
-
-/* =========================
-   GRID
-========================= */
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:14px;
-}
-
-.empty{
-    grid-column:1/-1;
-    min-height:280px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    border:1px solid var(--line);
-    border-radius:22px;
-    background:rgba(255,255,255,.018);
-    text-align:center;
-}
-
-.empty-icon{
-    width:60px;
-    height:60px;
-    display:grid;
-    place-items:center;
-    border-radius:20px;
-    background:#10131a;
-    font-size:25px;
-    margin-bottom:14px;
-}
-
-.empty-title{
-    font-size:14px;
-    font-weight:800;
-}
-
-.empty-sub{
-    color:var(--muted);
-    font-size:10px;
-    margin-top:4px;
-}
-
-/* =========================
-   CARD
-========================= */
-
-.card{
-    overflow:hidden;
-    border:1px solid var(--line);
-    border-radius:20px;
-    background:var(--panel);
-    transition:.25s ease;
-}
-
-.card:hover{
-    transform:translateY(-4px);
-    border-color:var(--line2);
-}
-
-.preview{
-    position:relative;
-    aspect-ratio:9/16;
-    background:#030405;
-    overflow:hidden;
-}
-
-.preview video{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.preview-top{
-    position:absolute;
-    top:10px;
-    right:10px;
-    left:10px;
-    display:flex;
-    justify-content:space-between;
-    pointer-events:none;
-}
-
-.badge{
-    padding:5px 8px;
-    border-radius:8px;
-    background:rgba(0,0,0,.55);
-    backdrop-filter:blur(10px);
-    color:#fff;
-    font-size:8px;
-}
-
-.card-body{
-    padding:13px;
-}
-
-.card-name{
-    font-size:11px;
-    font-weight:800;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-}
-
-.card-date{
-    color:var(--muted);
-    font-size:8px;
-    margin-top:4px;
-}
-
-.actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:6px;
-    margin-top:11px;
-}
-
-.action{
-    border:1px solid var(--line);
-    border-radius:9px;
-    background:#11141a;
-    color:#fff;
-    padding:8px 4px;
-    font-size:9px;
-    transition:.2s;
-}
-
-.action:hover{
-    background:#191d25;
-}
-
-.action.delete{
-    color:var(--red);
-}
-
-/* =========================
-   FOOTER NOTE
-========================= */
-
-.note{
-    margin-top:28px;
-    padding:15px 17px;
-    border:1px solid var(--line);
-    border-radius:16px;
-    color:var(--muted);
-    font-size:9px;
-    line-height:1.9;
-    background:rgba(255,255,255,.015);
-}
-
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-    position:fixed;
-    bottom:24px;
-    left:50%;
-    transform:translate(-50%,30px);
-    opacity:0;
-    pointer-events:none;
-    z-index:1000;
-    padding:12px 20px;
-    border-radius:13px;
-    background:#fff;
-    color:#050609;
-    font-size:11px;
-    font-weight:800;
-    transition:.3s;
-    white-space:nowrap;
-}
-
-.toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:900px){
-
-    .grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-}
-
-@media(max-width:700px){
-
-    .app{
-        width:94%;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07070a">
+  <title>Personal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07070a;
+      --card: rgba(255,255,255,.045);
+      --border: rgba(255,255,255,.10);
+      --text: #f5f5f7;
+      --muted: #8d8e98;
+      --soft: #b9bac2;
+      --white: #ffffff;
+      --shadow: 0 25px 80px rgba(0,0,0,.45);
     }
 
-    .hero{
-        padding:35px 22px;
-        border-radius:24px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .upload-row{
-        flex-direction:column;
-        align-items:stretch;
+    html {
+      scroll-behavior: smooth;
     }
 
-    .upload-btn{
-        width:100%;
+    body {
+      font-family: "Cairo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
     }
 
-    .stats{
-        grid-template-columns:1fr 1fr;
+    /* =========================
+       BACKGROUND
+    ========================== */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(255,255,255,.10),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 90% 60%,
+          rgba(255,255,255,.035),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 5% 80%,
+          rgba(255,255,255,.025),
+          transparent 28%
+        );
     }
 
-    .grid{
-        grid-template-columns:repeat(2,1fr);
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: .13;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.035) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.035) 1px,
+          transparent 1px
+        );
+
+      background-size: 45px 45px;
+
+      mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 85%
+      );
     }
 
-    .library-head{
-        align-items:flex-start;
-        gap:10px;
-        flex-direction:column;
+    /* =========================
+       SCROLL BAR
+    ========================== */
+
+    ::-webkit-scrollbar {
+      width: 6px;
     }
 
-    .search{
-        width:100%;
-    }
-}
-
-@media(max-width:430px){
-
-    .header{
-        height:58px;
+    ::-webkit-scrollbar-track {
+      background: #07070a;
     }
 
-    .system{
-        display:none;
+    ::-webkit-scrollbar-thumb {
+      background: #33343a;
+      border-radius: 20px;
     }
 
-    .brand-name{
-        font-size:18px;
+    /* =========================
+       NAVIGATION
+    ========================== */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 18px;
+      display: flex;
+      justify-content: center;
     }
 
-    .hero h1{
-        font-size:36px;
+    .nav {
+      width: min(760px, 94vw);
+      min-height: 58px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+
+      padding: 6px;
+
+      border: 1px solid var(--border);
+      border-radius: 20px;
+
+      background: rgba(12,12,16,.65);
+
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+
+      box-shadow:
+        0 15px 50px rgba(0,0,0,.35),
+        inset 0 1px rgba(255,255,255,.04);
     }
 
-    .stats{
-        gap:8px;
+    .nav a {
+      color: #8e8f98;
+      text-decoration: none;
+
+      font-size: 12px;
+      font-weight: 800;
+
+      padding: 10px 16px;
+      border-radius: 14px;
+
+      transition: .3s ease;
     }
 
-    .stat{
-        padding:14px;
+    .nav a:hover {
+      color: white;
+      background: rgba(255,255,255,.07);
     }
 
-    .stat-value{
-        font-size:18px;
+    /* =========================
+       CONTAINER
+    ========================== */
+
+    main {
+      width: min(1050px, 92vw);
+      margin: auto;
     }
 
-    .grid{
-        gap:9px;
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding:
+        130px 0
+        80px;
+
+      position: relative;
     }
 
-    .card{
-        border-radius:15px;
+    .hero-content {
+      width: 100%;
+      max-width: 850px;
     }
-}
-</style>
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 8px 15px;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      background: rgba(255,255,255,.035);
+
+      color: #9b9ca4;
+
+      font-size: 11px;
+      font-weight: 700;
+
+      margin-bottom: 30px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #d8d8dc;
+
+      box-shadow:
+        0 0 10px rgba(255,255,255,.8);
+
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% {
+        opacity: .45;
+        transform: scale(.8);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(52px, 10vw, 110px);
+
+      line-height: .95;
+
+      letter-spacing: -6px;
+
+      font-weight: 900;
+
+      background:
+        linear-gradient(
+          180deg,
+          #ffffff 0%,
+          #d0d0d5 42%,
+          #686971 100%
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 620px;
+
+      margin: 30px auto 0;
+
+      color: var(--muted);
+
+      font-size: 15px;
+
+      line-height: 2;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 12px;
+
+      margin-top: 34px;
+
+      flex-wrap: wrap;
+    }
+
+    .button {
+      text-decoration: none;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 145px;
+
+      padding: 13px 22px;
+
+      border-radius: 15px;
+
+      font-size: 12px;
+      font-weight: 800;
+
+      transition: .3s ease;
+    }
+
+    .button-main {
+      color: #08080b;
+
+      background: white;
+
+      border: 1px solid white;
+    }
+
+    .button-secondary {
+      color: #d1d1d6;
+
+      background: rgba(255,255,255,.04);
+
+      border: 1px solid var(--border);
+    }
+
+    .button:hover {
+      transform: translateY(-4px);
+
+      box-shadow:
+        0 15px 35px rgba(0,0,0,.35);
+    }
+
+    /* =========================
+       SECTION
+    ========================== */
+
+    section {
+      padding: 95px 0;
+    }
+
+    .section-header {
+      margin-bottom: 30px;
+    }
+
+    .section-label {
+      color: #65666e;
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 5vw, 48px);
+
+      letter-spacing: -2px;
+
+      margin-top: 8px;
+    }
+
+    .section-description {
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.9;
+
+      margin-top: 8px;
+
+      max-width: 560px;
+    }
+
+    /* =========================
+       CARDS
+    ========================== */
+
+    .cards {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 14px;
+    }
+
+    .card {
+      position: relative;
+
+      min-height: 190px;
+
+      padding: 25px;
+
+      border-radius: 22px;
+
+      border: 1px solid var(--border);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.065),
+          rgba(255,255,255,.018)
+        );
+
+      box-shadow:
+        inset 0 1px rgba(255,255,255,.04);
+
+      overflow: hidden;
+
+      transition:
+        transform .35s ease,
+        border-color .35s ease,
+        background .35s ease;
+    }
+
+    .card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      top: -100px;
+      left: -80px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,.06);
+
+      filter: blur(45px);
+
+      opacity: 0;
+
+      transition: .4s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+
+      border-color:
+        rgba(255,255,255,.18);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.09),
+          rgba(255,255,255,.025)
+        );
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-number {
+      color: #666770;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      margin-bottom: 28px;
+    }
+
+    .card h3 {
+      font-size: 19px;
+
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.9;
+    }
+
+    /* =========================
+       LINKS
+    ========================== */
+
+    .links {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 12px;
+    }
+
+    .link-card {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 20px 22px;
+
+      border-radius: 18px;
+
+      border: 1px solid var(--border);
+
+      background: rgba(255,255,255,.035);
+
+      color: white;
+
+      text-decoration: none;
+
+      transition: .3s ease;
+    }
+
+    .link-card:hover {
+      transform: translateX(-5px);
+
+      background: rgba(255,255,255,.07);
+
+      border-color:
+        rgba(255,255,255,.17);
+    }
+
+    .link-info {
+      display: flex;
+
+      align-items: center;
+
+      gap: 14px;
+    }
+
+    .link-icon {
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      background:
+        rgba(255,255,255,.06);
+
+      border: 1px solid
+        rgba(255,255,255,.08);
+
+      font-size: 15px;
+    }
+
+    .link-name {
+      font-size: 13px;
+
+      font-weight: 800;
+    }
+
+    .link-sub {
+      color: #777881;
+
+      font-size: 10px;
+
+      margin-top: 2px;
+    }
+
+    .arrow {
+      color: #777881;
+
+      font-size: 18px;
+
+      transition: .3s;
+    }
+
+    .link-card:hover .arrow {
+      color: white;
+
+      transform: translateX(-5px);
+    }
+
+    /* =========================
+       ABOUT
+    ========================== */
+
+    .about-box {
+      border: 1px solid var(--border);
+
+      border-radius: 25px;
+
+      padding: 35px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.055),
+          rgba(255,255,255,.018)
+        );
+
+      box-shadow: var(--shadow);
+    }
+
+    .about-box p {
+      color: #9c9da5;
+
+      font-size: 14px;
+
+      line-height: 2.2;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      padding: 40px 0 55px;
+
+      border-top:
+        1px solid rgba(255,255,255,.06);
+
+      text-align: center;
+
+      color: #55565e;
+
+      font-size: 10px;
+    }
+
+    /* =========================
+       REVEAL ANIMATION
+    ========================== */
+
+    .reveal {
+      opacity: 0;
+
+      transform: translateY(25px);
+
+      transition:
+        opacity .8s ease,
+        transform .8s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+
+      transform: translateY(0);
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 760px) {
+
+      header {
+        padding: 12px;
+      }
+
+      .nav {
+        min-height: 52px;
+
+        border-radius: 17px;
+      }
+
+      .nav a {
+        font-size: 10px;
+
+        padding: 9px 10px;
+      }
+
+      main {
+        width: 90vw;
+      }
+
+      .hero {
+        min-height: 92vh;
+
+        padding-top: 115px;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .hero-description {
+        font-size: 13px;
+
+        padding: 0 10px;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .links {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 165px;
+      }
+
+      .about-box {
+        padding: 25px;
+      }
+    }
+
+    @media (max-width: 420px) {
+
+      .nav {
+        gap: 0;
+      }
+
+      .nav a {
+        padding:
+          8px 7px;
+
+        font-size: 9px;
+      }
+
+      .hero h1 {
+        font-size: 54px;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="app">
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
 
-<header class="header">
+  <header>
 
-    <div class="brand">
+    <nav class="nav">
 
-        <div class="brand-mark">S</div>
+      <a href="#home">الرئيسية</a>
 
-        <div class="brand-name">
-            Studio
+      <a href="#about">نبذة</a>
+
+      <a href="#work">الأعمال</a>
+
+      <a href="#links">الروابط</a>
+
+    </nav>
+
+  </header>
+
+
+  <main>
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="home">
+
+      <div class="hero-content reveal">
+
+        <div class="status">
+
+          <span class="status-dot"></span>
+
+          متاح للتواصل
+
         </div>
 
-    </div>
-
-    <div class="system">
-        <span class="system-dot"></span>
-        النظام جاهز
-    </div>
-
-</header>
-
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <div class="eyebrow">
-            <span></span>
-            VIDEO WORKSPACE
-        </div>
 
         <h1>
-            مساحة عمل<br>
-            للفيديوهات.
+          مساحة<br>
+          شخصية.
         </h1>
 
-        <p>
-            ارفع فيديوهاتك، نظّمها، شاهدها، واحصل على روابط مباشرة
-            جاهزة للمراجعة والتحليل. تم تصميم الاستوديو ليكون سريعًا،
-            نظيفًا، ومناسبًا للفيديوهات الكبيرة.
+
+        <p class="hero-description">
+
+          مكان بسيط، هادئ، ومختلف.
+          كل شيء هنا مصمم ليكون واضحًا،
+          سريعًا، وأنيقًا بدون أي تعقيد.
+
         </p>
 
 
-        <div
-            class="upload-zone"
-            id="dropZone"
+        <div class="hero-buttons">
+
+          <a
+            href="#links"
+            class="button button-main"
+          >
+            استكشف الروابط
+          </a>
+
+
+          <a
+            href="#about"
+            class="button button-secondary"
+          >
+            تعرف أكثر
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section id="about">
+
+      <div class="section-header reveal">
+
+        <div class="section-label">
+          ABOUT
+        </div>
+
+        <h2 class="section-title">
+          نبذة مختصرة
+        </h2>
+
+        <p class="section-description">
+          مساحة مخصصة لعرض المعلومات الشخصية
+          بطريقة بسيطة وراقية.
+        </p>
+
+      </div>
+
+
+      <div class="about-box reveal">
+
+        <p>
+
+          هذا المكان يمثل مساحة شخصية رقمية،
+          تجمع الروابط والأعمال والمعلومات المهمة
+          في واجهة واحدة سريعة وسهلة الاستخدام.
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         WORK
+    ========================== -->
+
+    <section id="work">
+
+      <div class="section-header reveal">
+
+        <div class="section-label">
+          WORK
+        </div>
+
+        <h2 class="section-title">
+          ما الذي أقدمه؟
+        </h2>
+
+      </div>
+
+
+      <div class="cards">
+
+        <div class="card reveal">
+
+          <div class="card-number">
+            01
+          </div>
+
+          <h3>
+            صناعة المحتوى
+          </h3>
+
+          <p>
+            أفكار ومحتوى بصري بأسلوب
+            حديث ومختلف.
+          </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+          <div class="card-number">
+            02
+          </div>
+
+          <h3>
+            التصميم
+          </h3>
+
+          <p>
+            تصاميم وواجهات تهتم بالتفاصيل
+            والبساطة والجودة.
+          </p>
+
+        </div>
+
+
+        <div class="card reveal">
+
+          <div class="card-number">
+            03
+          </div>
+
+          <h3>
+            المشاريع
+          </h3>
+
+          <p>
+            تجارب ومشاريع رقمية يتم تطويرها
+            باستمرار.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         LINKS
+    ========================== -->
+
+    <section id="links">
+
+      <div class="section-header reveal">
+
+        <div class="section-label">
+          CONNECT
+        </div>
+
+        <h2 class="section-title">
+          الروابط
+        </h2>
+
+        <p class="section-description">
+          أضف حساباتك وروابطك هنا.
+        </p>
+
+      </div>
+
+
+      <div class="links">
+
+        <!-- غيّر الروابط هنا -->
+
+        <a
+          href="#"
+          class="link-card reveal"
+          target="_blank"
         >
 
-            <div class="upload-row">
+          <div class="link-info">
 
-                <div class="upload-left">
+            <div class="link-icon">
+              T
+            </div>
 
-                    <div class="upload-symbol">
-                        ↑
-                    </div>
+            <div>
 
-                    <div>
+              <div class="link-name">
+                TikTok
+              </div>
 
-                        <div class="upload-title">
-                            رفع فيديو جديد
-                        </div>
-
-                        <div class="upload-sub">
-                            اسحب الفيديو هنا أو اختره من جهازك
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    class="upload-btn"
-                    id="chooseBtn"
-                >
-                    اختيار الفيديو
-                </button>
+              <div class="link-sub">
+                الحساب الشخصي
+              </div>
 
             </div>
 
+          </div>
 
-            <input
-                type="file"
-                id="file"
-                accept="video/*"
-            >
+          <span class="arrow">
+            ←
+          </span>
 
-
-            <div
-                class="upload-status"
-                id="uploadStatus"
-            >
-
-                <div class="upload-meta">
-
-                    <span
-                        class="filename"
-                        id="fileName"
-                    >
-                        -
-                    </span>
-
-                    <span
-                        class="percent"
-                        id="percent"
-                    >
-                        0%
-                    </span>
-
-                </div>
+        </a>
 
 
-                <div class="progress-track">
-
-                    <div
-                        class="progress-fill"
-                        id="progress"
-                    ></div>
-
-                </div>
-
-
-                <div class="upload-info">
-
-                    <span id="uploadState">
-                        تجهيز الفيديو...
-                    </span>
-
-                    <span id="uploadSize">
-                        -
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="stats">
-
-    <div class="stat">
-
-        <div class="stat-label">
-            إجمالي الفيديوهات
-        </div>
-
-        <div
-            class="stat-value"
-            id="totalVideos"
-        >
-            0
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-label">
-            مساحة الفيديوهات
-        </div>
-
-        <div
-            class="stat-value"
-            id="totalSize"
-        >
-            0 MB
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-label">
-            حالة الاستوديو
-        </div>
-
-        <div
-            class="stat-value"
-            style="font-size:15px"
-        >
-            جاهز
-        </div>
-
-    </div>
-
-</section>
-
-
-<section>
-
-    <div class="library-head">
-
-        <div>
-
-            <div class="library-title">
-                مكتبة الفيديوهات
-            </div>
-
-            <div
-                class="library-count"
-                id="count"
-            >
-                0 فيديو
-            </div>
-
-        </div>
-
-
-        <input
-            class="search"
-            id="search"
-            placeholder="ابحث عن فيديو..."
-            type="search"
+        <a
+          href="#"
+          class="link-card reveal"
+          target="_blank"
         >
 
+          <div class="link-info">
+
+            <div class="link-icon">
+              Y
+            </div>
+
+            <div>
+
+              <div class="link-name">
+                YouTube
+              </div>
+
+              <div class="link-sub">
+                القناة
+              </div>
+
+            </div>
+
+          </div>
+
+          <span class="arrow">
+            ←
+          </span>
+
+        </a>
+
+
+        <a
+          href="#"
+          class="link-card reveal"
+          target="_blank"
+        >
+
+          <div class="link-info">
+
+            <div class="link-icon">
+              I
+            </div>
+
+            <div>
+
+              <div class="link-name">
+                Instagram
+              </div>
+
+              <div class="link-sub">
+                الحساب
+              </div>
+
+            </div>
+
+          </div>
+
+          <span class="arrow">
+            ←
+          </span>
+
+        </a>
+
+
+        <a
+          href="#"
+          class="link-card reveal"
+          target="_blank"
+        >
+
+          <div class="link-info">
+
+            <div class="link-icon">
+              C
+            </div>
+
+            <div>
+
+              <div class="link-name">
+                Contact
+              </div>
+
+              <div class="link-sub">
+                تواصل مباشر
+              </div>
+
+            </div>
+
+          </div>
+
+          <span class="arrow">
+            ←
+          </span>
+
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div>
+      © 2026 — Personal Space
     </div>
 
+  </footer>
 
-    <div
-        class="grid"
-        id="grid"
-    >
 
-        <div class="empty">
+  <script>
 
-            <div class="empty-icon">
-                ▣
-            </div>
+    /* =========================
+       SCROLL REVEAL
+    ========================== */
 
-            <div class="empty-title">
-                المكتبة فارغة
-            </div>
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
 
-            <div class="empty-sub">
-                ارفع أول فيديو ليظهر هنا
-            </div>
+          entries.forEach(
+            (entry) => {
 
-        </div>
+              if (entry.isIntersecting) {
 
-    </div>
+                entry.target.classList.add("show");
 
-</section>
+              }
 
+            }
+          );
 
-<div class="note">
-
-    التخزين السحابي والرفع القابل للاستئناف يجب ربطهما بخدمة Storage
-    حقيقية مثل Supabase. هذه الواجهة لا تستخدم localStorage لتخزين
-    الفيديوهات الكبيرة، لأن المتصفح ليس مخزن فيديو مناسبًا.
-
-</div>
-
-</div>
-
-
-<div
-    class="toast"
-    id="toast"
-></div>
-
-
-<script>
-
-/* ============================================================
-   STUDIO CORE
-   ============================================================
-
-   IMPORTANT
-
-   هذه النسخة مجهزة للبنية الحقيقية.
-   لا يتم تخزين الفيديو داخل localStorage.
-
-   عند إضافة Supabase:
-   - يتم استخدام TUS
-   - رفع الفيديو على أجزاء
-   - استكمال الرفع بعد انقطاع الاتصال
-   - إنشاء رابط عام للفيديو
-   - حفظ بيانات الفيديو
-
-============================================================ */
-
-
-/* -----------------------------
-   ELEMENTS
------------------------------ */
-
-const fileInput =
-    document.getElementById("file");
-
-const chooseBtn =
-    document.getElementById("chooseBtn");
-
-const dropZone =
-    document.getElementById("dropZone");
-
-const uploadStatus =
-    document.getElementById("uploadStatus");
-
-const progress =
-    document.getElementById("progress");
-
-const percent =
-    document.getElementById("percent");
-
-const fileName =
-    document.getElementById("fileName");
-
-const uploadState =
-    document.getElementById("uploadState");
-
-const uploadSize =
-    document.getElementById("uploadSize");
-
-const grid =
-    document.getElementById("grid");
-
-const search =
-    document.getElementById("search");
-
-const totalVideos =
-    document.getElementById("totalVideos");
-
-const totalSize =
-    document.getElementById("totalSize");
-
-const count =
-    document.getElementById("count");
-
-const toast =
-    document.getElementById("toast");
-
-
-/* -----------------------------
-   CONFIGURATION
------------------------------ */
-
-/*
-
-   بعد إنشاء Supabase ضع البيانات هنا.
-
-*/
-
-const STUDIO_CONFIG = {
-
-    enabled:false,
-
-    supabaseUrl:"",
-    supabaseAnonKey:"",
-
-    bucket:"videos"
-
-};
-
-
-/* -----------------------------
-   TEMPORARY INDEX
-
-   فقط معلومات الفيديوهات
-   وليست ملفات الفيديو نفسها.
------------------------------ */
-
-let library = [];
-
-
-/* -----------------------------
-   FORMAT
------------------------------ */
-
-function formatSize(bytes){
-
-    if(!bytes) return "0 MB";
-
-    const units = [
-        "B",
-        "KB",
-        "MB",
-        "GB",
-        "TB"
-    ];
-
-    let i = 0;
-
-    let size = bytes;
-
-    while(
-        size >= 1024 &&
-        i < units.length - 1
-    ){
-
-        size /= 1024;
-        i++;
-
-    }
-
-    return size.toFixed(
-        i === 0 ? 0 : 2
-    ) + " " + units[i];
-
-}
-
-
-/* -----------------------------
-   TOAST
------------------------------ */
-
-function notify(message){
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    setTimeout(() => {
-
-        toast.classList.remove("show");
-
-    },2800);
-
-}
-
-
-/* -----------------------------
-   OPEN FILE
------------------------------ */
-
-chooseBtn.addEventListener(
-    "click",
-    () => fileInput.click()
-);
-
-
-fileInput.addEventListener(
-    "change",
-    () => {
-
-        const file =
-            fileInput.files[0];
-
-        if(file){
-            handleFile(file);
+        },
+        {
+          threshold: 0.12
         }
+      );
 
-    }
-);
 
+    document
+      .querySelectorAll(".reveal")
+      .forEach(
+        (element) => observer.observe(element)
+      );
 
-/* -----------------------------
-   DRAG & DROP
------------------------------ */
 
-[
-    "dragenter",
-    "dragover"
-].forEach(event => {
+    /* =========================
+       SMOOTH NAVIGATION
+    ========================== */
 
-    dropZone.addEventListener(
-        event,
-        e => {
+    document
+      .querySelectorAll(".nav a")
+      .forEach(
+        (link) => {
 
-            e.preventDefault();
+          link.addEventListener(
+            "click",
+            function(e) {
 
-            dropZone.classList.add("drag");
-
-        }
-    );
-
-});
-
-
-[
-    "dragleave",
-    "drop"
-].forEach(event => {
-
-    dropZone.addEventListener(
-        event,
-        e => {
-
-            e.preventDefault();
-
-            dropZone.classList.remove("drag");
-
-        }
-    );
-
-});
-
-
-dropZone.addEventListener(
-    "drop",
-    e => {
-
-        const file =
-            e.dataTransfer.files[0];
-
-        if(file){
-            handleFile(file);
-        }
-
-    }
-);
-
-
-/* -----------------------------
-   HANDLE FILE
------------------------------ */
-
-function handleFile(file){
-
-    if(!file.type.startsWith("video/")){
-
-        notify(
-            "الملف المحدد ليس فيديو."
-        );
-
-        return;
-
-    }
-
-
-    /*
-       لا يوجد حد 150MB هنا.
-
-       السبب:
-
-       الفيديو سيتم إرساله للتخزين
-       السحابي بدل localStorage.
-
-       الحد الحقيقي يحدده Storage.
-    */
-
-
-    fileName.textContent =
-        file.name;
-
-    uploadSize.textContent =
-        formatSize(file.size);
-
-    uploadStatus.classList.add(
-        "active"
-    );
-
-    progress.style.width =
-        "0%";
-
-    percent.textContent =
-        "0%";
-
-
-    if(!STUDIO_CONFIG.enabled){
-
-        uploadState.textContent =
-            "التخزين السحابي غير مربوط بعد";
-
-        notify(
-            "اربط Supabase لتفعيل الرفع الحقيقي."
-        );
-
-        return;
-
-    }
-
-
-    startCloudUpload(file);
-
-}
-
-
-/* ============================================================
-   CLOUD UPLOAD
-============================================================ */
-
-async function startCloudUpload(file){
-
-    try{
-
-        uploadState.textContent =
-            "جاري تجهيز الرفع...";
-
-
-        /*
-           هنا يتم تشغيل TUS.
-
-           لا نستخدم localStorage
-           ولا نحاول وضع الفيديو داخل
-           المتصفح.
-
-           يتم إرسال الفيديو مباشرة
-           إلى Storage.
-        */
-
-
-        const projectId =
-            extractProjectId(
-                STUDIO_CONFIG.supabaseUrl
-            );
-
-
-        if(!projectId){
-
-            throw new Error(
-                "Supabase URL غير صحيح"
-            );
-
-        }
-
-
-        const objectName =
-            createObjectName(file.name);
-
-
-        /*
-           سيتم استبدال هذا الجزء
-           بمكتبة tus-js-client بعد
-           ربط Supabase.
-
-           البنية جاهزة.
-        */
-
-
-        await simulatedUploader(
-            file,
-            objectName
-        );
-
-
-    }catch(error){
-
-        console.error(error);
-
-        uploadState.textContent =
-            "فشل الرفع";
-
-        notify(
-            "حدث خطأ أثناء رفع الفيديو."
-        );
-
-    }
-
-}
-
-
-/* -----------------------------
-   OBJECT NAME
------------------------------ */
-
-function createObjectName(name){
-
-    const safeName =
-        name
-        .replace(/[^\w\u0600-\u06FF.-]/g,"_")
-        .slice(0,100);
-
-    return (
-        Date.now() +
-        "_" +
-        safeName
-    );
-
-}
-
-
-/* -----------------------------
-   PROJECT ID
------------------------------ */
-
-function extractProjectId(url){
-
-    if(!url) return null;
-
-    try{
-
-        const host =
-            new URL(url).hostname;
-
-        return host.split(".")[0];
-
-    }catch{
-
-        return null;
-
-    }
-
-}
-
-
-/* ============================================================
-   UPLOADER ENGINE
-
-   هذه دالة اختبارية للواجهة فقط.
-
-   بعد ربط Supabase يتم استبدالها
-   بـ TUS الحقيقي.
-
-============================================================ */
-
-function simulatedUploader(
-    file,
-    objectName
-){
-
-    return new Promise(
-        resolve => {
-
-            let current = 0;
-
-            uploadState.textContent =
-                "جاري الرفع...";
-
-
-            const timer =
-                setInterval(
-                    () => {
-
-                        current +=
-                            Math.random()*8;
-
-                        if(current >= 100){
-
-                            current = 100;
-
-                            clearInterval(
-                                timer
-                            );
-
-                            addVideo(
-                                file,
-                                objectName
-                            );
-
-                            resolve();
-
-                        }
-
-
-                        progress.style.width =
-                            current + "%";
-
-                        percent.textContent =
-                            Math.floor(current) +
-                            "%";
-
-
-                        uploadState.textContent =
-                            "رفع الفيديو...";
-
-                    },
-                    250
+              const target =
+                document.querySelector(
+                  this.getAttribute("href")
                 );
 
+              if (target) {
+
+                e.preventDefault();
+
+                target.scrollIntoView({
+                  behavior: "smooth"
+                });
+
+              }
+
+            }
+          );
+
         }
-    );
+      );
 
-}
-
-
-/* ============================================================
-   LIBRARY
-============================================================ */
-
-function addVideo(
-    file,
-    objectName
-){
-
-    /*
-       الرابط الحقيقي سيتم وضعه
-       هنا بعد اكتمال Supabase.
-    */
-
-    const item = {
-
-        id:Date.now(),
-
-        name:file.name,
-
-        size:file.size,
-
-        type:file.type,
-
-        date:new Date().toLocaleString(
-            "ar-IQ"
-        ),
-
-        objectName,
-
-        url:""
-
-    };
-
-
-    library.unshift(item);
-
-    render();
-
-    uploadState.textContent =
-        "اكتمل الرفع";
-
-    notify(
-        "تم رفع الفيديو بنجاح."
-    );
-
-}
-
-
-/* -----------------------------
-   RENDER
------------------------------ */
-
-function render(){
-
-    const term =
-        search.value
-        .trim()
-        .toLowerCase();
-
-
-    const filtered =
-        library.filter(
-            video =>
-                video.name
-                .toLowerCase()
-                .includes(term)
-        );
-
-
-    grid.innerHTML = "";
-
-
-    if(filtered.length === 0){
-
-        grid.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-icon">
-                    ▣
-                </div>
-
-                <div class="empty-title">
-                    لا توجد فيديوهات
-                </div>
-
-                <div class="empty-sub">
-                    ارفع فيديو جديد ليظهر هنا
-                </div>
-
-            </div>
-
-        `;
-
-    }else{
-
-        filtered.forEach(
-            video =>
-                grid.appendChild(
-                    createCard(video)
-                )
-        );
-
-    }
-
-
-    updateStats();
-
-}
-
-
-/* -----------------------------
-   CARD
------------------------------ */
-
-function createCard(video){
-
-    const card =
-        document.createElement("article");
-
-    card.className =
-        "card";
-
-
-    const preview =
-        document.createElement("div");
-
-    preview.className =
-        "preview";
-
-
-    const videoElement =
-        document.createElement("video");
-
-    videoElement.controls = true;
-
-    videoElement.playsInline = true;
-
-    videoElement.preload =
-        "metadata";
-
-
-    if(video.url){
-
-        videoElement.src =
-            video.url;
-
-    }
-
-
-    const top =
-        document.createElement("div");
-
-    top.className =
-        "preview-top";
-
-
-    top.innerHTML = `
-
-        <span class="badge">
-            VIDEO
-        </span>
-
-        <span class="badge">
-            ${escapeHTML(
-                formatSize(video.size)
-            )}
-        </span>
-
-    `;
-
-
-    preview.appendChild(
-        videoElement
-    );
-
-    preview.appendChild(
-        top
-    );
-
-
-    const body =
-        document.createElement("div");
-
-    body.className =
-        "card-body";
-
-
-    body.innerHTML = `
-
-        <div class="card-name">
-            ${escapeHTML(video.name)}
-        </div>
-
-        <div class="card-date">
-            ${escapeHTML(video.date)}
-        </div>
-
-        <div class="actions">
-
-            <button
-                class="action"
-                data-action="copy"
-            >
-                نسخ الرابط
-            </button>
-
-            <button
-                class="action delete"
-                data-action="delete"
-            >
-                حذف
-            </button>
-
-        </div>
-
-    `;
-
-
-    body
-    .querySelector(
-        '[data-action="copy"]'
-    )
-    .addEventListener(
-        "click",
-        () => copyLink(video)
-    );
-
-
-    body
-    .querySelector(
-        '[data-action="delete"]'
-    )
-    .addEventListener(
-        "click",
-        () => deleteVideo(video.id)
-    );
-
-
-    card.appendChild(
-        preview
-    );
-
-    card.appendChild(
-        body
-    );
-
-
-    return card;
-
-}
-
-
-/* -----------------------------
-   COPY
------------------------------ */
-
-async function copyLink(video){
-
-    if(!video.url){
-
-        notify(
-            "الرابط سيظهر بعد ربط التخزين السحابي."
-        );
-
-        return;
-
-    }
-
-
-    try{
-
-        await navigator.clipboard.writeText(
-            video.url
-        );
-
-        notify(
-            "تم نسخ رابط الفيديو."
-        );
-
-    }catch{
-
-        notify(
-            "تعذر نسخ الرابط."
-        );
-
-    }
-
-}
-
-
-/* -----------------------------
-   DELETE
------------------------------ */
-
-function deleteVideo(id){
-
-    const yes =
-        confirm(
-            "هل تريد حذف الفيديو؟"
-        );
-
-
-    if(!yes) return;
-
-
-    library =
-        library.filter(
-            video =>
-                video.id !== id
-        );
-
-
-    render();
-
-    notify(
-        "تم حذف الفيديو."
-    );
-
-}
-
-
-/* -----------------------------
-   STATS
------------------------------ */
-
-function updateStats(){
-
-    totalVideos.textContent =
-        library.length;
-
-
-    const bytes =
-        library.reduce(
-            (sum,video) =>
-                sum + video.size,
-            0
-        );
-
-
-    totalSize.textContent =
-        formatSize(bytes);
-
-
-    count.textContent =
-        library.length === 1
-        ? "1 فيديو"
-        : library.length +
-          " فيديوهات";
-
-}
-
-
-/* -----------------------------
-   SEARCH
------------------------------ */
-
-search.addEventListener(
-    "input",
-    render
-);
-
-
-/* -----------------------------
-   ESCAPE HTML
------------------------------ */
-
-function escapeHTML(value){
-
-    return String(value)
-
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
-
-}
-
-
-/* -----------------------------
-   START
------------------------------ */
-
-render();
-
-</script>
+  </script>
 
 </body>
 </html>
